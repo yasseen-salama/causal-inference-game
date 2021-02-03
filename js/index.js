@@ -1,8 +1,10 @@
 $(document).ready(function () {
-    var nodes = []
-    var edges = []
-    var colors = ['#a6cee3', '#1f78b4', '#b2df8a','#33a02c','#fb9a99','#e31a1c']
-    var alpahbet = 'abcdefghijklmnopqrstuvwxyz'
+    var nodes = [];
+    var edges = [];
+    var colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c'];
+    var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    var gameState = 'mainMenu';
+    var edgesVisible = false;
 
     function randomInteger(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -34,83 +36,95 @@ $(document).ready(function () {
         return colorsShuffeld.shift();
     }
 
-var  intializeNodes = function (numOfNodes){
-    for (let i = 0; i < numOfNodes; i++) {
-        if(colorsShuffeld.length === 0){
-            colorsShuffeld = [...colors];
-            shuffle(colorsShuffeld);
+    var intializeNodes = function (numOfNodes) {
+        for (let i = 0; i < numOfNodes; i++) {
+            if (colorsShuffeld.length === 0) {
+                colorsShuffeld = [...colors];
+                shuffle(colorsShuffeld);
+            }
+            var rndmColor = getRandomColor();
+            nodes.push({
+                group: 'nodes',
+                data: {
+                    id: alphabet.charAt(i),
+                    color: rndmColor, //displayedColor
+                    originalColor: rndmColor, //color without mixing
+                    mixedColor: rndmColor, //color with mixing
+                    childNodes: [],
+                    numOfParents: 0,
+                    type: 'original' //node type for changing styles
+                },
+            });
+            nodes.push()
         }
-        var rndmColor = getRandomColor();
-        nodes.push({
-            group: 'nodes',
-            data: {
-                id: alpahbet.charAt(i),
-                color: rndmColor, //displayedColor
-                originalColor: rndmColor, //color without mixing
-                mixedColor: rndmColor, //color with mixing
-                childNodes: [],
-                numOfParents: 0,
-                type: 'original' //node type for changing styles
-            },
-        });
-        nodes.push()
     }
-}
 
-var intializeEdges= function (){
-    for(let i = 0; i < nodes.length - 1; i++) {
-        var numOfChildren = randomInteger(1, 3)
-        if(numOfChildren != 0) {
-            for (let j = 0; j <= numOfChildren; j++) {
-                var childIndex = randomInteger(i + 1, nodes.length - 1)
-                if (nodes[childIndex].data.numOfParents < 3) {
-                    // mix hexadecimal colors
-                    nodes[childIndex].data.color = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color)
-                    edges.push({
-                        group: 'edges',
-                        data: {
-                            id: '' + nodes[i].data.id + nodes[childIndex].data.id,
-                            source: ''+ nodes[i].data.id,
-                            target:''+ nodes[childIndex].data.id
-                        },
-                    });
-                    nodes[childIndex].data.numOfParents +=1
+    var intializeEdges = function () {
+        for (let i = 0; i < nodes.length - 1; i++) {
+            var numOfChildren = randomInteger(1, 3)
+            if (numOfChildren != 0) {
+                for (let j = 0; j <= numOfChildren; j++) {
+                    var childIndex = randomInteger(i + 1, nodes.length - 1)
+                    if (nodes[childIndex].data.numOfParents < 3) {
+                        // mix hexadecimal colors
+                        nodes[childIndex].data.color = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color)
+                        edges.push({
+                            group: 'edges',
+                            data: {
+                                id: '' + nodes[i].data.id + nodes[childIndex].data.id,
+                                source: '' + nodes[i].data.id,
+                                target: '' + nodes[childIndex].data.id
+                            },
+                        });
+                        nodes[childIndex].data.numOfParents += 1
+                    }
                 }
             }
         }
     }
-}
-function destroyGame() {
+
+    function destroyGame() {
         nodes = [];
         edges = [];
-        var elem = document.querySelector('#cy');
+
+        let elem = document.querySelector('#cy');
         elem.parentNode.removeChild(elem);
 
-        var startMenu = document.getElementById('StartMenu');
+        let startMenu = document.getElementById('StartMenu');
         startMenu.style.display = '';
 
-        var select = document.getElementById('selection');
+        let select = document.getElementById('selection');
         select.style.display = 'none';
 
-        var back = document.getElementById('back');
-        back.style.display = 'none';
-        
+        let back = document.getElementById('back');
+        back.style.display = ''
 
-}
-document.getElementById("back").addEventListener("click", function() {
-       destroyGame();
-});
+        let giveUp = document.getElementById('giveUp');
+        giveUp.style.display = ''
+
+    }
+
+    document.getElementById("back").addEventListener("click", function () {
+        destroyGame();
+    });
+
+
+
 document.getElementById("mode1").addEventListener("click", function() {
-    var startMenu = document.getElementById('StartMenu');
+    let startMenu = document.getElementById('StartMenu');
     startMenu.style.display = 'none';
 
-    var back = document.getElementById('back');
-    back.style.display = '';
+    let back = document.getElementById('back');
+    back.style.display = 'block';
 
-    var elem = document.createElement('div');
+    let giveUp = document.getElementById('giveUp');
+    giveUp.style.display = 'block';
+
+    let elem = document.createElement('div');
     elem.setAttribute("id","cy");
     document.body.appendChild(elem);
-    var hearts = document.getElementById('hearts');
+
+    let hearts = document.getElementById('hearts');
     hearts.style.display = '';
 
     var cy = cytoscape({
@@ -219,6 +233,16 @@ document.getElementById("mode1").addEventListener("click", function() {
 
             }
         }
+    });
+    document.getElementById("giveUp").addEventListener("click", function () {
+        cy.edges().forEach(function (ele) {
+            if (edgesVisible) {
+                ele.style({'opacity': 1});
+            } else {
+                ele.style({'opacity': 0});
+            }
+        });
+        edgesVisible = !edgesVisible;
     });
     });
 
