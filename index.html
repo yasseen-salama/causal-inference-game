@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <link href="style.css" rel="stylesheet" />
+    <link href="public/style.css" rel="stylesheet" />
     <meta charset=utf-8 />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
     <title>Causal Inference Game</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./node_modules/cytoscape/dist/cytoscape.min.js"></script>
-    <script src="./node_modules/cytoscape-edgehandles/cytoscape-edgehandles.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/cytoscape.min.js"></script>
+    <script src="js/cytoscape-edgehandles.js"></script>
     <script src="js/ryb-color-mixer.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
@@ -51,15 +51,15 @@
 
 <!--<div id="cy"></div>-->
 <!-- Load application code at the end to ensure DOM is loaded -->
-<script src="js/index.js"></script>
+<script type="module" src="js/index.js"></script>
 <script type="text/javascript">
     rybColorMixer.mix( );
 </script>
 <p id="hearts" style="display: none">
-    <object id="back" style="display: none" data="images/back.svg" type="image/svg+xml" width="25" height="75"></object>
-    <object id="heart3" data="images/heart.svg" type="image/svg+xml" width="25" height="75"></object>
-    <object id="heart2" data="images/heart.svg" type="image/svg+xml" width="25" height="75"></object>
-    <object id="heart1" data="images/heart.svg" type="image/svg+xml" width="25" height="75"></object>
+    <object id="back" style="display: none" data="public/back.svg" type="image/svg+xml" width="25" height="75"></object>
+    <object id="heart3" data="public/heart.svg" type="image/svg+xml" width="25" height="75"></object>
+    <object id="heart2" data="public/heart.svg" type="image/svg+xml" width="25" height="75"></object>
+    <object id="heart1" data="public/heart.svg" type="image/svg+xml" width="25" height="75"></object>
 </p>
 </body>
 </html>
