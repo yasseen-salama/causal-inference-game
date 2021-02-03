@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
     var nodes = []
     var edges = []
@@ -13,14 +11,14 @@ $(document).ready(function () {
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
-        for (var i = 0; i < 6; i++) {
+        for (let i = 0; i < 6; i++) {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
     }
 
 var  intializeNodes = function (numOfNodes){
-    for(i = 0; i< numOfNodes; i++){
+    for(let i = 0; i< numOfNodes; i++){
         nodes.push({
             group: 'nodes',
             data: {id: alpahbet.charAt(i),color:getRandomColor() /*color: colors[Math.floor(Math.random() * colors.length)]*/, numOfParents: 0},
@@ -30,10 +28,10 @@ var  intializeNodes = function (numOfNodes){
 }
 
 var intializeEdges= function (){
-    for(i = 0; i < nodes.length - 1; i++) {
+    for(let i = 0; i < nodes.length - 1; i++) {
         var numOfChildren = randomInteger(1, 3)
         if(numOfChildren != 0) {
-            for (j = 0; j <= numOfChildren; j++) {
+            for (let j = 0; j <= numOfChildren; j++) {
                 var childIndex = randomInteger(i + 1, nodes.length - 1)
                 if (nodes[childIndex].data.numOfParents < 3) {
                     // mix hexadecimal colors
