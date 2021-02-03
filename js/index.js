@@ -34,195 +34,228 @@ $(document).ready(function () {
         return colorsShuffeld.shift();
     }
 
-var  intializeNodes = function (numOfNodes){
-    for (let i = 0; i < numOfNodes; i++) {
-        if(colorsShuffeld.length === 0){
-            colorsShuffeld = [...colors];
-            shuffle(colorsShuffeld);
-        }
-        var rndmColor = getRandomColor();
-        nodes.push({
-            group: 'nodes',
-            data: {
-                id: alpahbet.charAt(i),
-                color: rndmColor, //displayedColor
-                originalColor: rndmColor, //color without mixing
-                mixedColor: rndmColor, //color with mixing
-                childNodes: [],
-                numOfParents: 0,
-                type: 'original' //node type for changing styles
-            },
-        });
-        nodes.push()
+    var  intializeNodes = function (numOfNodes){
+        for (let i = 0; i < numOfNodes; i++) {
+            if(colorsShuffeld.length === 0){
+                colorsShuffeld = [...colors];
+                shuffle(colorsShuffeld);
+            }
+            var rndmColor = getRandomColor();
+            nodes.push({
+                group: 'nodes',
+                data: {
+                    id: alpahbet.charAt(i),
+                    color: rndmColor, //displayedColor
+                    originalColor: rndmColor, //color without mixing
+                    mixedColor: rndmColor, //color with mixing
+                    childNodes: [],
+                    numOfParents: 0,
+                    type: 'original' //node type for changing styles
+                },
+            });
+            nodes.push()
     }
 }
 
-var intializeEdges= function (){
-    for(let i = 0; i < nodes.length - 1; i++) {
-        var numOfChildren = randomInteger(1, 3)
-        if(numOfChildren != 0) {
-            for (let j = 0; j <= numOfChildren; j++) {
-                var childIndex = randomInteger(i + 1, nodes.length - 1)
-                if (nodes[childIndex].data.numOfParents < 3) {
-                    // mix hexadecimal colors
-                    nodes[childIndex].data.color = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color)
-                    edges.push({
-                        group: 'edges',
-                        data: {
-                            id: '' + nodes[i].data.id + nodes[childIndex].data.id,
-                            source: ''+ nodes[i].data.id,
-                            target:''+ nodes[childIndex].data.id
-                        },
-                    });
-                    nodes[childIndex].data.numOfParents +=1
+    var intializeEdges= function (){
+        for(let i = 0; i < nodes.length - 1; i++) {
+            var numOfChildren = randomInteger(1, 3)
+            if(numOfChildren != 0) {
+                for (let j = 0; j <= numOfChildren; j++) {
+                    var childIndex = randomInteger(i + 1, nodes.length - 1)
+                    if (nodes[childIndex].data.numOfParents < 3) {
+                        // mix hexadecimal colors
+                        nodes[childIndex].data.color = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color)
+                        edges.push({
+                            group: 'edges',
+                            data: {
+                                id: '' + nodes[i].data.id + nodes[childIndex].data.id,
+                                source: ''+ nodes[i].data.id,
+                                target:''+ nodes[childIndex].data.id
+                            },
+                        });
+                        nodes[childIndex].data.numOfParents +=1
+                    }
                 }
             }
         }
     }
-}
-function destroyGame() {
-        nodes = [];
-        edges = [];
-        var elem = document.querySelector('#cy');
-        elem.parentNode.removeChild(elem);
+    function destroyGame() {
+            nodes = [];
+            edges = [];
+            var elem = document.querySelector('#cy');
+            elem.parentNode.removeChild(elem);
 
-        var startMenu = document.getElementById('StartMenu');
-        startMenu.style.display = '';
+            var startMenu = document.getElementById('StartMenu');
+            startMenu.style.display = '';
 
-        var select = document.getElementById('selection');
-        select.style.display = 'none';
+            var select = document.getElementById('selection');
+            select.style.display = 'none';
 
-        var back = document.getElementById('back');
-        back.style.display = 'none';
-        
+            var back = document.getElementById('back');
+            back.style.display = 'none';
+            
 
-}
-document.getElementById("back").addEventListener("click", function() {
-       destroyGame();
-});
-document.getElementById("mode1").addEventListener("click", function() {
-    var startMenu = document.getElementById('StartMenu');
-    startMenu.style.display = 'none';
+    }
 
-    var back = document.getElementById('back');
-    back.style.display = '';
-
-    var elem = document.createElement('div');
-    elem.setAttribute("id","cy");
-    document.body.appendChild(elem);
-    var hearts = document.getElementById('hearts');
-    hearts.style.display = '';
-
-    var cy = cytoscape({
-        container: document.getElementById('cy'),
-
-        boxSelectionEnabled: false,
-        autounselectify: true,
-
-        style: cytoscape.stylesheet()
-            .selector('node')
-            .style({
-                'content': 'data(id)',
-                'background-color': 'data(color)'
-            })
-            .selector('edge')
-            .style({
-                'curve-style': 'straight',
-                'target-arrow-shape': 'triangle',
-                'width': 4,
-            })
-
-            .selector('.highlighted')
-            .style({
-                'background-color': '#61bffc',
-                'line-color': '#61bffc',
-                'target-arrow-color': '#61bffc',
-                'transition-property': 'background-color, line-color, target-arrow-color',
-                'transition-duration': '0.5s'
-            })
-
-            // some style for the extension
-            .selector('.eh-handle')
-            .style({
-                'background-color': 'red',
-                'width': 12,
-                'height': 12,
-                'shape': 'ellipse',
-                'overlay-opacity': 0,
-                'border-width': 12, // makes the handle easier to hit
-                'border-opacity': 0
-            })
-            .selector('.eh-hover')
-            .style({
-                'background-color': 'red'
-            })
-            .selector('.eh-source')
-            .style({
-                'border-width': 2,
-                'border-color': 'red'
-            })
-            .selector('.eh-target')
-            .style({
-                'border-width': 2,
-                'border-color': 'red'
-            })
-            .selector('.eh-preview, .eh-ghost-edge')
-            .style({
-                'background-color': 'red',
-                'line-color': 'red',
-                'target-arrow-color': 'red',
-                'source-arrow-color': 'red',
-                'opacity': 1,
-            })
-            .selector('.eh-ghost-edge.eh-preview-active')
-            .style({
-                'opacity': 0
-            }),
+    document.getElementById("back").addEventListener("click", function() {
+        destroyGame();
     });
 
-    intializeNodes(10); intializeEdges();
-    cy.add(nodes); cy.add(edges);
-
-    var lives = 3;
-
-    var layout = cy.layout({
-        name: 'circle',
-        directed: true,
-        padding: 10
-    });
-
-    layout.run();
-
-    var eh = cy.edgehandles();
-    eh.enable();
-    eh.enableDrawMode();
-
-    cy.edges().forEach(function (ele) {
-        ele.style({'opacity': 0});
-    });
-    cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
-        cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
-        var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
-        if (ej.isEdge()){
-            ej.style({'opacity': 1});
-            cy.remove(addedEles);
-        }
-        else {
-            cy.remove(addedEles);
-            var element = document.getElementById('heart' + lives);
-            element.style.display = 'none';
-            lives = lives - 1;
-            $('body').toggleClass('laser', true);
-            setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
-            if(lives <= 0){
-                destroyGame();
-
-            }
-        }
-    });
+    document.getElementById("mode1").addEventListener("click", function() {
+        makeModus1(4);
     });
 
     document.getElementById("mode2").addEventListener("click", function() {
+            makeModus2(4);
+    });
+
+    function makeModus1(anzNodes){
+        var startMenu = document.getElementById('StartMenu');
+        startMenu.style.display = 'none';
+
+        var back = document.getElementById('back');
+        back.style.display = '';
+
+        var elem = document.createElement('div');
+        elem.setAttribute("id","cy");
+        document.body.appendChild(elem);
+        var hearts = document.getElementById('hearts');
+        hearts.style.display = '';
+
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+
+            boxSelectionEnabled: false,
+            autounselectify: true,
+
+            style: cytoscape.stylesheet()
+                .selector('node')
+                .style({
+                    'content': 'data(id)',
+                    'background-color': 'data(color)'
+                })
+                .selector('edge')
+                .style({
+                    'curve-style': 'straight',
+                    'target-arrow-shape': 'triangle',
+                    'width': 4,
+                })
+
+                .selector('.highlighted')
+                .style({
+                    'background-color': '#61bffc',
+                    'line-color': '#61bffc',
+                    'target-arrow-color': '#61bffc',
+                    'transition-property': 'background-color, line-color, target-arrow-color',
+                    'transition-duration': '0.5s'
+                })
+
+                // some style for the extension
+                .selector('.eh-handle')
+                .style({
+                    'background-color': 'red',
+                    'width': 12,
+                    'height': 12,
+                    'shape': 'ellipse',
+                    'overlay-opacity': 0,
+                    'border-width': 12, // makes the handle easier to hit
+                    'border-opacity': 0
+                })
+                .selector('.eh-hover')
+                .style({
+                    'background-color': 'red'
+                })
+                .selector('.eh-source')
+                .style({
+                    'border-width': 2,
+                    'border-color': 'red'
+                })
+                .selector('.eh-target')
+                .style({
+                    'border-width': 2,
+                    'border-color': 'red'
+                })
+                .selector('.eh-preview, .eh-ghost-edge')
+                .style({
+                    'background-color': 'red',
+                    'line-color': 'red',
+                    'target-arrow-color': 'red',
+                    'source-arrow-color': 'red',
+                    'opacity': 1,
+                })
+                .selector('.eh-ghost-edge.eh-preview-active')
+                .style({
+                    'opacity': 0
+                }),
+        });
+
+        cy.minZoom(1);
+        cy.maxZoom(3);  //beschränken den Zoom
+
+        intializeNodes(anzNodes);
+        intializeEdges();
+        cy.add(nodes); 
+        cy.add(edges);
+
+        var lives = 3;
+
+        var layout = cy.layout({
+            name: 'circle',
+            directed: true,
+            padding: 10
+        });
+
+        layout.run();
+        
+        var eh = cy.edgehandles();
+        eh.enable();
+        eh.enableDrawMode();
+
+        var edgesToComplete = 0;
+
+        cy.edges().forEach(function (ele) {
+            ele.style({'opacity': 0});
+            ele.data('found', false);
+            edgesToComplete++;
+        });
+
+        var correctGuesses = 0;
+
+        cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
+            cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
+            var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
+            if (ej.isEdge()){
+                if(ej.data('found') !== true){
+                        correctGuesses++;
+                        ej.data('found', true);
+                        ej.style({'opacity': 1});
+                    }
+                cy.remove(addedEles);
+            }
+            else {
+                cy.remove(addedEles);
+                var element = document.getElementById('heart' + lives);
+                element.style.display = 'none';
+                lives = lives - 1;
+                $('body').toggleClass('laser', true);
+                setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
+                if(lives <= 0){
+                    destroyGame();
+
+                }
+            }
+
+            if(correctGuesses === edgesToComplete){
+                console.log("You win");
+                destroyGame();
+                makeLevelModus2(anzNodes+3);
+            }
+            
+        });
+    }
+
+    function makeModus2(anzNodes){
         var startMenu = document.getElementById('StartMenu');
         startMenu.style.display = 'none';
         
@@ -313,8 +346,10 @@ document.getElementById("mode1").addEventListener("click", function() {
             }),
         });
     
-        intializeNodes(10); intializeEdges();
-        cy.add(nodes); cy.add(edges);
+        intializeNodes(anzNodes); 
+        intializeEdges();
+        cy.add(nodes); 
+        cy.add(edges);
     
         var lives = 3;
     
@@ -332,12 +367,21 @@ document.getElementById("mode1").addEventListener("click", function() {
     
         cy.edges().forEach(function (ele) {
             ele.style({'opacity': 0});
+            ele.data('found', false);
+            edgesToComplete++;
         });
+
+        var correctGuesses = 0;
+
         cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
             var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
             if (ej.isEdge()){
-                ej.style({'opacity': 1});
+                if(ej.data('found') !== true){
+                    correctGuesses++;
+                    ej.data('found', true);
+                    ej.style({'opacity': 1});
+                }
                 cy.remove(addedEles);
             }
             else {
@@ -351,6 +395,12 @@ document.getElementById("mode1").addEventListener("click", function() {
                     destroyGame();
     
                 }
+            }
+
+            if(correctGuesses === edgesToComplete){
+                console.log("You win");
+                destroyGame();
+                makeLevelModus2(anzNodes+3);
             }
         });
 
@@ -429,5 +479,5 @@ document.getElementById("mode1").addEventListener("click", function() {
                 }
             }
         }
-        });
+    };
 });
