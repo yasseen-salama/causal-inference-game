@@ -35,7 +35,7 @@ $(document).ready(function () {
     }
 
 var  intializeNodes = function (numOfNodes){
-    for (i = 0; i < numOfNodes; i++) {
+    for (let i = 0; i < numOfNodes; i++) {
         if(colorsShuffeld.length === 0){
             colorsShuffeld = [...colors];
             shuffle(colorsShuffeld);
