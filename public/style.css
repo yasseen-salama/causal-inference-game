@@ -61,9 +61,41 @@ input {
     text-align:center;
     transition: all 0.15s;
 }
+
+#back{
+    display: none;
+}
+#giveUp{
+    display: none;
+}
 .button5:hover{
     text-shadow: 0 0 2em rgba(255,255,255,1);
     border-color:#00ff00;
+}
+
+.button1{
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    border:0.16em solid;
+    border-radius:2em;
+    border-color: #000000;
+    box-sizing: border-box;
+    width: 100%;
+    text-decoration: none;
+    font-family:'Roboto',sans-serif;
+    text-align:center;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: left;
+    z-index: 2;
 }
 @media all and (max-width:30em){
     .button5{
