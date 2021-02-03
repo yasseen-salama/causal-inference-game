@@ -37,6 +37,12 @@ input {
     text-align: center;
     min-height: 100vh;
 }
+#selection {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
 
 .button5{
     display:inline-block;
