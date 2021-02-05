@@ -4,7 +4,7 @@ $(document).ready(function () {
     var colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c'];
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
     var gameState = 'mainMenu';
-    //var level = 1;
+    var level = 1;
     var edgesVisible = false;
 
     function randomInteger(min, max) {
@@ -138,85 +138,12 @@ $(document).ready(function () {
         elem.setAttribute("id","cy");
         document.body.appendChild(elem);
 
-        var select = document.getElementById('selection');
-        select.style.display = 'none';
-
         let hearts = document.getElementById('hearts');
         hearts.style.display = '';
     }
 
-    // function startCytoscape(){
-    //     var cyt = cytoscape({
-    //         container: document.getElementById('cy'),
-
-    //         boxSelectionEnabled: false,
-    //         autounselectify: true,
-
-    //         style: cytoscape.stylesheet()
-    //             .selector('node')
-    //             .style({
-    //                 'content': 'data(id)',
-    //                 'background-color': 'data(color)'
-    //             })
-    //             .selector('edge')
-    //             .style({
-    //                 'curve-style': 'straight',
-    //                 'target-arrow-shape': 'triangle',
-    //                 'width': 4,
-    //             })
-
-    //             .selector('.highlighted')
-    //             .style({
-    //                 'background-color': '#61bffc',
-    //                 'line-color': '#61bffc',
-    //                 'target-arrow-color': '#61bffc',
-    //                 'transition-property': 'background-color, line-color, target-arrow-color',
-    //                 'transition-duration': '0.5s'
-    //             })
-
-    //             // some style for the extension
-    //             .selector('.eh-handle')
-    //             .style({
-    //                 'background-color': 'red',
-    //                 'width': 12,
-    //                 'height': 12,
-    //                 'shape': 'ellipse',
-    //                 'overlay-opacity': 0,
-    //                 'border-width': 12, // makes the handle easier to hit
-    //                 'border-opacity': 0
-    //             })
-    //             .selector('.eh-hover')
-    //             .style({
-    //                 'background-color': 'red'
-    //             })
-    //             .selector('.eh-source')
-    //             .style({
-    //                 'border-width': 2,
-    //                 'border-color': 'red'
-    //             })
-    //             .selector('.eh-target')
-    //             .style({
-    //                 'border-width': 2,
-    //                 'border-color': 'red'
-    //             })
-    //             .selector('.eh-preview, .eh-ghost-edge')
-    //             .style({
-    //                 'background-color': 'red',
-    //                 'line-color': 'red',
-    //                 'target-arrow-color': 'red',
-    //                 'source-arrow-color': 'red',
-    //                 'opacity': 1,
-    //             })
-    //             .selector('.eh-ghost-edge.eh-preview-active')
-    //             .style({
-    //                 'opacity': 0
-    //             }),
-    //     });
-    //     return cyt;
-
-    // }
-    function runMode1(level) {
-        let cy = cytoscape({
+    function startCytoscape(){
+        var cy = cytoscape({
             container: document.getElementById('cy'),
 
             boxSelectionEnabled: false,
@@ -282,7 +209,12 @@ $(document).ready(function () {
                     'opacity': 0
                 }),
         });
-        
+        return cy;
+
+    }
+    function runMode1(level) {
+        let cy = startCytoscape();
+        let numOfEdges = 0;
         if(level == 1){
             intializeNodes(4);
         } else if (level == 2){
@@ -307,29 +239,25 @@ $(document).ready(function () {
         eh.enable();
         eh.enableDrawMode();
 
-        var edgesToComplete = 0;
-
         cy.edges().forEach(function (ele) {
             ele.style({'opacity': 0});
-            ele.data('found', false);
-            edgesToComplete++;
+            numOfEdges +=1;
         });
-
-        var correctGuesses = 0;
-        
+        console.log(numOfEdges);
         cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
             var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
             if (ej.isEdge()){
-                if(ej.data('found') !== true){
-                    correctGuesses++;
-                    ej.data('found', true);
-                    ej.style({'opacity': 1});
-                }
-
-
+                ej.style({'opacity': 1});
                 cy.remove(addedEles);
-        
+                numOfEdges -= 1;
+                if (numOfEdges == 0 ){
+                    level += 1;
+                    if(level == 3){
+                        destroyGame();
+                    }
+                    runMode1(level);
+                }
             }
             else {
                 cy.remove(addedEles);
@@ -343,18 +271,6 @@ $(document).ready(function () {
 
                 }
             }
-
-            if(correctGuesses === edgesToComplete){
-                console.log("You win");
-                if(level == 3){
-                    destroyGame();
-                }
-                else{
-                    destroyGame();
-                    runMode1(level+1);
-                }
-            }
-
         });
         document.getElementById("giveUp").addEventListener("click", function () {
             /*cy.ready(function() {
@@ -383,13 +299,11 @@ $(document).ready(function () {
 
 document.getElementById("mode1").addEventListener("click", function() {
     clickedOnMenu();
-    runMode1(1);
+    runMode1(level);
     });
 
     document.getElementById("mode2").addEventListener("click", function() {
         clickedOnMenu();
-        var select = document.getElementById('selection');
-        select.style.display = '';
         var cy = cytoscape({
             container: document.getElementById('cy'),
     
