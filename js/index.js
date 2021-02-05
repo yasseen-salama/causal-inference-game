@@ -296,6 +296,7 @@ $(document).ready(function () {
                 }
             }
         });
+
         document.getElementById("giveUp").addEventListener("click", function () {
             cy.edges().forEach(function (ele) {
                 if (edgesVisible) {
@@ -456,6 +457,17 @@ $(document).ready(function () {
                 }
             }
         }
+
+        document.getElementById("giveUp").addEventListener("click", function () {
+            cy.edges().forEach(function (ele) {
+                if (edgesVisible) {
+                    ele.style({'opacity': 1});
+                } else {
+                    ele.style({'opacity': 0});
+                }
+            });
+            edgesVisible = !edgesVisible;
+        });
     };
 
 
