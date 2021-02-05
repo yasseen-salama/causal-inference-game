@@ -138,12 +138,15 @@ $(document).ready(function () {
         elem.setAttribute("id","cy");
         document.body.appendChild(elem);
 
+        var select = document.getElementById('selection');
+        select.style.display = 'none';
+
         let hearts = document.getElementById('hearts');
         hearts.style.display = '';
     }
 
     function startCytoscape(){
-        var cy = cytoscape({
+        var cyt = cytoscape({
             container: document.getElementById('cy'),
 
             boxSelectionEnabled: false,
@@ -209,7 +212,7 @@ $(document).ready(function () {
                     'opacity': 0
                 }),
         });
-        return cy;
+        return cyt;
 
     }
     function runMode1(level) {
@@ -320,6 +323,8 @@ document.getElementById("mode1").addEventListener("click", function() {
 
     document.getElementById("mode2").addEventListener("click", function() {
         clickedOnMenu();
+        var select = document.getElementById('selection');
+        select.style.display = '';
         var cy = cytoscape({
             container: document.getElementById('cy'),
     
