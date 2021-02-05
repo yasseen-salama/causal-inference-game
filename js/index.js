@@ -262,14 +262,6 @@ $(document).ready(function () {
 
                 cy.remove(addedEles);
         
-
-                if (numOfEdges == 0 ){
-                    level += 1;
-                    if(level == 3){
-                        destroyGame();
-                    }
-                    runMode1(level);
-                }
             }
             else {
                 cy.remove(addedEles);
