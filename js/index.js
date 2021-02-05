@@ -303,54 +303,55 @@ $(document).ready(function () {
         runMode1(level);
     });
 
-        function makeLevelModus2(anzNodes) {
+    function makeLevelModus2(anzNodes) {
 
-            var startMenu = document.getElementById('StartMenu');
-            startMenu.style.display = 'none';
+        var startMenu = document.getElementById('StartMenu');
+        startMenu.style.display = 'none';
 
-            var select = document.getElementById('selection');
-            select.style.display = '';
+        var select = document.getElementById('selection');
+        select.style.display = '';
 
-            var back = document.getElementById('back');
-            back.style.display = '';
+        var back = document.getElementById('back');
+        back.style.display = '';
 
-            var elem = document.createElement('div');
-            elem.setAttribute("id", "cy");
-            document.body.appendChild(elem);
-            var hearts = document.getElementById('hearts');
-            hearts.style.display = '';
+        var elem = document.createElement('div');
+        elem.setAttribute("id", "cy");
+        document.body.appendChild(elem);
 
-            var cy = cytoscape({
-                container: document.getElementById('cy'),
+        var hearts = document.getElementById('hearts');
+        hearts.style.display = '';
 
-                boxSelectionEnabled: false,
-                autounselectify: true,
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
 
-                style: cytoscape.stylesheet()
-                    .selector('node[type="original"]') //node style when not changed/selected
-                    .style({
-                        'content': 'data(id)',
-                        'background-color': 'data(color)',
-                        'shape': 'ellipse'
-                    })
-                    .selector('node[type="selected"]') //node style when selected/changed
-                    .style({
-                        'content': 'data(id)',
-                        'background-color': 'data(color)',
-                        'shape': 'star',
+            boxSelectionEnabled: false,
+            autounselectify: true,
+
+            style: cytoscape.stylesheet()
+                .selector('node[type="original"]') //node style when not changed/selected
+                .style({                       
+                    'content': 'data(id)',
+                    'background-color': 'data(color)',
+                    'shape': 'ellipse'
+                })
+                .selector('node[type="selected"]') //node style when selected/changed
+                .style({
+                    'content': 'data(id)',
+                    'background-color': 'data(color)',
+                    'shape': 'star',
                         // 'opacity' : 0
-                    })
-                    .selector('node[type="start"]') //node style when selected/changed
-                    .style({
-                        'content': 'data(id)',
-                        'background-color': 'data(color)',
-                        'shape': 'ellipse',
-                        'border-width': '4cm',
-                        'border-color': '#ff0000',
-                        'border-style': 'double'
-                    })
-                    .selector('edge')
-                    .style({
+                })
+                .selector('node[type="start"]') //node style when selected/changed
+                .style({
+                    'content': 'data(id)',
+                    'background-color': 'data(color)',
+                    'shape': 'ellipse',
+                    'border-width': '4cm',
+                    'border-color': '#ff0000',
+                    'border-style': 'double'
+                })
+                .selector('edge')
+                .style({
                         'curve-style': 'bezier',
                         'target-arrow-shape': 'triangle',
                         'width': 4,
