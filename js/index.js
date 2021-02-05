@@ -270,6 +270,8 @@ $(document).ready(function () {
             ele.style({'opacity': 0});
             numOfEdges +=1;
         });
+        cy.minZoom(1);
+        cy.maxZoom(3);
         console.log(numOfEdges);
         cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
