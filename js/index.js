@@ -336,10 +336,9 @@ document.getElementById("mode1").addEventListener("click", function() {
                 'opacity': 0
             }),
         });
-<<<<<<< HEAD
         return cy;
-
     }
+
     function runMode1(level) {
         let cy = startCytoscape();
         
@@ -438,8 +437,6 @@ document.getElementById("mode1").addEventListener("click", function() {
         select. style.display = '';
 
         let cy = startCytoscape();
-=======
->>>>>>> parent of 36bd645... Update index.js
     
         intializeNodes(10); intializeEdges();
         cy.add(nodes); cy.add(edges);
@@ -557,19 +554,6 @@ document.getElementById("mode1").addEventListener("click", function() {
                 }
             }
         }
-<<<<<<< HEAD
-
-        document.getElementById("giveUp").addEventListener("click", function () {
-            cy.edges().forEach(function (ele) {
-                if (edgesVisible) {
-                    ele.style({'opacity': 1});
-                } else {
-                    ele.style({'opacity': 0});
-                }
-            });
-            edgesVisible = !edgesVisible;
-        });
-    };
 
 
     document.getElementById("mode1").addEventListener("click", function() {
@@ -577,13 +561,11 @@ document.getElementById("mode1").addEventListener("click", function() {
         runMode1(level);
     });
 
-    document.getElementById("mode2").addEventListener("click", function() {
-        clickedOnMenu();
-        runMode2(level);
-    })
+   
+    
+   
 
-        
-=======
-        });
->>>>>>> parent of 36bd645... Update index.js
 });
+
+});
+
