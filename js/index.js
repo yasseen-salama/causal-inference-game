@@ -4,6 +4,7 @@ $(document).ready(function () {
     var colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c'];
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
     var gameState = 'mainMenu';
+    var level = 1;
     var edgesVisible = false;
 
     function randomInteger(min, max) {
@@ -28,6 +29,21 @@ $(document).ready(function () {
 
         return array;
     }
+    function makePopper(ele) {
+        let ref = ele.popperRef(); // used only for positioning
+
+        ele.tippy = tippy(ref, { // tippy options:
+            content: () => {
+                let content = document.createElement('div');
+
+                content.innerHTML = ele.data();
+
+                return content;
+            },
+            trigger: 'manual' // probably want manual mode
+        });
+    }
+
 
     var colorsShuffeld = [...colors];
     shuffle(colorsShuffeld);
@@ -97,10 +113,10 @@ $(document).ready(function () {
         select.style.display = 'none';
 
         let back = document.getElementById('back');
-        back.style.display = 'none'
+        back.style.display = ''
 
         let giveUp = document.getElementById('giveUp');
-        giveUp.style.display = 'none'
+        giveUp.style.display = ''
 
     }
 
@@ -108,160 +124,186 @@ $(document).ready(function () {
         destroyGame();
     });
 
+    function clickedOnMenu(){
+        let startMenu = document.getElementById('StartMenu');
+        startMenu.style.display = 'none';
+
+        let back = document.getElementById('back');
+        back.style.display = 'block';
+
+        let giveUp = document.getElementById('giveUp');
+        giveUp.style.display = 'block';
+
+        let elem = document.createElement('div');
+        elem.setAttribute("id","cy");
+        document.body.appendChild(elem);
+
+        let hearts = document.getElementById('hearts');
+        hearts.style.display = '';
+    }
+
+    function startCytoscape(){
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+
+            boxSelectionEnabled: false,
+            autounselectify: true,
+
+            style: cytoscape.stylesheet()
+                .selector('node')
+                .style({
+                    'content': 'data(id)',
+                    'background-color': 'data(color)'
+                })
+                .selector('edge')
+                .style({
+                    'curve-style': 'straight',
+                    'target-arrow-shape': 'triangle',
+                    'width': 4,
+                })
+
+                .selector('.highlighted')
+                .style({
+                    'background-color': '#61bffc',
+                    'line-color': '#61bffc',
+                    'target-arrow-color': '#61bffc',
+                    'transition-property': 'background-color, line-color, target-arrow-color',
+                    'transition-duration': '0.5s'
+                })
+
+                // some style for the extension
+                .selector('.eh-handle')
+                .style({
+                    'background-color': 'red',
+                    'width': 12,
+                    'height': 12,
+                    'shape': 'ellipse',
+                    'overlay-opacity': 0,
+                    'border-width': 12, // makes the handle easier to hit
+                    'border-opacity': 0
+                })
+                .selector('.eh-hover')
+                .style({
+                    'background-color': 'red'
+                })
+                .selector('.eh-source')
+                .style({
+                    'border-width': 2,
+                    'border-color': 'red'
+                })
+                .selector('.eh-target')
+                .style({
+                    'border-width': 2,
+                    'border-color': 'red'
+                })
+                .selector('.eh-preview, .eh-ghost-edge')
+                .style({
+                    'background-color': 'red',
+                    'line-color': 'red',
+                    'target-arrow-color': 'red',
+                    'source-arrow-color': 'red',
+                    'opacity': 1,
+                })
+                .selector('.eh-ghost-edge.eh-preview-active')
+                .style({
+                    'opacity': 0
+                }),
+        });
+        return cy;
+
+    }
+    function runMode1(level) {
+        let cy = startCytoscape();
+        let numOfEdges = 0;
+        if(level == 1){
+            intializeNodes(4);
+        } else if (level == 2){
+            intializeNodes(6);
+        } else {
+            intializeNodes(10);
+        }
+        intializeEdges();
+        cy.add(nodes); cy.add(edges);
+
+        var lives = 3;
+
+        var layout = cy.layout({
+            name: 'circle',
+            directed: true,
+            padding: 10
+        });
+
+        layout.run();
+
+        var eh = cy.edgehandles();
+        eh.enable();
+        eh.enableDrawMode();
+
+        cy.edges().forEach(function (ele) {
+            ele.style({'opacity': 0});
+            numOfEdges +=1;
+        });
+        console.log(numOfEdges);
+        cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
+            cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
+            var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
+            if (ej.isEdge()){
+                ej.style({'opacity': 1});
+                cy.remove(addedEles);
+                numOfEdges -= 1;
+                if (numOfEdges == 0 ){
+                    level += 1;
+                    if(level == 3){
+                        destroyGame();
+                    }
+                    runMode1(level);
+                }
+            }
+            else {
+                cy.remove(addedEles);
+                var element = document.getElementById('heart' + lives);
+                element.style.display = 'none';
+                lives = lives - 1;
+                $('body').toggleClass('laser', true);
+                setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
+                if(lives <= 0){
+                    destroyGame();
+
+                }
+            }
+        });
+        document.getElementById("giveUp").addEventListener("click", function () {
+            /*cy.ready(function() {
+                cy.nodes().forEach(function(ele) {
+                    makePopper(ele);
+                });
+            });
+
+            cy.nodes().unbind('mouseover');
+            cy.nodes().bind('mouseover', (event) => event.target.tippy.show());
+
+            cy.nodes().unbind('mouseout');
+            cy.nodes().bind('mouseout', (event) => event.target.tippy.hide());*/
+
+            cy.edges().forEach(function (ele) {
+                if (edgesVisible) {
+                    ele.style({'opacity': 1});
+                } else {
+                    ele.style({'opacity': 0});
+                }
+            });
+            edgesVisible = !edgesVisible;
+        });
+    }
 
 
 document.getElementById("mode1").addEventListener("click", function() {
-    let startMenu = document.getElementById('StartMenu');
-    startMenu.style.display = 'none';
-
-    let back = document.getElementById('back');
-    back.style.display = 'block';
-
-    let giveUp = document.getElementById('giveUp');
-    giveUp.style.display = 'block';
-
-    let elem = document.createElement('div');
-    elem.setAttribute("id","cy");
-    document.body.appendChild(elem);
-
-    let hearts = document.getElementById('hearts');
-    hearts.style.display = '';
-
-    var cy = cytoscape({
-        container: document.getElementById('cy'),
-
-        boxSelectionEnabled: false,
-        autounselectify: true,
-
-        style: cytoscape.stylesheet()
-            .selector('node')
-            .style({
-                'content': 'data(id)',
-                'background-color': 'data(color)'
-            })
-            .selector('edge')
-            .style({
-                'curve-style': 'straight',
-                'target-arrow-shape': 'triangle',
-                'width': 4,
-            })
-
-            .selector('.highlighted')
-            .style({
-                'background-color': '#61bffc',
-                'line-color': '#61bffc',
-                'target-arrow-color': '#61bffc',
-                'transition-property': 'background-color, line-color, target-arrow-color',
-                'transition-duration': '0.5s'
-            })
-
-            // some style for the extension
-            .selector('.eh-handle')
-            .style({
-                'background-color': 'red',
-                'width': 12,
-                'height': 12,
-                'shape': 'ellipse',
-                'overlay-opacity': 0,
-                'border-width': 12, // makes the handle easier to hit
-                'border-opacity': 0
-            })
-            .selector('.eh-hover')
-            .style({
-                'background-color': 'red'
-            })
-            .selector('.eh-source')
-            .style({
-                'border-width': 2,
-                'border-color': 'red'
-            })
-            .selector('.eh-target')
-            .style({
-                'border-width': 2,
-                'border-color': 'red'
-            })
-            .selector('.eh-preview, .eh-ghost-edge')
-            .style({
-                'background-color': 'red',
-                'line-color': 'red',
-                'target-arrow-color': 'red',
-                'source-arrow-color': 'red',
-                'opacity': 1,
-            })
-            .selector('.eh-ghost-edge.eh-preview-active')
-            .style({
-                'opacity': 0
-            }),
-    });
-
-    intializeNodes(10); intializeEdges();
-    cy.add(nodes); cy.add(edges);
-
-    var lives = 3;
-
-    var layout = cy.layout({
-        name: 'circle',
-        directed: true,
-        padding: 10
-    });
-
-    layout.run();
-
-    var eh = cy.edgehandles();
-    eh.enable();
-    eh.enableDrawMode();
-
-    cy.edges().forEach(function (ele) {
-        ele.style({'opacity': 0});
-    });
-    cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
-        cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
-        var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
-        if (ej.isEdge()){
-            ej.style({'opacity': 1});
-            cy.remove(addedEles);
-        }
-        else {
-            cy.remove(addedEles);
-            var element = document.getElementById('heart' + lives);
-            element.style.display = 'none';
-            lives = lives - 1;
-            $('body').toggleClass('laser', true);
-            setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
-            if(lives <= 0){
-                destroyGame();
-
-            }
-        }
-    });
-    document.getElementById("giveUp").addEventListener("click", function () {
-        cy.edges().forEach(function (ele) {
-            if (edgesVisible) {
-                ele.style({'opacity': 1});
-            } else {
-                ele.style({'opacity': 0});
-            }
-        });
-        edgesVisible = !edgesVisible;
-    });
+    clickedOnMenu();
+    runMode1(level);
     });
 
     document.getElementById("mode2").addEventListener("click", function() {
-        var startMenu = document.getElementById('StartMenu');
-        startMenu.style.display = 'none';
-        
-        var select = document.getElementById('selection');
-        select.style.display = '';
-
-        var back = document.getElementById('back');
-        back.style.display = '';
-    
-        var elem = document.createElement('div');
-        elem.setAttribute("id","cy");
-        document.body.appendChild(elem);
-        var hearts = document.getElementById('hearts');
-        hearts.style.display = '';
-    
+        clickedOnMenu();
         var cy = cytoscape({
             container: document.getElementById('cy'),
     
@@ -336,107 +378,6 @@ document.getElementById("mode1").addEventListener("click", function() {
                 'opacity': 0
             }),
         });
-        return cy;
-    }
-
-    function runMode1(level) {
-        let cy = startCytoscape();
-        
-        if(level == 1){
-            intializeNodes(4);
-        } else if (level == 2){
-            intializeNodes(6);
-        } else {
-            intializeNodes(10);
-        }
-        intializeEdges();
-        cy.add(nodes); cy.add(edges);
-
-        var lives = 3;
-
-        var layout = cy.layout({
-            name: 'circle',
-            directed: true,
-            padding: 10
-        });
-
-        cy.minZoom(1);
-        cy.maxZoom(3);  //beschränken den Zoom
-
-        layout.run();
-
-        var eh = cy.edgehandles();
-        eh.enable();
-        eh.enableDrawMode();
-
-        var edgesToComplete = 0;
-
-
-        cy.edges().forEach(function (ele) {
-            ele.style({'opacity': 0});
-            ele.data('found', false);
-            edgesToComplete++;
-        });
-
-        var correctGuesses = 0;
-        
-        cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
-            cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
-            var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
-            if (ej.isEdge()){
-                if(ej.data('found') !== true){
-                    correctGuesses++;
-                    ej.data('found', true);
-                    ej.style({'opacity': 1});
-                }
-                cy.remove(addedEles);
-            }
-            else {
-                cy.remove(addedEles);
-                var element = document.getElementById('heart' + lives);
-                element.style.display = 'none';
-                lives = lives - 1;
-                $('body').toggleClass('laser', true);
-                setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
-                if(lives <= 0){
-                    destroyGame();
-
-                }
-            }
-
-            if(correctGuesses === edgesToComplete){
-                console.log("You win"); 
-                if(level === 3){
-                    destroyGame();
-                }
-                else{
-                    destroyGame();
-                    runMode1(level+1);
-                }
-            }
-        });
-
-        document.getElementById("giveUp").addEventListener("click", function () {
-            cy.edges().forEach(function (ele) {
-                if (edgesVisible) {
-                    ele.style({'opacity': 1});
-                } else {
-                    ele.style({'opacity': 0});
-                }
-            });
-            edgesVisible = !edgesVisible;
-        });
-    };
-
-    function runMode2(level){
-        
-        clickedOnMenu();
-        
-        var select = document.getElementById('selection');
-        
-        select. style.display = '';
-
-        let cy = startCytoscape();
     
         intializeNodes(10); intializeEdges();
         cy.add(nodes); cy.add(edges);
@@ -554,18 +495,5 @@ document.getElementById("mode1").addEventListener("click", function() {
                 }
             }
         }
-
-
-    document.getElementById("mode1").addEventListener("click", function() {
-        clickedOnMenu();
-        runMode1(level);
-    });
-
-   
-    
-   
-
+        });
 });
-
-});
-

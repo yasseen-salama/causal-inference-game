@@ -41,7 +41,7 @@ input {
     position: absolute;
     right: 0;
     bottom: 0;
-    z-index: 3;
+    z-index: 1;
 }
 
 .button5{
@@ -95,7 +95,7 @@ input {
     width: 100%;
     color: white;
     text-align: left;
-    z-index: 1;
+    z-index: 2;
 }
 @media all and (max-width:30em){
     .button5{
