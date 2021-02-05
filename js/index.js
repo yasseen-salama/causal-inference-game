@@ -482,61 +482,55 @@ $(document).ready(function () {
             cy.minZoom(1);
             cy.maxZoom(3);  //beschränken den Zoom
 
-            function changeColorRekurisv(startNode, ignoreId, colorToAdd) { //expects node to start and nodeId to ignore and color to add  mixes the colors new
-                if (startNode.data('id') === ignoreId) {
+            function changeColorRekurisv(startNode, ignoreId, colorToAdd){ //expects node to start and nodeId to ignore and color to add  mixes the colors new
+                if(startNode.data('id') === ignoreId){
                     startNode.data('color', colorToAdd);
                     startNode.data('type', 'start');
-                } else if (startNode.data('type') !== 'start') {
+                }
+                else if(startNode.data('type') !== 'start'){
                     var colorsToMix = [startNode.data('originalColor')];
-                    for (let i = 0; i < startNode._private.edges.length; i++) {
+                    for(let i = 0;i < startNode._private.edges.length; i++){
                         var colorNode = cy.getElementById(startNode._private.edges[i]._private.source._private.data.id);
-                        if (colorNode.data('id') !== startNode.data('id')) {
+                        if(colorNode.data('id') !== startNode.data('id')){
                             colorsToMix.push(colorNode.data('color'));
                         }
                     }
                     var endColor = colorsToMix[0];
-                    for (let k = 1; k < colorsToMix.length; k++) {
+                    for(let k = 1; k< colorsToMix.length; k++){
                         endColor = rybColorMixer.mix(endColor, colorsToMix[k]);
                     }
-                    if (!endColor.startsWith('#')) {
-                        endColor = '#' + endColor;
+                    if(!endColor.startsWith('#')){
+                        endColor ='#' + endColor;
                     }
-
+    
                     startNode.data('type', 'selected');//node style changed
-                    /*startNode.animate({style: {'color': startNode.data('color')
-                        },
-                        duration: 600,
-                        //easing: 'ease-in-sine'
-                    }).delay(200).animate({
-                        style: { 'color': endColor},
-                        duration: 600,
-                       // easing: 'ease-in-sine'
-                    })*/
+                    
                     startNode.data('color', endColor);// node color changed
                 }
-                for (let i = 0; i < startNode._private.edges.length; i++) { //recursiv part
+                for(let i = 0;i < startNode._private.edges.length; i++){ //recursiv part
                     var nextNode = cy.getElementById(startNode._private.edges[i]._private.target._private.data.id);
-                    if (nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')) {
-                        changeColorRekurisv(nextNode, ignoreId);
+                    if(nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')){
+                        changeColorRekurisv(nextNode,ignoreId);
                     }
                 }
             }
 
-            function reverseColorRekurisv(startNode, ignoreId) { //expects node to start and nodeId to ignore reverses colors to their original color
-                if (startNode.data('id') === ignoreId) {
+            function reverseColorRekurisv(startNode, ignoreId){ //expects node to start and nodeId to ignore reverses colors to their original color
+                if(startNode.data('id') === ignoreId){
                     startNode.data('color', startNode.data('mixedColor'));
                     startNode.data('type', 'original');
-                } else {
+                }
+                else{
                     startNode.data('color', startNode.data('mixedColor'));  // nodecolor changed
                     startNode.data('type', 'original'); //nodestyle changed
                 }
-                for (let i = 0; i < startNode._private.edges.length; i++) { //recursiv part
+                for(let i = 0;i < startNode._private.edges.length; i++){ //recursiv part
                     var nextNode = cy.getElementById(startNode._private.edges[i]._private.target._private.data.id);
-                    if (nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')) {
-                        reverseColorRekurisv(nextNode, ignoreId);
+                    if(nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')){
+                        reverseColorRekurisv(nextNode,ignoreId);
                     }
                 }
-            };
+            }
     }
 
     document.getElementById("mode2").addEventListener("click", function () {
