@@ -332,22 +332,12 @@ $(document).ready(function () {
     });
 
     function makeLevelModus2(anzNodes) {
-
-        var startMenu = document.getElementById('StartMenu');
-        startMenu.style.display = 'none';
+        clickedOnMenu()
 
         var select = document.getElementById('selection');
         select.style.display = '';
 
-        var back = document.getElementById('back');
-        back.style.display = '';
-
-        var elem = document.createElement('div');
-        elem.setAttribute("id", "cy");
-        document.body.appendChild(elem);
-
-        var hearts = document.getElementById('hearts');
-        hearts.style.display = '';
+    ;
 
         var cy = cytoscape({
             container: document.getElementById('cy'),
