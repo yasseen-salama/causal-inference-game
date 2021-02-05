@@ -6,6 +6,7 @@ $(document).ready(function () {
     var gameState = 'mainMenu';
     var level = 1;
     var edgesVisible = false;
+    var help = false;
 
     function randomInteger(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -101,28 +102,51 @@ $(document).ready(function () {
     }
 
     function destroyGame() {
-        nodes = [];
-        edges = [];
+        if(!help) {
+            nodes = [];
+            edges = [];
 
-        let elem = document.querySelector('#cy');
-        elem.parentNode.removeChild(elem);
+            let elem = document.querySelector('#cy');
+            elem.parentNode.removeChild(elem);
 
+            let select = document.getElementById('selection');
+            select.style.display = 'none';
+
+            let giveUp = document.getElementById('giveUp');
+            giveUp.style.display = ''
+
+            for (let i = 1; i < 4; i++) {
+                let heart = document.getElementById('heart' + i);
+                heart.style.display = '';
+            }
+            let hearts = document.getElementById('hearts');
+            hearts.style.display = 'none'
+        }
         let startMenu = document.getElementById('StartMenu');
         startMenu.style.display = '';
 
-        let select = document.getElementById('selection');
-        select.style.display = 'none';
-
         let back = document.getElementById('back');
         back.style.display = ''
+    }
 
-        let giveUp = document.getElementById('giveUp');
-        giveUp.style.display = ''
+    function showHelp(){
+        help = true;
+        clickedOnMenu();
+        let helpPage = document.getElementById('helpPage');
+        helpPage.style.display = '';
 
     }
 
     document.getElementById("back").addEventListener("click", function () {
         destroyGame();
+        if(help){
+            help = false;
+            let helpPage = document.getElementById('helpPage');
+            helpPage.style.display = 'none';
+        }
+    });
+    document.getElementById("help").addEventListener("click", function () {
+        showHelp();
     });
 
     function clickedOnMenu(){
@@ -132,15 +156,17 @@ $(document).ready(function () {
         let back = document.getElementById('back');
         back.style.display = 'block';
 
-        let giveUp = document.getElementById('giveUp');
-        giveUp.style.display = 'block';
+        if(!help) {
+            let giveUp = document.getElementById('giveUp');
+            giveUp.style.display = 'block';
 
-        let elem = document.createElement('div');
-        elem.setAttribute("id","cy");
-        document.body.appendChild(elem);
+            let elem = document.createElement('div');
+            elem.setAttribute("id", "cy");
+            document.body.appendChild(elem);
 
-        let hearts = document.getElementById('hearts');
-        hearts.style.display = '';
+            let hearts = document.getElementById('hearts');
+            hearts.style.display = '';
+        }
     }
 
     function startCytoscape(){
@@ -244,6 +270,8 @@ $(document).ready(function () {
             ele.style({'opacity': 0});
             numOfEdges +=1;
         });
+        cy.minZoom(1);
+        cy.maxZoom(3);
         console.log(numOfEdges);
         cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
