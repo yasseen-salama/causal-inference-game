@@ -297,203 +297,249 @@ $(document).ready(function () {
     }
 
 
-document.getElementById("mode1").addEventListener("click", function() {
-    clickedOnMenu();
-    runMode1(level);
+    document.getElementById("mode1").addEventListener("click", function() {
+        clickedOnMenu();
+        runMode1(level);
     });
 
-    document.getElementById("mode2").addEventListener("click", function() {
-        clickedOnMenu();
-        var cy = cytoscape({
-            container: document.getElementById('cy'),
-    
-            boxSelectionEnabled: false,
-            autounselectify: true,
-    
-            style: cytoscape.stylesheet()
-            .selector('node[type="original"]') //node style when not changed/selected
-            .style({
-                'content': 'data(id)',
-                'background-color': 'data(color)',
-                'shape': 'ellipse'
-            })
-            .selector('node[type="selected"]') //node style when selected/changed
-            .style({
-                'content': 'data(id)',
-                'background-color': 'data(color)',
-                'shape': 'star',
-               // 'opacity' : 0
-            })
-            .selector('node[type="start"]') //node style when selected/changed
-            .style({
-                'content': 'data(id)',
-                'background-color': 'data(color)',
-                'shape': 'ellipse',
-                'border-width': '4cm',
-                'border-color': '#ff0000',
-                'border-style': 'double'
-            })
-            .selector('edge')
-            .style({
-                'curve-style': 'bezier',
-                'target-arrow-shape': 'triangle',
-                'width': 4,
-            })
+        function makeLevelModus2(anzNodes) {
 
-            // some style for the extension
-            .selector('.eh-handle')
-            .style({
-                'background-color': 'red',
-                'width': 12,
-                'height': 12,
-                'shape': 'ellipse',
-                'overlay-opacity': 0,
-                'border-width': 12, // makes the handle easier to hit
-                'border-opacity': 0
-            })
-            .selector('.eh-hover')
-            .style({
-                'background-color': 'red'
-            })
-            .selector('.eh-source')
-            .style({
-                'border-width': 2,
-                'border-color': 'red'
-            })
-            .selector('.eh-target')
-            .style({
-                'border-width': 2,
-                'border-color': 'red'
-            })
-            .selector('.eh-preview, .eh-ghost-edge')
-            .style({
-                'background-color': 'red',
-                'line-color': 'red',
-                'target-arrow-color': 'red',
-                'source-arrow-color': 'red',
-                'opacity': 1,
-            })
-            .selector('.eh-ghost-edge.eh-preview-active')
-            .style({
-                'opacity': 0
-            }),
-        });
-    
-        intializeNodes(10); intializeEdges();
-        cy.add(nodes); cy.add(edges);
-    
-        var lives = 3;
-    
-        var layout = cy.layout({
-            name: 'circle',
-            directed: true,
-            padding: 10
-        });
-    
-        layout.run();
-    
-        var eh = cy.edgehandles();
-        eh.enable();
-        eh.enableDrawMode();
-    
-        cy.edges().forEach(function (ele) {
-            ele.style({'opacity': 0});
-        });
-        cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
-            cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
-            var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
-            if (ej.isEdge()){
-                ej.style({'opacity': 1});
-                cy.remove(addedEles);
-            }
-            else {
-                cy.remove(addedEles);
-                var element = document.getElementById('heart' + lives);
-                element.style.display = 'none';
-                lives = lives - 1;
-                $('body').toggleClass('laser', true);
-                setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
-                if(lives <= 0){
-                    destroyGame();
-    
+            var startMenu = document.getElementById('StartMenu');
+            startMenu.style.display = 'none';
+
+            var back = document.getElementById('back');
+            back.style.display = '';
+
+            var elem = document.createElement('div');
+            elem.setAttribute("id", "cy");
+            document.body.appendChild(elem);
+            var hearts = document.getElementById('hearts');
+            hearts.style.display = '';
+
+            var cy = cytoscape({
+                container: document.getElementById('cy'),
+
+                boxSelectionEnabled: false,
+                autounselectify: true,
+
+                style: cytoscape.stylesheet()
+                    .selector('node[type="original"]') //node style when not changed/selected
+                    .style({
+                        'content': 'data(id)',
+                        'background-color': 'data(color)',
+                        'shape': 'ellipse'
+                    })
+                    .selector('node[type="selected"]') //node style when selected/changed
+                    .style({
+                        'content': 'data(id)',
+                        'background-color': 'data(color)',
+                        'shape': 'star',
+                        // 'opacity' : 0
+                    })
+                    .selector('node[type="start"]') //node style when selected/changed
+                    .style({
+                        'content': 'data(id)',
+                        'background-color': 'data(color)',
+                        'shape': 'ellipse',
+                        'border-width': '4cm',
+                        'border-color': '#ff0000',
+                        'border-style': 'double'
+                    })
+                    .selector('edge')
+                    .style({
+                        'curve-style': 'bezier',
+                        'target-arrow-shape': 'triangle',
+                        'width': 4,
+                    })
+
+                    // some style for the extension
+                    .selector('.eh-handle')
+                    .style({
+                        'background-color': 'red',
+                        'width': 12,
+                        'height': 12,
+                        'shape': 'ellipse',
+                        'overlay-opacity': 0,
+                        'border-width': 12, // makes the handle easier to hit
+                        'border-opacity': 0
+                    })
+                    .selector('.eh-hover')
+                    .style({
+                        'background-color': 'red'
+                    })
+                    .selector('.eh-source')
+                    .style({
+                        'border-width': 2,
+                        'border-color': 'red'
+                    })
+                    .selector('.eh-target')
+                    .style({
+                        'border-width': 2,
+                        'border-color': 'red'
+                    })
+                    .selector('.eh-preview, .eh-ghost-edge')
+                    .style({
+                        'background-color': 'red',
+                        'line-color': 'red',
+                        'target-arrow-color': 'red',
+                        'source-arrow-color': 'red',
+                        'opacity': 1,
+                    })
+                    .selector('.eh-ghost-edge.eh-preview-active')
+                    .style({
+                        'opacity': 0
+                    }),
+            });
+
+            //var bfs = cy.elements().bfs('#a', function(){}, true);
+
+            intializeNodes(anzNodes);
+            intializeEdges();
+            cy.add(nodes);
+            cy.add(edges);
+
+            var lives = 3;
+
+            var layout = cy.layout({
+                name: 'circle',
+                directed: true,
+                // roots: '#a',
+                padding: 10
+            });
+
+            layout.run();
+
+            var eh = cy.edgehandles();
+            eh.enable();
+            eh.enableDrawMode();
+
+            var edgesToComplete = 0;
+
+            cy.edges().forEach(function (ele) {
+                ele.style({'opacity': 0});
+                ele.data('found', false);
+                edgesToComplete++;
+            });
+
+            var correctGuesses = 0;
+
+            cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
+                cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
+                var ej = cy.$('#' + sourceNode.id() + targetNode.id());
+                if (ej.isEdge()) {
+                    if(ej.data('found') !== true){
+                        correctGuesses++;
+                        ej.data('found', true);
+                        ej.style({'opacity': 1});
+                    }
+                    cy.remove(addedEles);
                 }
-            }
-        });
+                else {
+                    cy.remove(addedEles);
+                    var element = document.getElementById('heart' + lives);
+                    element.style.display = 'none';
+                    lives = lives - 1;
+                    $('body').toggleClass('laser', true);
+                    setTimeout(() => {
+                        $('body').toggleClass('laser', false);
+                    }, 2000);
+                    if (lives <= 0) {
+                        destroyGame();
 
-        var selectedNode = []; //node that was clicked on is saved here
-        var selectedColors = [];
-
-        cy.on('tap','node',(evt) => {
-            var evtNode = cy.getElementById(evt.target._private.data.id);
-            if(!selectedNode.includes(evtNode)){ //if node is not selected
-                var colorSelected = document.getElementById('color').value;
-                if(colorSelected === ''){
-                    colorSelected = '#ff0000'; //default Color if nothing is selected
-                }
-                changeColorRekurisv(evtNode, evtNode.data('id'), colorSelected);
-                selectedNode.push(evtNode);
-                selectedColors.push(document.getElementById('color').value);
-            }
-            else if(selectedNode.includes(evtNode)){ //if selected is pressed again we reverse the colors to their original color
-                reverseColorRekurisv(evtNode, evtNode.data('id'));
-                var index = selectedNode.indexOf(evtNode);
-                selectedNode.splice(index,1);
-                selectedColors.splice(index,1);
-                for(let i = 0; i< selectedNode.length; i++){
-                    changeColorRekurisv(selectedNode[i], selectedNode[i].data('id'), selectedColors[i]);
-                }
-        }})
-
-        cy.minZoom(1);
-        cy.maxZoom(3);  //beschränken den Zoom
-
-        function changeColorRekurisv(startNode, ignoreId, colorToAdd){ //expects node to start and nodeId to ignore and color to add  mixes the colors new
-            if(startNode.data('id') === ignoreId){
-                startNode.data('color', colorToAdd);
-                startNode.data('type', 'start');
-            }
-            else if(startNode.data('type') !== 'start'){
-                var colorsToMix = [startNode.data('originalColor')];
-                for(let i = 0;i < startNode._private.edges.length; i++){
-                    var colorNode = cy.getElementById(startNode._private.edges[i]._private.source._private.data.id);
-                    if(colorNode.data('id') !== startNode.data('id')){
-                        colorsToMix.push(colorNode.data('color'));
                     }
                 }
-                var endColor = colorsToMix[0];
-                for(let k = 1; k< colorsToMix.length; k++){
-                    endColor = rybColorMixer.mix(endColor, colorsToMix[k]);
-                }
-                if(!endColor.startsWith('#')){
-                    endColor ='#' + endColor;
+
+                if(correctGuesses === edgesToComplete){
+                    console.log("You win");
+                    destroyGame();
+                    makeLevelModus2(anzNodes+3);
                 }
 
-                startNode.data('type', 'selected');//node style changed
-                
-                startNode.data('color', endColor);// node color changed
-            }
-            for(let i = 0;i < startNode._private.edges.length; i++){ //recursiv part
-                var nextNode = cy.getElementById(startNode._private.edges[i]._private.target._private.data.id);
-                if(nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')){
-                    changeColorRekurisv(nextNode,ignoreId);
+            });
+            var selectedNode = []; //node that was clicked on is saved here
+            var selectedColors = [];
+
+            cy.on('tap', 'node', (evt) => {
+                var evtNode = cy.getElementById(evt.target._private.data.id);
+                if (!selectedNode.includes(evtNode)) { //if node is not selected
+                    var colorSelected = '#ff0000';//document.getElementById('color').value;
+                    if (colorSelected === '') {
+                        colorSelected = '#ff0000'; //default Color if nothing is selected
+                    }
+                    changeColorRekurisv(evtNode, evtNode.data('id'), colorSelected);
+                    selectedNode.push(evtNode);
+                    selectedColors.push(document.getElementById('color').value);
+                } else if (selectedNode.includes(evtNode)) { //if selected is pressed again we reverse the colors to their original color
+                    reverseColorRekurisv(evtNode, evtNode.data('id'));
+                    var index = selectedNode.indexOf(evtNode);
+                    selectedNode.splice(index, 1);
+                    selectedColors.splice(index, 1);
+                    for (let i = 0; i < selectedNode.length; i++) {
+                        changeColorRekurisv(selectedNode[i], selectedNode[i].data('id'), selectedColors[i]);
+                    }
+                }
+            })
+            cy.minZoom(1);
+            cy.maxZoom(3);  //beschränken den Zoom
+
+            function changeColorRekurisv(startNode, ignoreId, colorToAdd) { //expects node to start and nodeId to ignore and color to add  mixes the colors new
+                if (startNode.data('id') === ignoreId) {
+                    startNode.data('color', colorToAdd);
+                    startNode.data('type', 'start');
+                } else if (startNode.data('type') !== 'start') {
+                    var colorsToMix = [startNode.data('originalColor')];
+                    for (let i = 0; i < startNode._private.edges.length; i++) {
+                        var colorNode = cy.getElementById(startNode._private.edges[i]._private.source._private.data.id);
+                        if (colorNode.data('id') !== startNode.data('id')) {
+                            colorsToMix.push(colorNode.data('color'));
+                        }
+                    }
+                    var endColor = colorsToMix[0];
+                    for (let k = 1; k < colorsToMix.length; k++) {
+                        endColor = rybColorMixer.mix(endColor, colorsToMix[k]);
+                    }
+                    if (!endColor.startsWith('#')) {
+                        endColor = '#' + endColor;
+                    }
+
+                    startNode.data('type', 'selected');//node style changed
+                    /*startNode.animate({style: {'color': startNode.data('color')
+                        },
+                        duration: 600,
+                        //easing: 'ease-in-sine'
+                    }).delay(200).animate({
+                        style: { 'color': endColor},
+                        duration: 600,
+                       // easing: 'ease-in-sine'
+                    })*/
+                    startNode.data('color', endColor);// node color changed
+                }
+                for (let i = 0; i < startNode._private.edges.length; i++) { //recursiv part
+                    var nextNode = cy.getElementById(startNode._private.edges[i]._private.target._private.data.id);
+                    if (nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')) {
+                        changeColorRekurisv(nextNode, ignoreId);
+                    }
                 }
             }
-        }
-        function reverseColorRekurisv(startNode, ignoreId){ //expects node to start and nodeId to ignore reverses colors to their original color
-            if(startNode.data('id') === ignoreId){
-                startNode.data('color', startNode.data('mixedColor'));
-                startNode.data('type', 'original');
-            }
-            else{
-                startNode.data('color', startNode.data('mixedColor'));  // nodecolor changed
-                startNode.data('type', 'original'); //nodestyle changed
-            }
-            for(let i = 0;i < startNode._private.edges.length; i++){ //recursiv part
-                var nextNode = cy.getElementById(startNode._private.edges[i]._private.target._private.data.id);
-                if(nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')){
-                    reverseColorRekurisv(nextNode,ignoreId);
+
+            function reverseColorRekurisv(startNode, ignoreId) { //expects node to start and nodeId to ignore reverses colors to their original color
+                if (startNode.data('id') === ignoreId) {
+                    startNode.data('color', startNode.data('mixedColor'));
+                    startNode.data('type', 'original');
+                } else {
+                    startNode.data('color', startNode.data('mixedColor'));  // nodecolor changed
+                    startNode.data('type', 'original'); //nodestyle changed
                 }
-            }
-        }
-        });
+                for (let i = 0; i < startNode._private.edges.length; i++) { //recursiv part
+                    var nextNode = cy.getElementById(startNode._private.edges[i]._private.target._private.data.id);
+                    if (nextNode.data('id') !== ignoreId && nextNode.data('id') !== startNode.data('id')) {
+                        reverseColorRekurisv(nextNode, ignoreId);
+                    }
+                }
+            };
+    }
+
+    document.getElementById("mode2").addEventListener("click", function () {
+        makeLevelModus2(4);
+    });
 });
