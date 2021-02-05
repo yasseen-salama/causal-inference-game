@@ -4,7 +4,7 @@ $(document).ready(function () {
     var colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c'];
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
     var gameState = 'mainMenu';
-    var level = 1;
+    //var level = 1;
     var edgesVisible = false;
 
     function randomInteger(min, max) {
@@ -145,8 +145,78 @@ $(document).ready(function () {
         hearts.style.display = '';
     }
 
-    function startCytoscape(){
-        var cyt = cytoscape({
+    // function startCytoscape(){
+    //     var cyt = cytoscape({
+    //         container: document.getElementById('cy'),
+
+    //         boxSelectionEnabled: false,
+    //         autounselectify: true,
+
+    //         style: cytoscape.stylesheet()
+    //             .selector('node')
+    //             .style({
+    //                 'content': 'data(id)',
+    //                 'background-color': 'data(color)'
+    //             })
+    //             .selector('edge')
+    //             .style({
+    //                 'curve-style': 'straight',
+    //                 'target-arrow-shape': 'triangle',
+    //                 'width': 4,
+    //             })
+
+    //             .selector('.highlighted')
+    //             .style({
+    //                 'background-color': '#61bffc',
+    //                 'line-color': '#61bffc',
+    //                 'target-arrow-color': '#61bffc',
+    //                 'transition-property': 'background-color, line-color, target-arrow-color',
+    //                 'transition-duration': '0.5s'
+    //             })
+
+    //             // some style for the extension
+    //             .selector('.eh-handle')
+    //             .style({
+    //                 'background-color': 'red',
+    //                 'width': 12,
+    //                 'height': 12,
+    //                 'shape': 'ellipse',
+    //                 'overlay-opacity': 0,
+    //                 'border-width': 12, // makes the handle easier to hit
+    //                 'border-opacity': 0
+    //             })
+    //             .selector('.eh-hover')
+    //             .style({
+    //                 'background-color': 'red'
+    //             })
+    //             .selector('.eh-source')
+    //             .style({
+    //                 'border-width': 2,
+    //                 'border-color': 'red'
+    //             })
+    //             .selector('.eh-target')
+    //             .style({
+    //                 'border-width': 2,
+    //                 'border-color': 'red'
+    //             })
+    //             .selector('.eh-preview, .eh-ghost-edge')
+    //             .style({
+    //                 'background-color': 'red',
+    //                 'line-color': 'red',
+    //                 'target-arrow-color': 'red',
+    //                 'source-arrow-color': 'red',
+    //                 'opacity': 1,
+    //             })
+    //             .selector('.eh-ghost-edge.eh-preview-active')
+    //             .style({
+    //                 'opacity': 0
+    //             }),
+    //     });
+    //     return cyt;
+
+    // }
+    function runMode1(level) {
+        var cy = cytoscape({
             container: document.getElementById('cy'),
 
             boxSelectionEnabled: false,
@@ -212,11 +282,6 @@ $(document).ready(function () {
                     'opacity': 0
                 }),
         });
-        return cyt;
-
-    }
-    function runMode1(level) {
-        let cy = startCytoscape();
         
         if(level == 1){
             intializeNodes(4);
