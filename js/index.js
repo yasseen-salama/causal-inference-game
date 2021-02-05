@@ -216,7 +216,7 @@ $(document).ready(function () {
 
     // }
     function runMode1(level) {
-        var cy = cytoscape({
+        let cy = cytoscape({
             container: document.getElementById('cy'),
 
             boxSelectionEnabled: false,
