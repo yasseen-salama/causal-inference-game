@@ -459,26 +459,26 @@ $(document).ready(function () {
             var selectedNode = []; //node that was clicked on is saved here
             var selectedColors = [];
 
-            cy.on('tap', 'node', (evt) => {
+            cy.on('tap','node',(evt) => {
                 var evtNode = cy.getElementById(evt.target._private.data.id);
-                if (!selectedNode.includes(evtNode)) { //if node is not selected
+                if(!selectedNode.includes(evtNode)){ //if node is not selected
                     var colorSelected = document.getElementById('color').value;
-                    if (colorSelected === '') {
+                    if(colorSelected === ''){
                         colorSelected = '#ff0000'; //default Color if nothing is selected
                     }
                     changeColorRekurisv(evtNode, evtNode.data('id'), colorSelected);
                     selectedNode.push(evtNode);
                     selectedColors.push(colorSelected);
-                } else if (selectedNode.includes(evtNode)) { //if selected is pressed again we reverse the colors to their original color
+                }
+                else if(selectedNode.includes(evtNode)){ //if selected is pressed again we reverse the colors to their original color
                     reverseColorRekurisv(evtNode, evtNode.data('id'));
                     var index = selectedNode.indexOf(evtNode);
-                    selectedNode.splice(index, 1);
-                    selectedColors.splice(index, 1);
-                    for (let i = 0; i < selectedNode.length; i++) {
+                    selectedNode.splice(index,1);
+                    selectedColors.splice(index,1);
+                    for(let i = 0; i< selectedNode.length; i++){
                         changeColorRekurisv(selectedNode[i], selectedNode[i].data('id'), selectedColors[i]);
                     }
-                }
-            })
+            }})
             cy.minZoom(1);
             cy.maxZoom(3);  //beschränken den Zoom
 
@@ -502,9 +502,17 @@ $(document).ready(function () {
                     if(!endColor.startsWith('#')){
                         endColor ='#' + endColor;
                     }
-    
+        
                     startNode.data('type', 'selected');//node style changed
-                    
+                    /*startNode.animate({style: {'color': startNode.data('color')
+                        },
+                        duration: 600,
+                        //easing: 'ease-in-sine'
+                    }).delay(200).animate({
+                        style: { 'color': endColor},
+                        duration: 600,
+                       // easing: 'ease-in-sine'
+                    })*/
                     startNode.data('color', endColor);// node color changed
                 }
                 for(let i = 0;i < startNode._private.edges.length; i++){ //recursiv part
