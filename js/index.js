@@ -283,7 +283,7 @@ $(document).ready(function () {
                 }
                 else{
                     destroyGame();
-                    runMod1(level+1);
+                    runMode1(level+1);
                 }
             }
 
