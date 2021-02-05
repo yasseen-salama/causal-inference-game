@@ -214,7 +214,7 @@ $(document).ready(function () {
     }
     function runMode1(level) {
         let cy = startCytoscape();
-        let numOfEdges = 0;
+        
         if(level == 1){
             intializeNodes(4);
         } else if (level == 2){
@@ -239,18 +239,30 @@ $(document).ready(function () {
         eh.enable();
         eh.enableDrawMode();
 
+        var edgesToComplete = 0;
+
         cy.edges().forEach(function (ele) {
             ele.style({'opacity': 0});
-            numOfEdges +=1;
+            ele.data('found', false);
+            edgesToComplete++;
         });
-        console.log(numOfEdges);
+
+        var correctGuesses = 0;
+        
         cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
             var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
             if (ej.isEdge()){
-                ej.style({'opacity': 1});
+                if(ej.data('found') !== true){
+                    correctGuesses++;
+                    ej.data('found', true);
+                    ej.style({'opacity': 1});
+                }
+
+
                 cy.remove(addedEles);
-                numOfEdges -= 1;
+        
+
                 if (numOfEdges == 0 ){
                     level += 1;
                     if(level == 3){
@@ -271,6 +283,18 @@ $(document).ready(function () {
 
                 }
             }
+
+            if(correctGuesses === edgesToComplete){
+                console.log("You win");
+                if(level == 3){
+                    destroyGame();
+                }
+                else{
+                    destroyGame();
+                    runMod1(level+1);
+                }
+            }
+
         });
         document.getElementById("giveUp").addEventListener("click", function () {
             /*cy.ready(function() {
