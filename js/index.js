@@ -113,10 +113,10 @@ $(document).ready(function () {
         select.style.display = 'none';
 
         let back = document.getElementById('back');
-        back.style.display = ''
+        back.style.display = 'none'
 
         let giveUp = document.getElementById('giveUp');
-        giveUp.style.display = ''
+        giveUp.style.display = 'none'
 
     }
 
