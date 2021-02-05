@@ -468,7 +468,7 @@ $(document).ready(function () {
                     }
                     changeColorRekurisv(evtNode, evtNode.data('id'), colorSelected);
                     selectedNode.push(evtNode);
-                    selectedColors.push(document.getElementById('color').value);
+                    selectedColors.push(colorSelected);
                 } else if (selectedNode.includes(evtNode)) { //if selected is pressed again we reverse the colors to their original color
                     reverseColorRekurisv(evtNode, evtNode.data('id'));
                     var index = selectedNode.indexOf(evtNode);
