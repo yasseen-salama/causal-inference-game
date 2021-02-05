@@ -462,7 +462,7 @@ $(document).ready(function () {
             cy.on('tap', 'node', (evt) => {
                 var evtNode = cy.getElementById(evt.target._private.data.id);
                 if (!selectedNode.includes(evtNode)) { //if node is not selected
-                    var colorSelected = '#ff0000';//document.getElementById('color').value;
+                    var colorSelected = document.getElementById('color').value;
                     if (colorSelected === '') {
                         colorSelected = '#ff0000'; //default Color if nothing is selected
                     }
