@@ -84,6 +84,7 @@ $(document).ready(function () {
                     if (nodes[childIndex].data.numOfParents < 3) {
                         // mix hexadecimal colors
                         nodes[childIndex].data.color = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color)
+                        nodes[childIndex].data.mixedColor = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color);
                         edges.push({
                             group: 'edges',
                             data: {
@@ -306,6 +307,9 @@ $(document).ready(function () {
 
             var startMenu = document.getElementById('StartMenu');
             startMenu.style.display = 'none';
+
+            var select = document.getElementById('selection');
+            select.style.display = '';
 
             var back = document.getElementById('back');
             back.style.display = '';
