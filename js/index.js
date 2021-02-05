@@ -318,7 +318,7 @@ $(document).ready(function () {
 
 document.getElementById("mode1").addEventListener("click", function() {
     clickedOnMenu();
-    runMode1(level);
+    runMode1(1);
     });
 
     document.getElementById("mode2").addEventListener("click", function() {
