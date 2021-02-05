@@ -505,6 +505,29 @@ $(document).ready(function () {
             cy.minZoom(1);
             cy.maxZoom(3);  //beschränken den Zoom
 
+            document.getElementById("giveUp").addEventListener("click", function () {
+                /*cy.ready(function() {
+                    cy.nodes().forEach(function(ele) {
+                        makePopper(ele);
+                    });
+                });
+    
+                cy.nodes().unbind('mouseover');
+                cy.nodes().bind('mouseover', (event) => event.target.tippy.show());
+    
+                cy.nodes().unbind('mouseout');
+                cy.nodes().bind('mouseout', (event) => event.target.tippy.hide());*/
+    
+                cy.edges().forEach(function (ele) {
+                    if (edgesVisible) {
+                        ele.style({'opacity': 1});
+                    } else {
+                        ele.style({'opacity': 0});
+                    }
+                });
+                edgesVisible = !edgesVisible;
+            });
+
             function changeColorRekurisv(startNode, ignoreId, colorToAdd){ //expects node to start and nodeId to ignore and color to add  mixes the colors new
                 if(startNode.data('id') === ignoreId){
                     startNode.data('color', colorToAdd);
