@@ -119,6 +119,13 @@ $(document).ready(function () {
         let giveUp = document.getElementById('giveUp');
         giveUp.style.display = ''
 
+        for (let i = 1; i < 4; i++) {
+            let heart = document.getElementById('heart' + i);
+            heart.style.display = '';
+        }
+        let hearts = document.getElementById('hearts');
+        hearts.style.display = 'none'
+
     }
 
     document.getElementById("back").addEventListener("click", function () {
