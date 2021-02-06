@@ -6,6 +6,7 @@ $(document).ready(function () {
     var level = 1;
     var edgesVisible = false;
     var help = false;
+    var currentMode = 1;
 
     function randomInteger(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -114,8 +115,8 @@ $(document).ready(function () {
             giveUp.style.display = ''
 
             hideHearts();
-
             $("#giveUp").html("Give Up");
+            edgesVisible = false;
         }
         let startMenu = document.getElementById('StartMenu');
         startMenu.style.display = '';
@@ -162,6 +163,23 @@ $(document).ready(function () {
     document.getElementById("help").addEventListener("click", function () {
         showHelp();
     });
+    document.getElementById("nextLevel").addEventListener("click", function () {
+
+        let nextLevel = document.getElementById('nextLevel');
+        nextLevel.style.display = 'none';
+
+        let elem = document.getElementById('overlay');
+        elem.style.display = 'none';
+
+        if (currentMode == 1){
+            console.log("Clicked next level button running mode 1 in level" + level);
+            runMode1(level);
+        }
+        else{
+            // run mode 2 with level
+        }
+
+    });
 
     function clickedOnMenu(){
         let startMenu = document.getElementById('StartMenu');
@@ -191,10 +209,15 @@ $(document).ready(function () {
     function won(){
         let elem = document.getElementById('overlay');
         elem.style.display = 'table';
-        $("#overlayHeader").html("You Won!");
+
+        let nextLevel = document.getElementById('nextLevel');
+        nextLevel.style.display = 'inline-block';
+
+        $("#overlayHeader").html("You Won " + "level " + level +"!");
         $("#overlay").css({
             'color' : '#66FF66'
         });
+        level +=1;
     }
 
     function startCytoscape(){
@@ -310,13 +333,10 @@ $(document).ready(function () {
                 cy.remove(addedEles);
                 numOfEdges -= 1;
                 if (numOfEdges == 0 ){
-                    level += 1;
                     if(level == 3){
                         won();
-                        // destroyGame();
                     }
                     won();
-                    // runMode1(level);
                 }
             }
             else {
@@ -333,18 +353,6 @@ $(document).ready(function () {
             }
         });
         document.getElementById("giveUp").addEventListener("click", function () {
-            /*cy.ready(function() {
-                cy.nodes().forEach(function(ele) {
-                    makePopper(ele);
-                });
-            });
-
-            cy.nodes().unbind('mouseover');
-            cy.nodes().bind('mouseover', (event) => event.target.tippy.show());
-
-            cy.nodes().unbind('mouseout');
-            cy.nodes().bind('mouseout', (event) => event.target.tippy.hide());*/
-
             cy.edges().forEach(function (ele) {
                 if (edgesVisible) {
                     ele.style({'opacity': 1});
@@ -359,6 +367,7 @@ $(document).ready(function () {
 
     document.getElementById("mode1").addEventListener("click", function() {
         clickedOnMenu();
+        currentMode = 1;
         runMode1(level);
     });
 
@@ -619,6 +628,7 @@ $(document).ready(function () {
     }
 
     document.getElementById("mode2").addEventListener("click", function () {
+        currentMode = 2;
         makeLevelModus2(4);
     });
 });

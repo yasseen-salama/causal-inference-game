@@ -74,6 +74,10 @@ input {
 #giveUp{
     display: none;
 }
+
+#nextLevel{
+    display: none;
+}
 .button5:hover{
     text-shadow: 0 0 2em rgba(255,255,255,1);
     border-color:#00ff00;
