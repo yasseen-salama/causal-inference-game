@@ -3,7 +3,6 @@ $(document).ready(function () {
     var edges = [];
     var colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c'];
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    var gameState = 'mainMenu';
     var level = 1;
     var edgesVisible = false;
     var help = false;
@@ -44,7 +43,6 @@ $(document).ready(function () {
             trigger: 'manual' // probably want manual mode
         });
     }
-
 
     var colorsShuffeld = [...colors];
     shuffle(colorsShuffeld);
@@ -105,7 +103,7 @@ $(document).ready(function () {
         if(!help) {
             nodes = [];
             edges = [];
-
+            level = 1 ;
             let elem = document.querySelector('#cy');
             elem.parentNode.removeChild(elem);
 
@@ -115,26 +113,42 @@ $(document).ready(function () {
             let giveUp = document.getElementById('giveUp');
             giveUp.style.display = ''
 
-            for (let i = 1; i < 4; i++) {
-                let heart = document.getElementById('heart' + i);
-                heart.style.display = '';
-            }
-            let hearts = document.getElementById('hearts');
-            hearts.style.display = 'none'
+            hideHearts();
+
+            $("#giveUp").html("Give Up");
         }
         let startMenu = document.getElementById('StartMenu');
         startMenu.style.display = '';
 
         let back = document.getElementById('back');
         back.style.display = ''
+
+        let overlay = document.getElementById('overlay');
+        overlay.style.display = 'none'
+        overlay.innerHTML = '';
     }
 
+    function showHearts(){
+        resetHearts();
+        let hearts = document.getElementById('hearts');
+        hearts.style.display = ''
+    }
+    function hideHearts(){
+        resetHearts();
+        let hearts = document.getElementById('hearts');
+        hearts.style.display = 'none'
+    }
+    function resetHearts(){
+        for (let i = 1; i < 4; i++) {
+            let heart = document.getElementById('heart' + i);
+            heart.style.display = '';
+        }
+    }
     function showHelp(){
         help = true;
         clickedOnMenu();
         let helpPage = document.getElementById('helpPage');
         helpPage.style.display = '';
-
     }
 
     document.getElementById("back").addEventListener("click", function () {
@@ -154,11 +168,11 @@ $(document).ready(function () {
         startMenu.style.display = 'none';
 
         let back = document.getElementById('back');
-        back.style.display = 'block';
+        back.style.display = 'inline-block';
 
         if(!help) {
             let giveUp = document.getElementById('giveUp');
-            giveUp.style.display = 'block';
+            giveUp.style.display = 'inline-block';
 
             let elem = document.createElement('div');
             elem.setAttribute("id", "cy");
@@ -167,6 +181,20 @@ $(document).ready(function () {
             let hearts = document.getElementById('hearts');
             hearts.style.display = '';
         }
+    }
+    function lost(){
+        let elem = document.getElementById('overlay');
+        elem.style.display = 'table';
+        $("#overlayHeader").html("You Lost!");
+        $("#giveUp").html("Show Edges");
+    }
+    function won(){
+        let elem = document.getElementById('overlay');
+        elem.style.display = 'table';
+        $("#overlayHeader").html("You Won!");
+        $("#overlay").css({
+            'color' : '#66FF66'
+        });
     }
 
     function startCytoscape(){
@@ -253,6 +281,7 @@ $(document).ready(function () {
         cy.add(nodes); cy.add(edges);
 
         var lives = 3;
+        showHearts();
 
         var layout = cy.layout({
             name: 'circle',
@@ -272,7 +301,7 @@ $(document).ready(function () {
         });
         cy.minZoom(1);
         cy.maxZoom(3);
-        console.log(numOfEdges);
+
         cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
             var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
@@ -283,9 +312,11 @@ $(document).ready(function () {
                 if (numOfEdges == 0 ){
                     level += 1;
                     if(level == 3){
-                        destroyGame();
+                        won();
+                        // destroyGame();
                     }
-                    runMode1(level);
+                    won();
+                    // runMode1(level);
                 }
             }
             else {
@@ -296,8 +327,8 @@ $(document).ready(function () {
                 $('body').toggleClass('laser', true);
                 setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
                 if(lives <= 0){
-                    destroyGame();
-
+                    lost();
+                    // destroyGame();
                 }
             }
         });

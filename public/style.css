@@ -14,6 +14,12 @@ h1 {
     font-size: 1em;
     font-weight: bold;
 }
+h2 {
+    font-size: 1em;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
 
 #buttons {
     position: absolute;
@@ -91,8 +97,24 @@ input {
 .footer {
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 1%;
     text-align: left;
+    z-index: 2;
+}
+#overlay{
+    text-align:left;
+    font-size: 50px;
+    font-weight: bold;
+    color: #FA8072;
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 2;
 }
 @media all and (max-width:30em){
