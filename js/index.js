@@ -176,7 +176,7 @@ $(document).ready(function () {
             runMode1(level);
         }
         else{
-            // run mode 2 with level
+            runMode2(level);
         }
 
     });
@@ -232,6 +232,28 @@ $(document).ready(function () {
                 .style({
                     'content': 'data(id)',
                     'background-color': 'data(color)'
+                })
+                .selector('node[type="original"]') //node style when not changed/selected
+                .style({                       
+                    'content': 'data(id)',
+                    'background-color': 'data(color)',
+                    'shape': 'ellipse'
+                })
+                .selector('node[type="selected"]') //node style when selected/changed
+                .style({
+                    'content': 'data(id)',
+                    'background-color': 'data(color)',
+                    'shape': 'star',
+                        // 'opacity' : 0
+                })
+                .selector('node[type="start"]') //node style when selected/changed
+                .style({
+                    'content': 'data(id)',
+                    'background-color': 'data(color)',
+                    'shape': 'ellipse',
+                    'border-width': '4cm',
+                    'border-color': '#ff0000',
+                    'border-style': 'double'
                 })
                 .selector('edge')
                 .style({
@@ -371,156 +393,80 @@ $(document).ready(function () {
         runMode1(level);
     });
 
-    function makeLevelModus2(anzNodes) {
-        clickedOnMenu()
-
+    function runMode2(anzNodes) {
         var select = document.getElementById('selection');
         select.style.display = '';
 
-    ;
+        let cy = startCytoscape();
 
-        var cy = cytoscape({
-            container: document.getElementById('cy'),
+        if(level == 1){
+            intializeNodes(4);
+        } else if (level == 2){
+            intializeNodes(6);
+        } else {
+            intializeNodes(10);
+        }
+        intializeEdges();
 
-            boxSelectionEnabled: false,
-            autounselectify: true,
+        cy.add(nodes); cy.add(edges);
 
-            style: cytoscape.stylesheet()
-                .selector('node[type="original"]') //node style when not changed/selected
-                .style({                       
-                    'content': 'data(id)',
-                    'background-color': 'data(color)',
-                    'shape': 'ellipse'
-                })
-                .selector('node[type="selected"]') //node style when selected/changed
-                .style({
-                    'content': 'data(id)',
-                    'background-color': 'data(color)',
-                    'shape': 'star',
-                        // 'opacity' : 0
-                })
-                .selector('node[type="start"]') //node style when selected/changed
-                .style({
-                    'content': 'data(id)',
-                    'background-color': 'data(color)',
-                    'shape': 'ellipse',
-                    'border-width': '4cm',
-                    'border-color': '#ff0000',
-                    'border-style': 'double'
-                })
-                .selector('edge')
-                .style({
-                        'curve-style': 'bezier',
-                        'target-arrow-shape': 'triangle',
-                        'width': 4,
-                    })
+        var lives = 3;
 
-                    // some style for the extension
-                    .selector('.eh-handle')
-                    .style({
-                        'background-color': 'red',
-                        'width': 12,
-                        'height': 12,
-                        'shape': 'ellipse',
-                        'overlay-opacity': 0,
-                        'border-width': 12, // makes the handle easier to hit
-                        'border-opacity': 0
-                    })
-                    .selector('.eh-hover')
-                    .style({
-                        'background-color': 'red'
-                    })
-                    .selector('.eh-source')
-                    .style({
-                        'border-width': 2,
-                        'border-color': 'red'
-                    })
-                    .selector('.eh-target')
-                    .style({
-                        'border-width': 2,
-                        'border-color': 'red'
-                    })
-                    .selector('.eh-preview, .eh-ghost-edge')
-                    .style({
-                        'background-color': 'red',
-                        'line-color': 'red',
-                        'target-arrow-color': 'red',
-                        'source-arrow-color': 'red',
-                        'opacity': 1,
-                    })
-                    .selector('.eh-ghost-edge.eh-preview-active')
-                    .style({
-                        'opacity': 0
-                    }),
-            });
+        var layout = cy.layout({
+            name: 'circle',
+            directed: true,
+            // roots: '#a',
+            padding: 10
+        });
 
-            //var bfs = cy.elements().bfs('#a', function(){}, true);
+        layout.run();
 
-            intializeNodes(anzNodes);
-            intializeEdges();
-            cy.add(nodes);
-            cy.add(edges);
+        var eh = cy.edgehandles();
+        eh.enable();
+        eh.enableDrawMode();
 
-            var lives = 3;
+        var edgesToComplete = 0;
 
-            var layout = cy.layout({
-                name: 'circle',
-                directed: true,
-                // roots: '#a',
-                padding: 10
-            });
+        cy.edges().forEach(function (ele) {
+            ele.style({'opacity': 0});
+            ele.data('found', false);
+            edgesToComplete++;
+        });
 
-            layout.run();
+        var correctGuesses = 0;
 
-            var eh = cy.edgehandles();
-            eh.enable();
-            eh.enableDrawMode();
-
-            var edgesToComplete = 0;
-
-            cy.edges().forEach(function (ele) {
-                ele.style({'opacity': 0});
-                ele.data('found', false);
-                edgesToComplete++;
-            });
-
-            var correctGuesses = 0;
-
-            cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
-                cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
-                var ej = cy.$('#' + sourceNode.id() + targetNode.id());
-                if (ej.isEdge()) {
-                    if(ej.data('found') !== true){
-                        correctGuesses++;
-                        ej.data('found', true);
-                        ej.style({'opacity': 1});
-                    }
-                    cy.remove(addedEles);
+        cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
+            cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
+            var ej = cy.$('#' + sourceNode.id() + targetNode.id());
+            if (ej.isEdge()) {
+                if(ej.data('found') !== true){
+                    correctGuesses++;
+                    ej.data('found', true);
+                    ej.style({'opacity': 1});
                 }
-                else {
-                    cy.remove(addedEles);
-                    var element = document.getElementById('heart' + lives);
-                    element.style.display = 'none';
-                    lives = lives - 1;
-                    $('body').toggleClass('laser', true);
-                    setTimeout(() => {
-                        $('body').toggleClass('laser', false);
-                    }, 2000);
-                    if (lives <= 0) {
-                        destroyGame();
-
-                    }
+                cy.remove(addedEles);
                 }
-
-                if(correctGuesses === edgesToComplete){
-                    console.log("You win");
-                    destroyGame();
-                    makeLevelModus2(anzNodes+3);
+            else {
+                cy.remove(addedEles);
+                var element = document.getElementById('heart' + lives);
+                element.style.display = 'none';
+                lives = lives - 1;
+                $('body').toggleClass('laser', true);
+                setTimeout(() => {
+                    $('body').toggleClass('laser', false);
+                }, 2000);
+                if (lives <= 0) {
+                    lost();
                 }
+            }
 
-            });
-            var selectedNode = []; //node that was clicked on is saved here
-            var selectedColors = [];
+            if(correctGuesses === edgesToComplete){
+                won();
+            }
+        });
+            
+        var selectedNode = []; //node that was clicked on is saved here
+        var selectedColors = [];
 
             cy.on('tap','node',(evt) => {
                 var evtNode = cy.getElementById(evt.target._private.data.id);
@@ -546,18 +492,6 @@ $(document).ready(function () {
             cy.maxZoom(3);  //beschränken den Zoom
 
             document.getElementById("giveUp").addEventListener("click", function () {
-                /*cy.ready(function() {
-                    cy.nodes().forEach(function(ele) {
-                        makePopper(ele);
-                    });
-                });
-    
-                cy.nodes().unbind('mouseover');
-                cy.nodes().bind('mouseover', (event) => event.target.tippy.show());
-    
-                cy.nodes().unbind('mouseout');
-                cy.nodes().bind('mouseout', (event) => event.target.tippy.hide());*/
-    
                 cy.edges().forEach(function (ele) {
                     if (edgesVisible) {
                         ele.style({'opacity': 1});
@@ -628,7 +562,8 @@ $(document).ready(function () {
     }
 
     document.getElementById("mode2").addEventListener("click", function () {
+        clickedOnMenu();
         currentMode = 2;
-        makeLevelModus2(4);
+        runMode2(level);
     });
 });
