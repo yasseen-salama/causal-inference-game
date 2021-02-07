@@ -407,7 +407,8 @@ $(document).ready(function () {
     });
 
     function runMode2(level) {
-        clickedOnMenu();
+        nodes = [];
+        edges = [];
         
         var select = document.getElementById('selection');
         select.style.display = '';
@@ -568,7 +569,7 @@ $(document).ready(function () {
     }
 
     document.getElementById("mode2").addEventListener("click", function () {
-        
+        clickedOnMenu();
         currentMode = 2;
         runMode2(level);
     });
