@@ -393,7 +393,8 @@ $(document).ready(function () {
         runMode1(level);
     });
 
-    function runMode2(anzNodes) {
+    function runMode2(level) {
+        clickedOnMenu();
         var select = document.getElementById('selection');
         select.style.display = '';
 
@@ -562,7 +563,6 @@ $(document).ready(function () {
     }
 
     document.getElementById("mode2").addEventListener("click", function () {
-        clickedOnMenu();
         currentMode = 2;
         runMode2(level);
     });
