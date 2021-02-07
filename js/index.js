@@ -461,6 +461,7 @@ $(document).ready(function () {
             if (ej.isEdge()) {
                 if(ej.data('found') !== true){
                     correctGuesses++;
+                    $("#edges").html("Edges left: " + (edgesToComplete - correctGuesses));
                     ej.data('found', true);
                     ej.style({'opacity': 1});
                 }
