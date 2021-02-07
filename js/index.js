@@ -120,6 +120,9 @@ $(document).ready(function () {
 
             let edgesLevel = document.getElementById('edgesLevels');
             edgesLevel.style.display = 'none'
+
+            let githubLogo = document.getElementById('github');
+            githubLogo.style.display = '';
         }
         let startMenu = document.getElementById('StartMenu');
         startMenu.style.display = '';
@@ -204,6 +207,9 @@ $(document).ready(function () {
 
             let edgesLevels = document.getElementById('edgesLevels');
             edgesLevels.style.display = '';
+
+            let githubLogo = document.getElementById('github');
+            githubLogo.style.display = 'none';
 
         }
     }
