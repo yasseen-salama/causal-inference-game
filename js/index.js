@@ -508,6 +508,10 @@ $(document).ready(function () {
             cy.minZoom(1);
             cy.maxZoom(3);  //beschränken den Zoom
 
+            
+        $("#level").html("Level " + level);
+        $("#edges").html("Edges left: " + (edgesToComplete - correctGuesses));
+
             document.getElementById("giveUp").addEventListener("click", function () {
                 cy.edges().forEach(function (ele) {
                     if (edgesVisible) {
