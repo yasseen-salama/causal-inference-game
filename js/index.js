@@ -321,6 +321,9 @@ $(document).ready(function () {
 
     }
     function runMode1(level) {
+        nodes = [];
+        edges = [];
+
         let cy = startCytoscape();
         let numOfEdges = 0;
         if(level == 1){
