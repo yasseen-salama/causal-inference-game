@@ -117,6 +117,9 @@ $(document).ready(function () {
             hideHearts();
             $("#giveUp").html("Give Up");
             edgesVisible = false;
+
+            let edgesLevel = document.getElementById('edgesLevels');
+            edgesLevel.style.display = 'none'
         }
         let startMenu = document.getElementById('StartMenu');
         startMenu.style.display = '';
@@ -199,6 +202,10 @@ $(document).ready(function () {
 
             let hearts = document.getElementById('hearts');
             hearts.style.display = '';
+
+            let edgesLevels = document.getElementById('edgesLevels');
+            edgesLevels.style.display = '';
+
         }
     }
     function lost(){
@@ -329,6 +336,7 @@ $(document).ready(function () {
         var lives = 3;
         showHearts();
 
+
         var layout = cy.layout({
             name: 'circle',
             directed: true,
@@ -348,6 +356,9 @@ $(document).ready(function () {
         cy.minZoom(1);
         cy.maxZoom(3);
 
+        $("#level").html("Level " + level);
+        $("#edges").html("Edges left: " + numOfEdges);
+
         cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
             var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
@@ -355,6 +366,7 @@ $(document).ready(function () {
                 ej.style({'opacity': 1});
                 cy.remove(addedEles);
                 numOfEdges -= 1;
+                $("#edges").html("Edges left: " + numOfEdges);
                 if (numOfEdges == 0 ){
                     if(level == 3){
                         won();
