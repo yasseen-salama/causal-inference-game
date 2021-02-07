@@ -132,7 +132,6 @@ $(document).ready(function () {
 
         let overlay = document.getElementById('overlay');
         overlay.style.display = 'none'
-        overlay.innerHTML = '';
     }
 
     function showHearts(){
@@ -211,7 +210,6 @@ $(document).ready(function () {
 
             let githubLogo = document.getElementById('github');
             githubLogo.style.display = 'none';
-
         }
     }
     function lost(){
