@@ -179,7 +179,7 @@ $(document).ready(function () {
             runMode1(level);
         }
         else{
-            destroyGame();
+            //destroyGame();
             runMode2(level);
         }
 
