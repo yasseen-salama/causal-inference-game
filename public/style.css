@@ -105,6 +105,12 @@ input {
     text-align: left;
     z-index: 2;
 }
+.github {
+    position: fixed;
+    right: 0;
+    bottom: 1%;
+    z-index: 2;
+}
 #overlay{
     text-align:left;
     font-size: 50px;
@@ -120,6 +126,14 @@ input {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 2;
+}
+#edgesLevels{
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute; /*or fixed*/
+    top: 2px;
+    right: 5px;
+
 }
 @media all and (max-width:30em){
     .button5{
