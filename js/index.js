@@ -414,6 +414,7 @@ $(document).ready(function () {
         cy.add(nodes); cy.add(edges);
 
         var lives = 3;
+        showHearts();
 
         var layout = cy.layout({
             name: 'circle',
