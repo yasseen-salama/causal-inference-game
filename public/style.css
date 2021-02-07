@@ -121,6 +121,14 @@ input {
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 2;
 }
+#edgesLevels{
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute; /*or fixed*/
+    top: 2px;
+    right: 5px;
+
+}
 @media all and (max-width:30em){
     .button5{
         display:block;
