@@ -176,6 +176,7 @@ $(document).ready(function () {
             runMode1(level);
         }
         else{
+            destroyGame();
             runMode2(level);
         }
 
@@ -394,6 +395,7 @@ $(document).ready(function () {
     });
 
     function runMode2(level) {
+        clickedOnMenu();
         
         var select = document.getElementById('selection');
         select.style.display = '';
@@ -523,17 +525,7 @@ $(document).ready(function () {
                     if(!endColor.startsWith('#')){
                         endColor ='#' + endColor;
                     }
-        
-                    startNode.data('type', 'selected');//node style changed
-                    /*startNode.animate({style: {'color': startNode.data('color')
-                        },
-                        duration: 600,
-                        //easing: 'ease-in-sine'
-                    }).delay(200).animate({
-                        style: { 'color': endColor},
-                        duration: 600,
-                       // easing: 'ease-in-sine'
-                    })*/
+                    startNode.data('type', 'selected');
                     startNode.data('color', endColor);// node color changed
                 }
                 for(let i = 0;i < startNode._private.edges.length; i++){ //recursiv part
@@ -563,7 +555,7 @@ $(document).ready(function () {
     }
 
     document.getElementById("mode2").addEventListener("click", function () {
-        clickedOnMenu();
+        
         currentMode = 2;
         runMode2(level);
     });
