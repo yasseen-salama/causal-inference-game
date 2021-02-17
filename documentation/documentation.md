@@ -28,7 +28,9 @@ Dise Dokumentation erfolgt nach der arc42-Vorlage.
 
 Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
-im Webbrowser spielbar | das Programm sollte auf jedem üblichen Browser funktionieren und spielbar sein
+Betrieb auf Windows Desktop Betriebssystemen | Schülerlabor des DLR ist mit dieser Hardware ausgestattet
+Touchscreen Unterstützung wünschenswert | großer Bildschirm steht zur Vefügung ist perfekt dafür geeigent
+
 
 ### 2.2 Organisatorisch ###
 
