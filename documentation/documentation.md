@@ -26,6 +26,10 @@ Dise Dokumentation erfolgt nach der arc42-Vorlage.
 
 ### 2.1 Technisch ###
 
+Randbedingung | Erläuterungen, Hintergrund
+------------- | --------------------------
+im Webbrowser spielbar | das Programm sollte auf jedem üblichen Browser funktionieren und spielbar sein
+
 ### 2.2 Organisatorisch ###
 
 ### 2.3 Konventionen ###
