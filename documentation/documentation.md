@@ -43,6 +43,16 @@ Fremdsoftware kostenlos | damit keine Kosten entstehen sollte nur open source / 
 
 ### 3.1 Fachlicher Kontext ###
 
+Diagramm chart_2
+
+#### Spieler ####
+
+Das Programm wird von einer Pesron bedient. Zur Nutzung ist eine Maus oder eine Touchpad nötig. Der Spieler zieht Verbindungen zwischen den Knoten oder ändert die Farben der Knoten.
+
+#### Fremdsystem Cytoscape ####
+
+Cytoscape ist ein Fremdsystem, welches dafür genutzt wird das den Graphen zu generieren. Dabei ist jeder Knoten und jede Kante des Graphen ein eigenes Element welches seperat angesprochen werden kann.
+
 ### 3.2 Technischer Kontext ###
 
 
