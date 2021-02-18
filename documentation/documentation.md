@@ -30,9 +30,11 @@ Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
 Betrieb auf Windows Desktop Betriebssystemen | Schülerlabor des DLR ist mit dieser Hardware ausgestattet
 Touchscreen Unterstützung wünschenswert | großer Bildschirm steht zur Vefügung ist perfekt dafür geeigent
-
+Fremdsoftware kostenlos | damit keine Kosten entstehen sollte nur open source / kostenlose Fremdsoftware verwendet werden
 
 ### 2.2 Organisatorisch ###
+
+
 
 ### 2.3 Konventionen ###
 
