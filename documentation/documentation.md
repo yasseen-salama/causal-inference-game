@@ -19,6 +19,10 @@ Dise Dokumentation erfolgt nach der arc42-Vorlage.
 
 ### 1.2 Qualitätsziele ###
 
+ * Funktionalität / Korrektheit
+ * Bedienbarkeit
+ * Effizienz
+
 ### 1.3 Stakeholder ###
 
 
@@ -34,9 +38,16 @@ Fremdsoftware kostenlos | damit keine Kosten entstehen sollte nur open source / 
 
 ### 2.2 Organisatorisch ###
 
-
+Randbedingung | Erläuterungen, Hintergrund
+------------- | --------------------------
+Team | Yasseen Salama und Jonas Bastisch, mit Betreung von Jakob, Paul, Caroline und Marianne
+Zeitplan | Beginn: xx erster Prototyp: xx Fertiges Prjekt: xx
+Vorgehensmodell |
+Entwicklungswerkzeuge |
+Versionsverwaltung | Git 
 
 ### 2.3 Konventionen ###
+
 
 
 ## **3.Kontextabgrenzung** ##
@@ -55,6 +66,10 @@ Cytoscape ist ein Fremdsystem, welches dafür genutzt wird das den Graphen zu ge
 
 ### 3.2 Technischer Kontext ###
 
+Diagramm
+
+Die Anbindung funktioniert über ein grafisches Frontend, welches durch Cytoscape zur Verfügung gestellt ist, die Entwicklung dieses war nicht Teil des Projektes. Dieses Frontend kann in jedem handelsüblichen Webbrowser genutzt werden
+
 
 ## **4.Lösungstrategie** ##
 
@@ -69,6 +84,7 @@ Cytoscape ist ein Fremdsystem, welches dafür genutzt wird das den Graphen zu ge
 
 ## **5.Bausteinsicht** ##
 
+Diagramm chart_1
 
 ## **6.Laufzeitsicht** ##
 
