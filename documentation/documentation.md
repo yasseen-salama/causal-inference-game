@@ -75,7 +75,11 @@ Die Anbindung funktioniert über ein grafisches Frontend, welches durch Cytoscap
 
 ### 4.1 Einstieg ###
 
+Wir schreiben das Programm in HTML + Javascript. Zunächst waren mehrere HTML-Seiten für jedes Level geplant, dies hat sich jedoch später als problematisch herausgestellt, weshalb wir auf eine Single-Page-Application umgestiegen sind. Das heißt das, das ganze Spiel auf einer HTML-Seite laäuft.
+
 ### 4.2 Aufbau ###
+
+Das Programm startet auf einem Hauptmenü, in welchem die beiden Spielmodi ausgewählt werden können, wenn einer der Modi ausgewählt wird die Funktion clickedOnMenu() ausgeführt, welche das Startmenü versteckt und Interface Elemente, wie Lebensanzeige und Leveldetails, auf dem Bildschirm anzeigt.
 
 ### 4.3 Spielstrategie ###
 
