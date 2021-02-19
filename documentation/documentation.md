@@ -2,7 +2,7 @@
 
 Das 'Causal Inference Game' ist ein Browserbasiertes Spiel bei dem man das Prinzip der Kausalen Inferenz spielerisch erlernen kann.
 
-Dise Dokumentation erfolgt nach der arc42-Vorlage.
+Diese Dokumentation erfolgt nach der arc42-Vorlage.
 
 
 ## **1.Einführung und Ziele** ##
@@ -29,9 +29,7 @@ Dise Dokumentation erfolgt nach der arc42-Vorlage.
 Wer? | Bezug
 ------------- | --------------------------
 DLR | 
-Schüler | * können Kausaltät kennen lernen
-          * einfache nicht aufgeblähte Erkärung
-          * intuitive Bedienung
+Schüler | -können Kausaltät kennen lernen <br> -einfache nicht aufgeblähte Erkärung <br> -intuitive Bedienung
 
 
 ## **2.Randbedingungen** ##
@@ -62,7 +60,7 @@ Versionsverwaltung | Git
 
 ### 3.1 Fachlicher Kontext ###
 
-![Fachlicher Kontext](chart_2.png)
+![Fachlicher Kontext](chart_2.png "Fachlicher Kontext")
 
 #### Spieler ####
 
@@ -103,7 +101,7 @@ Das Programm startet auf einem Hauptmenü, in welchem die beiden Spielmodi ausge
 
 Wir versuchen hier jede genutzte Funktion zu erklären um eventuelle Veränderungen/ Verbesserungen zu ermöglichen.
 
-![Bausteinschicht Draft](chart_1.png)
+![Bausteinschicht Draft](chart_1.png "Bausteinschicht")
 
 
 
