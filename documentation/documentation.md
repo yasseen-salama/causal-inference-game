@@ -34,13 +34,15 @@ Schüler | -können Kausaltät kennen lernen <br> -einfache nicht aufgeblähte E
 
 ## **2.Randbedingungen** ##
 
+Eine kurze Zusammenfassung der Gegebenheiten mit denen wir gearbeitet haben
+
 ### 2.1 Technisch ###
 
 Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
 Betrieb auf Windows Desktop Betriebssystemen | Schülerlabor des DLR ist mit dieser Hardware ausgestattet
 Touchscreen Unterstützung wünschenswert | großer Bildschirm steht zur Vefügung ist perfekt dafür geeigent
-Fremdsoftware kostenlos | damit keine Kosten entstehen sollte nur open source / kostenlose Fremdsoftware verwendet werden
+Fremdsoftware kostenlos | kein Budget dafür vorgesehen
 
 ### 2.2 Organisatorisch ###
 
