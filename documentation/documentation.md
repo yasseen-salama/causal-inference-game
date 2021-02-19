@@ -10,18 +10,19 @@ Dise Dokumentation erfolgt nach der arc42-Vorlage.
 ### 1.1 Aufgabenstellung ###
 
 #### Was ist das 'Causal Inference Game'? ####
-  * empty
-  * 
+* empty
+* 
 #### Features ####
-  * bietet 2 verschiedene Spielmodi
-  * zeigt das Prinzip der Kausalität 
-  * mehrere Level mit steigendem Schwierigkeitsgrad 
+
+* bietet 2 verschiedene Spielmodi
+* zeigt das Prinzip der Kausalität 
+* mehrere Level mit steigendem Schwierigkeitsgrad 
 
 ### 1.2 Qualitätsziele ###
 
- * Funktionalität / Korrektheit
- * Bedienbarkeit
- * Effizienz
+* Funktionalität / Korrektheit
+* Bedienbarkeit
+* Effizienz
 
 ### 1.3 Stakeholder ###
 
@@ -60,9 +61,13 @@ Versionsverwaltung | Git
 
 Das Programm wird von einer Pesron bedient. Zur Nutzung ist eine Maus oder eine Touchpad nötig. Der Spieler zieht Verbindungen zwischen den Knoten oder ändert die Farben der Knoten.
 
-#### Fremdsystem Cytoscape ####
+#### Cytoscape ####
 
 [Cytoscape](https://js.cytoscape.org/)  ist ein Fremdsystem, welches dafür genutzt wird das den Graphen zu generieren. Dabei ist jeder Knoten und jede Kante des Graphen ein eigenes Element welches seperat angesprochen werden kann. Dadurch können wir uns die Zeit sparen eigenen Code zu schreiben, welcher den Graphen darstellt.
+
+#### RYB-Color-Mixer ####
+
+Wird genutzt um einfach die Farbmischung zu berechnen, anfags eigener Code dafür, haben uns dann aber dafür entschieden eine vorhandene Biblothek zu nutzen.
 
 
 ### 3.2 Technischer Kontext ###
@@ -104,9 +109,9 @@ Wir versuchen hier jede genutzte Funktion zu erklären um eventuelle Veränderun
 
 ## **8.Konzepte** ##
 
-  *Kausalität: 
-  *Kausale Inferenz
-  *Directed acyclic graph:
+* Kausalität: 
+* Kausale Inferenz
+* Directed acyclic graph:
 
 ## **9.Entscheidungen** ##
 
