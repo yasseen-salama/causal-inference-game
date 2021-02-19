@@ -88,7 +88,11 @@ Das Programm startet auf einem Hauptmenü, in welchem die beiden Spielmodi ausge
 
 ## **5.Bausteinsicht** ##
 
+Wir versuchen hier jede genutzte Funktion zu erklären um eventuelle Veränderungen/ Verbesserungen zu ermöglichen.
+
 ![Bausteinschicht Draft](chart_1.png)
+
+
 
 
 ## **6.Laufzeitsicht** ##
