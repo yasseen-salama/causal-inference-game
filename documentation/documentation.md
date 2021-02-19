@@ -42,8 +42,8 @@ Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
 Team | Yasseen Salama und Jonas Bastisch, mit Betreung von Jakob, Paul, Caroline und Marianne
 Zeitplan | Beginn: xx erster Prototyp: xx Fertiges Prjekt: xx
-Vorgehensmodell |
-Entwicklungswerkzeuge |
+Vorgehensmodell | ...
+Entwicklungswerkzeuge | ...
 Versionsverwaltung | Git 
 
 ### 2.3 Konventionen ###
@@ -75,7 +75,7 @@ Die Anbindung funktioniert über ein grafisches Frontend, welches durch Cytoscap
 
 ### 4.1 Einstieg ###
 
-Wir schreiben das Programm in HTML + Javascript. Zunächst waren mehrere HTML-Seiten für jedes Level geplant, dies hat sich jedoch später als problematisch herausgestellt, weshalb wir auf eine Single-Page-Application umgestiegen sind. Das heißt das, das ganze Spiel auf einer HTML-Seite laäuft.
+Wir schreiben das Programm in HTML + Javascript. Zunächst waren mehrere HTML-Seiten für jedes Level geplant, dies hat sich jedoch später als problematisch herausgestellt, weshalb wir auf eine Single-Page-Application umgestiegen sind. Das heißt das, das ganze Spiel auf einer HTML-Seite läuft.
 
 ### 4.2 Aufbau ###
 
@@ -88,7 +88,8 @@ Das Programm startet auf einem Hauptmenü, in welchem die beiden Spielmodi ausge
 
 ## **5.Bausteinsicht** ##
 
-Diagramm chart_1
+![Bausteinschicht Draft](chart_1.png)
+
 
 ## **6.Laufzeitsicht** ##
 
@@ -98,6 +99,9 @@ Diagramm chart_1
 
 ## **8.Konzepte** ##
 
+  *Kausalität: 
+  *Kausale Inferenz
+  *Directed acyclic graph:
 
 ## **9.Entscheidungen** ##
 
