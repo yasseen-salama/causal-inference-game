@@ -54,7 +54,7 @@ Versionsverwaltung | Git
 
 ### 3.1 Fachlicher Kontext ###
 
-Diagramm chart_2
+![Fachlciher Kontext](chart_2.png)
 
 #### Spieler ####
 
