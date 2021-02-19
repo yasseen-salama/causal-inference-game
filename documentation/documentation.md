@@ -62,7 +62,8 @@ Das Programm wird von einer Pesron bedient. Zur Nutzung ist eine Maus oder eine 
 
 #### Fremdsystem Cytoscape ####
 
-Cytoscape ist ein Fremdsystem, welches dafür genutzt wird das den Graphen zu generieren. Dabei ist jeder Knoten und jede Kante des Graphen ein eigenes Element welches seperat angesprochen werden kann.
+[Cytoscape](https://js.cytoscape.org/)  ist ein Fremdsystem, welches dafür genutzt wird das den Graphen zu generieren. Dabei ist jeder Knoten und jede Kante des Graphen ein eigenes Element welches seperat angesprochen werden kann. Dadurch können wir uns die Zeit sparen eigenen Code zu schreiben, welcher den Graphen darstellt.
+
 
 ### 3.2 Technischer Kontext ###
 
