@@ -26,6 +26,13 @@ Dise Dokumentation erfolgt nach der arc42-Vorlage.
 
 ### 1.3 Stakeholder ###
 
+Wer? | Bezug
+------------- | --------------------------
+DLR | 
+Schüler | * können Kausaltät kennen lernen
+          * einfache nicht aufgeblähte Erkärung
+          * intuitive Bedienung
+
 
 ## **2.Randbedingungen** ##
 
