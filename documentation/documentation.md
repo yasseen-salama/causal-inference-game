@@ -94,7 +94,15 @@ Wir schreiben das Programm in HTML + Javascript. Zunächst waren mehrere HTML-Se
 
 Das Programm startet auf einem Hauptmenü, in welchem die beiden Spielmodi ausgewählt werden können, wenn einer der Modi ausgewählt wird die Funktion clickedOnMenu() ausgeführt, welche das Startmenü versteckt und Interface Elemente, wie Lebensanzeige und Leveldetails, auf dem Bildschirm anzeigt.
 
-### 4.3 Spielstrategie ###
+### 4.3 Tests ###
+
+Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
+ 1. zuerst haben wir einen Prototype gebaut der die Knoten darstellen kann mit zufällig generierten Farben 
+ 2. ein Prototyp der in der Lage ist Kanten einzeichnen zu können, ohne andere Funktionalität
+ 3. erster Mouds implementiert mit einem Level und keiner Progression
+ 4. zweiter Modus implementiert 
+ 5. Hosten eines Prototypens auf einer Website, welcher immer den aktuellen Entwicklungsstand hat. Menü + Interface 
+ 6. Levelsystem implementiert
 
 ### 4.4 Anbindung ###
 
