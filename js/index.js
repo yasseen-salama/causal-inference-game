@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    var nodes = [];
-    var edges = [];
-    var colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c'];
+    var nodes = [];  //Knoten werden hier gespeichert
+    var edges = [];  //Kanten werden hier gesspeichert
+    var colors = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c']; //Grundfarben aus denen gewählt werden kann, können problemlos ausgetasuch werden
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    var level = 1;
+    var level = 1;  
     var edgesVisible = false;
     var help = false;
-    var currentMode = 1;
+    var currentMode = 1; //ausgewählter Spielmodus
 
-    function randomInteger(min, max) {
+    function randomInteger(min, max) { 
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
@@ -28,33 +28,19 @@ $(document).ready(function () {
             array[randomIndex] = temporaryValue;
         }
 
-        return array;
+        return array; //gibt gemischtes array zurück
     }
-    function makePopper(ele) {
-        let ref = ele.popperRef(); // used only for positioning
-
-        ele.tippy = tippy(ref, { // tippy options:
-            content: () => {
-                let content = document.createElement('div');
-
-                content.innerHTML = ele.data();
-
-                return content;
-            },
-            trigger: 'manual' // probably want manual mode
-        });
-    }
-
+    
     var colorsShuffeld = [...colors];
     shuffle(colorsShuffeld);
 
-    function getRandomColor() {
+    function getRandomColor() {  //gibt eine zufällige Farbe aus den Grundfarben aus
         return colorsShuffeld.shift();
     }
 
-    var intializeNodes = function (numOfNodes) {
+    var intializeNodes = function (numOfNodes) {  //Knoten werden zufällig erzeugt 
         for (let i = 0; i < numOfNodes; i++) {
-            if (colorsShuffeld.length === 0) {
+            if (colorsShuffeld.length === 0) {  //wenn das Farbarray leer ist generieren wir ein neues
                 colorsShuffeld = [...colors];
                 shuffle(colorsShuffeld);
             }
@@ -63,34 +49,36 @@ $(document).ready(function () {
                 group: 'nodes',
                 data: {
                     id: alphabet.charAt(i),
-                    color: rndmColor, //displayedColor
-                    originalColor: rndmColor, //color without mixing
-                    mixedColor: rndmColor, //color with mixing
+                    color: rndmColor, //Farbe die dargestellt wird
+                    originalColor: rndmColor, //Grundfarbe ohne Mischung
+                    mixedColor: rndmColor, //Farbe mit Mischung siehe initializeEdges()
                     childNodes: [],
                     numOfParents: 0,
-                    type: 'original' //node type for changing styles
+                    type: 'original' //type für verschiedene Styles
                 },
             });
-            nodes.push()
+            nodes.push() //Knoten werden ins array gepushed
         }
     }
 
-    var intializeEdges = function () {
+    var intializeEdges = function () {  //Kanten werden generiert, es müssen vorher Knoten generiert wurden sein
         for (let i = 0; i < nodes.length - 1; i++) {
-            var numOfChildren = randomInteger(1, 3)
+            var numOfChildren = randomInteger(1, 3) //von einem Knoten können maximal 3 kanten ausgehen kann aber ggf. geändert werden
             if (numOfChildren != 0) {
                 for (let j = 0; j <= numOfChildren; j++) {
                     var childIndex = randomInteger(i + 1, nodes.length - 1)
                     if (nodes[childIndex].data.numOfParents < 3) {
-                        // mix hexadecimal colors
+                        // wenn kante generiert wird werden die HexFarben gemischt
                         nodes[childIndex].data.color = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color)
+                        //mixedColor wird aktualisiert
                         nodes[childIndex].data.mixedColor = "#" + rybColorMixer.mix(nodes[i].data.color, nodes[childIndex].data.color);
+                        //Kanten werden ins Array gepushed
                         edges.push({
                             group: 'edges',
                             data: {
                                 id: '' + nodes[i].data.id + nodes[childIndex].data.id,
-                                source: '' + nodes[i].data.id,
-                                target: '' + nodes[childIndex].data.id
+                                source: '' + nodes[i].data.id, //Ausgangsknoten
+                                target: '' + nodes[childIndex].data.id //Zielknoten
                             },
                         });
                         nodes[childIndex].data.numOfParents += 1
@@ -100,18 +88,18 @@ $(document).ready(function () {
         }
     }
 
-    function destroyGame() {
-        if(!help) {
+    function destroyGame() {  //reseted das Spiel und Interface
+        if(!help) { //wenn nicht Hilfeknopf ausgewählt ist
             nodes = [];
             edges = [];
             level = 1 ;
             let elem = document.querySelector('#cy');
-            elem.parentNode.removeChild(elem);
+            elem.parentNode.removeChild(elem);  //graph wird zerstört
 
-            let select = document.getElementById('selection');
+            let select = document.getElementById('selection'); //selection menü für modus 2 wird versteckt
             select.style.display = 'none';
 
-            let giveUp = document.getElementById('giveUp');
+            let giveUp = document.getElementById('giveUp'); //Interface Element wird versteckt
             giveUp.style.display = ''
 
             hideHearts();
@@ -130,21 +118,21 @@ $(document).ready(function () {
         let back = document.getElementById('back');
         back.style.display = ''
 
-        let overlay = document.getElementById('overlay');
+        let overlay = document.getElementById('overlay'); //Interface Elemente
         overlay.style.display = 'none'
     }
 
-    function showHearts(){
+    function showHearts(){ //zeigt die Leben auf dem Bildschirm an
         resetHearts();
         let hearts = document.getElementById('hearts');
         hearts.style.display = ''
     }
-    function hideHearts(){
+    function hideHearts(){ //versteckt die Leben
         resetHearts();
         let hearts = document.getElementById('hearts');
         hearts.style.display = 'none'
     }
-    function resetHearts(){
+    function resetHearts(){ //setzt Lebensanzahl zum Startwert zurück
         for (let i = 1; i < 4; i++) {
             let heart = document.getElementById('heart' + i);
             heart.style.display = '';
@@ -157,7 +145,7 @@ $(document).ready(function () {
         helpPage.style.display = '';
     }
 
-    document.getElementById("back").addEventListener("click", function () {
+    document.getElementById("back").addEventListener("click", function () { //Knopfzuweisung: zurück zum Hauptmenü
         destroyGame();
         if(help){
             help = false;
@@ -165,10 +153,12 @@ $(document).ready(function () {
             helpPage.style.display = 'none';
         }
     });
-    document.getElementById("help").addEventListener("click", function () {
+
+    document.getElementById("help").addEventListener("click", function () { //knopfzuweisung: Hilfe
         showHelp();
     });
-    document.getElementById("nextLevel").addEventListener("click", function () {
+
+    document.getElementById("nextLevel").addEventListener("click", function () { //Knopfzuweisung: NextLevel
 
         let nextLevel = document.getElementById('nextLevel');
         nextLevel.style.display = 'none';
@@ -176,18 +166,16 @@ $(document).ready(function () {
         let elem = document.getElementById('overlay');
         elem.style.display = 'none';
 
-        if (currentMode == 1){
-            console.log("Clicked next level button running mode 1 in level" + level);
+        if (currentMode == 1){ //je nachdem welcher Modus ausgewählt ist
             runMode1(level);
         }
         else{
-            //destroyGame();
             runMode2(level);
         }
 
     });
 
-    function clickedOnMenu(){
+    function clickedOnMenu(){ // versteckt das Hauptmenü und zeigt Spiel Interface Elemente an
         let startMenu = document.getElementById('StartMenu');
         startMenu.style.display = 'none';
 
@@ -212,13 +200,15 @@ $(document).ready(function () {
             githubLogo.style.display = 'none';
         }
     }
-    function lost(){
+
+    function lost(){ //Spiel verloren
         let elem = document.getElementById('overlay');
         elem.style.display = 'table';
         $("#overlayHeader").html("You Lost!");
         $("#giveUp").html("Show Edges");
     }
-    function won(){
+
+    function won(){ //Spiel gewonnen
         let elem = document.getElementById('overlay');
         elem.style.display = 'table';
 
@@ -232,7 +222,7 @@ $(document).ready(function () {
         level +=1;
     }
 
-    function startCytoscape(){
+    function startCytoscape(){ //generieren eine cytoscape Instanz
         var cy = cytoscape({
             container: document.getElementById('cy'),
 
@@ -324,13 +314,14 @@ $(document).ready(function () {
         return cy;
 
     }
-    function runMode1(level) {
+    function runMode1(level) { //Modus 1 
         nodes = [];
         edges = [];
 
         let cy = startCytoscape();
         let numOfEdges = 0;
-        if(level == 1){
+
+        if(level == 1){ //level bestimmt anzahl der Knoten
             intializeNodes(4);
         } else if (level == 2){
             intializeNodes(6);
@@ -352,21 +343,22 @@ $(document).ready(function () {
 
         layout.run();
 
-        var eh = cy.edgehandles();
+        var eh = cy.edgehandles(); //aktivieren die Möglichkeit selbst Kanten zu ziehen
         eh.enable();
         eh.enableDrawMode();
 
-        cy.edges().forEach(function (ele) {
+        cy.edges().forEach(function (ele) { //verstecken alle generierten Kanten für den Spieler
             ele.style({'opacity': 0});
             numOfEdges +=1;
         });
-        cy.minZoom(1);
+
+        cy.minZoom(1); //beschränken den möglichen Zoom
         cy.maxZoom(3);
 
-        $("#level").html("Level " + level);
+        $("#level").html("Level " + level);  
         $("#edges").html("Edges left: " + numOfEdges);
 
-        cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => {
+        cy.on('ehcomplete', (event, sourceNode, targetNode, addedEles) => { //checken ob richtige kante eingezeichnet wurde
             cy.edges("[source='" + sourceNode.id() + "']", "[target='" + targetNode.id() + "']")
             var ej = cy.$('#'+ sourceNode.id() + targetNode.id());
             if (ej.isEdge()){
@@ -388,13 +380,12 @@ $(document).ready(function () {
                 lives = lives - 1;
                 $('body').toggleClass('laser', true);
                 setTimeout(() => {  $('body').toggleClass('laser', false); }, 2000);
-                if(lives <= 0){
+                if(lives <= 0){ //GameOver
                     lost();
-                    // destroyGame();
                 }
             }
         });
-        document.getElementById("giveUp").addEventListener("click", function () {
+        document.getElementById("giveUp").addEventListener("click", function () { //Knopfzuweisung: Aufgeben
             cy.edges().forEach(function (ele) {
                 if (edgesVisible) {
                     ele.style({'opacity': 1});
@@ -407,13 +398,13 @@ $(document).ready(function () {
     }
 
 
-    document.getElementById("mode1").addEventListener("click", function() {
+    document.getElementById("mode1").addEventListener("click", function() { //Knopfzuweisung: Modus1
         clickedOnMenu();
         currentMode = 1;
         runMode1(level);
     });
 
-    function runMode2(level) {
+    function runMode2(level) { //Modus 2
         nodes = [];
         edges = [];
         
@@ -580,7 +571,7 @@ $(document).ready(function () {
             }
     }
 
-    document.getElementById("mode2").addEventListener("click", function () {
+    document.getElementById("mode2").addEventListener("click", function () { //Knopfzuweisung: modus2
         clickedOnMenu();
         currentMode = 2;
         runMode2(level);

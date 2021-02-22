@@ -123,7 +123,6 @@ Wir versuchen hier jede genutzte Funktion zu erklären um eventuelle Veränderun
 ## **9.Entscheidungen** ##
 
 
-## **10. Qualitätsszenarien** ##
 
 
 ## **11.Risiken** ##
