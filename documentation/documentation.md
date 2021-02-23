@@ -128,6 +128,10 @@ winCondition | kontrolliert Gewinnbedingung oder ob das Spiel verloren ist
 destroyGame | führt das Programm in den Ursprungszustand zurück
 
 
+### Interface ###
+
+
+
 
 ## **6.Laufzeitsicht** ##
 
