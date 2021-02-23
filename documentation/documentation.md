@@ -10,13 +10,18 @@ Diese Dokumentation erfolgt nach der arc42-Vorlage.
 ### 1.1 Aufgabenstellung ###
 
 #### Was ist das 'Causal Inference Game'? ####
-* empty
-* 
+
+Bei diesem Programm handelt es sich um eine Anwendung, welche im Browser läuft. Dabei wird versucht durch die Nutzung von Graphen / Kanten / Knoten das abstrakte Prinzip der kausalen Inferenz spielerisch beizubringen. Das Spiel umfasst zwei Spielmodi und eine Seite zur Hilfestellung. DIe Spielmodi enthalten 3 zufällig generierte Level mit jeweils steigendem Schwierigkeitsgrad. In jedem Level gibt es die Möglichkeit Kanten zwischen den dargestellten Knoten zu ziehen. Wenn eine falsche Kante eingezeichnet wird verliert der Spieler ein Leben, was durch ein rotes aufleuchten des Bildschirms und den Verlust eines Herzicons dargestellt wird. Wenn eine richtige Kante eingezeichnet wird bleibt diese bestehen und der "Edges left counter" reduziert sich. Außerdem besteht die Möglichkeit ins Hauptmenü zurückzukehren und das Level aufzugeben ,durch drücken des entsprechenden Knopfes. Wenn das Spiel aufgegeben wurde, werden alle nicht eingezeichneten Kanten die fehlen sichtbar gemacht, sodass man die Lösung des Levels erkennen kann.
+Wenn alle Leben verbraucht sind erscheint ein Game Over Overlay und man hat die Möglichkeit ins Hauptmenü zurückzukehren, um das Level neu zustarten. Falls man es schafft alle Kanten richtig einzuzeichnen erscheint ein neuer Knopf der zum nächsten Level führt, welches mehr Knoten und Kanten generiert.  
+
 #### Features ####
 
-* bietet 2 verschiedene Spielmodi
+* bietet 2 verschiedene Spielmodi je 3 Level
 * zeigt das Prinzip der Kausalität 
 * mehrere Level mit steigendem Schwierigkeitsgrad 
+* "Aufgeben" Knopf
+* Feedback bei falschen Eingaben
+* Navigation zwischen Hauptmenü und Level
 
 ### 1.2 Qualitätsziele ###
 
@@ -28,7 +33,7 @@ Diese Dokumentation erfolgt nach der arc42-Vorlage.
 
 Wer? | Bezug
 ------------- | --------------------------
-DLR | 
+Administratoren DLR SchoolLab |  
 Schüler | -können Kausaltät kennen lernen <br> -einfache nicht aufgeblähte Erkärung <br> -intuitive Bedienung
 
 
@@ -120,6 +125,9 @@ Wir versuchen hier jede genutzte Funktion zu erklären um eventuelle Veränderun
 
 
 ## **7.Verteilungssicht** ##
+
+Entwicklungsumgebung
+Tetsumgebung
 
 
 ## **8.Konzepte** ##
