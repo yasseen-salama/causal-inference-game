@@ -114,10 +114,18 @@ Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
 
 ## **5.Bausteinsicht** ##
 
-Wir versuchen hier jede genutzte Funktion zu erklären um eventuelle Veränderungen/ Verbesserungen zu ermöglichen.
+### Spielüberblick ###
 
-![Bausteinschicht Draft](chart_1.png "Bausteinschicht")
+Das Programm kann grob in 7 Module unterteilt werden
 
+Modul | Kurze Erklärung
+------- | ----------------
+Interface | generiert und versteckt bestimmte Interface Elemente die benötigt werden
+initializeNodes | generiert Knoten mit zufälligen Farben
+initializeEdges | generiert zufällige Kanten zwischen den norher generierten Knoten
+startCytoscape | erzeugt aus den vorher generierten Knoten und Kanten einen interagierbaren Graphen
+winCondition | kontrolliert Gewinnbedingung oder ob das Spiel verloren ist
+destroyGame | führt das Programm in den Ursprungszustand zurück
 
 
 
