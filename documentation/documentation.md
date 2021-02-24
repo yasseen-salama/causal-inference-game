@@ -30,6 +30,9 @@ Wenn alle Leben verbraucht sind erscheint ein Game Over Overlay und man hat die 
 Es ist wichtig, das wenn man Kausale Inferenz beibringen möchte, man es auch richtig beibrngt. Es dürfen keine theoretischen Fehler auftreten.
 
 * Bedienbarkeit
+
+Da vorallem Schüler bzw. Kinder das Programm nutzten werden, darf das Interface und die Bedienung nicht zu komplex / kompliziert sein. Da ansonsten zusammen mit dem sehr theoretischen Thema der kausalen Inferenz schnell Frust enstehen kann.
+
 * Effizienz
 
 ### 1.3 Stakeholder ###
