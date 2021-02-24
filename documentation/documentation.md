@@ -165,12 +165,19 @@ Nun werden die generierten Knoten und Kanten verwendet um einen Graphen zu erzeu
 
 Hier wird nun knotrolliert ob das Spiel gewonnen oder verloren wird. Dazu benötigen wir einen Listener, welcher darauf reagiert wenn eine neue Kante eingezeichnet wird (ehcomplete). Wenn dies passiert kontrollieren wir ob diese neu eingezeichnete Kante im Kantenarray liegt. Falls das der Fall ist machen wir diese Kante sichtbar und reduzieren die Anzahl der Kanten die noch einzuzeichnen sind. Wenn dadurch die Anzahl auf 0 fällt ist das Level gewonnen, das heißt wir erhöhen das Level um 1, zerstören den jetztigen Graphen und generieren neue Knoten und Edges. Falls die eingezeichnete Kante nicht im Array liegt, lösen wir eine Animation aus die den Bildschirm rot aufblinken lässt und ziehen dem Spieler ein Leben ab. Wenn die Leben auf 0 fallen wird ein Overlay sichtbar, welches verhindert das neue Kanten eingezeichnet werden können.
 
+Im Causal Intervention Modus ist eine zusätzlich Funktion implementiert, diese wird aktiviert wenn auf einen Knoten gedrückt wird. Die aus dem Farbmenü ausgewählte Farbe oder falls keine ausgewählt ist rot, wird an als Farbe des Knotens gespeichert, dann werden alle mit diesem Knoten verbundenen Knoten aktualisiert, das heißt die Farben werden neu gemischt. Außerdem werden alle veränderten Knoten jetzt als Stern angezeigt um sie besser unterscheiden zu können.
+
+Wird noch genauer in Laufzeitschicht beschrieben.
+
 
 ## **6.Laufzeitsicht** ##
 
+Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
+
+
 
 ## **7.Verteilungssicht** ##
-
+  evtl streichbar
 Entwicklungsumgebung
 Tetsumgebung
 
@@ -183,10 +190,20 @@ Tetsumgebung
 
 ## **9.Entscheidungen** ##
 
+Nicht Ton sondern Farben
 
+RYBColorMixer nutzen
+
+Cytoscpae nutzen
+
+Multipage vs. Single Page
+
+Implementierung des Levelsystems
 
 
 ## **11.Risiken** ##
+
+???
 
 
 ## **12.Glossar** ##
