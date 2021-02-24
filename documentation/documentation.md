@@ -174,14 +174,6 @@ Wird noch genauer in Laufzeitschicht beschrieben.
 
 Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
 
-
-
-## **7.Verteilungssicht** ##
-  evtl streichbar
-Entwicklungsumgebung
-Tetsumgebung
-
-
 ## **8.Konzepte** ##
 
 * Kausalität: 
@@ -190,11 +182,17 @@ Tetsumgebung
 
 ## **9.Entscheidungen** ##
 
-Nicht Ton sondern Farben
+### Spielprinzip ###
 
-RYBColorMixer nutzen
+Die erste große Entscheidung die wir treffen mussten, bezog sich auf das grundlegene Spielprinzip, also wie wollen wir das abstrakte Prinzip der Kausalität spielerisch vermitteln? 
+Die erste vorgechlagene Möglichkeit ist es Knoten mit Tönen / Melodien zu füllen, das heißt wenn kausale Zusammenhänge zwischen den Knoten bestehn würden, würden sich auch die Melodien dementsprechend ändern. Ein großer Vorteil hiervon wäre das damit ein eigentlich geplannter 3 Modus umgesetzt werden könnte, der Causal ... Mode, in diesem gäbe es dann die Möglichkeit einen Knoten 'herauszurechnen', das heißt er würde die Daten der anderen Knoten nicht mehr beeinflussen. Nachteile dieser Variante wären ein sehr abstraktes Spielprinzip, da Kausalität an Tönen / Melodien zu erkennen für einen Menschen sehr schwer, außerdem sind unsere Musikkenntnise nicht sehr gut, weshalb eine Umsetzung sehr viel schwieriger wäre.
+Die Alternative hierzu ist es die Knoten mit Farben zu füllen, kausale Beziehungen würden hierbei zu Farbmischungen führen. Das hätte zum Vorteil das die Logik hinter farbmischung schon für Kinder zugänglich sein sollte, außerdem ist diese Interaktion auch deutlich einfacher zu implementieren und kann viel Zeit sparen. Bei dieser Variante ist der dritte Modus jedoch nicht umzusetzten da das theoretische Prinzip dahinter nicht mit Farben umgesetzt werden kann.
+Wir haben uns hier für die zweite Variante entschieden, da die Vorteile in unserem Fall das fehlen des dritten Spielmodus überschatten? .
+ 
 
 Cytoscpae nutzen
+
+Bei der Implementierung eines Graphens in Jvascript hatten wir zunächst die Idee
 
 Multipage vs. Single Page
 
