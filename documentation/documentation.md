@@ -26,6 +26,9 @@ Wenn alle Leben verbraucht sind erscheint ein Game Over Overlay und man hat die 
 ### 1.2 Qualitätsziele ###
 
 * Funktionalität / Korrektheit
+
+Es ist wichtig, das wenn man Kausale Inferenz beibringen möchte, man es auch richtig beibrngt. Es dürfen keine theoretischen Fehler auftreten.
+
 * Bedienbarkeit
 * Effizienz
 
