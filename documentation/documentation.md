@@ -122,6 +122,8 @@ Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
 
 ### Spielüberblick ###
 
+![GAmeOverview](GameOverview.png "Spielüberblick")
+
 Das Programm kann grob in 6 Module unterteilt werden
 
 Modul | Kurze Erklärung
@@ -135,6 +137,8 @@ destroyGame | führt das Programm in den Ursprungszustand zurück
 
 
 ### Interface ###
+
+Nachdem der Modus ausgewählt wurde wird hier das Hauptmenü versteckt und andere Spielspezifische Interface Elemente geladen. Dazu gehören die Anzeige der Leben (Herzen), die Anzahl der noch einzuzeichnenden Kanten, das gerade aktive Level, ein Knopf der zurück zum Hauptmenü führt und ein Knopf, welcher das Spiel aufgibt und alle fehlende Kanten sichtbar macht. Zusätzlich dazu erscheint, wenn man den zweiten Modus auswählt, ein Menü in dem man eine Farbe auswählen kann.
 
 ### initializeNodes ###
 
