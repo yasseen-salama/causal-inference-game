@@ -122,7 +122,7 @@ Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
 
 ### Spielüberblick ###
 
-Das Programm kann grob in 7 Module unterteilt werden
+Das Programm kann grob in 6 Module unterteilt werden
 
 Modul | Kurze Erklärung
 ------- | ----------------
