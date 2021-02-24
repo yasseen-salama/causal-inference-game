@@ -53,7 +53,7 @@ Fremdsoftware kostenlos | kein Budget dafür vorgesehen
 
 Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
-Team | Yasseen Salama und Jonas Bastisch, mit Betreung von Jakob, Paul, Caroline und Marianne
+Team | Yasseen Salama und Jonas Bastisch, mit Betreung von Jakob, Philip, Caroline und Marianne
 Zeitplan | Beginn: xx erster Prototyp: xx Fertiges Prjekt: xx
 Vorgehensmodell | ...
 Entwicklungswerkzeuge | ...
@@ -147,7 +147,7 @@ Nun werden die generierten Knoten und Kanten verwendet um einen Graphen zu erzeu
 
 ### winConditions ###
 
-Hier wird nun knotrolliert ob das Spiel gewonnen oder verloren wird. Dazu benötigen wir einen Listener, welcher darauf reagiert wenn eine neue Kante eingezeichnet wird (ehcomplete). Wenn dies passiert kontrollieren wir ob diese neu eingezeichnete Kante im Kantenarray liegt. Falls das der Fall ist machen wir diese Kante sichtbar und reduzieren die Anzahl der Kanten die noch einzuzeichnen sind. Wenn dadurch die Anzahl auf 0 fällt ist das Level gewonnen, das heißt wir erhöhen das Level um 1, zerstören den jetztigen Graphen und generieren neue Knoten und Edges. Falls die eingezeichnete Kante nicht im Array liegt, lösen wir eine Animation aus die den Bildschirm rot aufblinken lässt und ziehen dem Spieler ein Leben ab. Wenn die Leben auf 0 fallen wird ein Overlay sichtbar, welches die Möglichkeit gibt ins Hauptmenü zurückzukehren
+Hier wird nun knotrolliert ob das Spiel gewonnen oder verloren wird. Dazu benötigen wir einen Listener, welcher darauf reagiert wenn eine neue Kante eingezeichnet wird (ehcomplete). Wenn dies passiert kontrollieren wir ob diese neu eingezeichnete Kante im Kantenarray liegt. Falls das der Fall ist machen wir diese Kante sichtbar und reduzieren die Anzahl der Kanten die noch einzuzeichnen sind. Wenn dadurch die Anzahl auf 0 fällt ist das Level gewonnen, das heißt wir erhöhen das Level um 1, zerstören den jetztigen Graphen und generieren neue Knoten und Edges. Falls die eingezeichnete Kante nicht im Array liegt, lösen wir eine Animation aus die den Bildschirm rot aufblinken lässt und ziehen dem Spieler ein Leben ab. Wenn die Leben auf 0 fallen wird ein Overlay sichtbar, welches verhindert das neue Kanten eingezeichnet werden können.
 
 
 ## **6.Laufzeitsicht** ##
