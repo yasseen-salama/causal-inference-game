@@ -185,16 +185,19 @@ Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
 ### Spielprinzip ###
 
 Die erste große Entscheidung die wir treffen mussten, bezog sich auf das grundlegene Spielprinzip, also wie wollen wir das abstrakte Prinzip der Kausalität spielerisch vermitteln? 
-Die erste vorgechlagene Möglichkeit ist es Knoten mit Tönen / Melodien zu füllen, das heißt wenn kausale Zusammenhänge zwischen den Knoten bestehn würden, würden sich auch die Melodien dementsprechend ändern. Ein großer Vorteil hiervon wäre das damit ein eigentlich geplannter 3 Modus umgesetzt werden könnte, der Causal ... Mode, in diesem gäbe es dann die Möglichkeit einen Knoten 'herauszurechnen', das heißt er würde die Daten der anderen Knoten nicht mehr beeinflussen. Nachteile dieser Variante wären ein sehr abstraktes Spielprinzip, da Kausalität an Tönen / Melodien zu erkennen für einen Menschen sehr schwer, außerdem sind unsere Musikkenntnise nicht sehr gut, weshalb eine Umsetzung sehr viel schwieriger wäre.
+Die erste Möglichkeit ist es Knoten mit Tönen / Melodien zu füllen, das heißt wenn kausale Zusammenhänge zwischen den Knoten bestehn würden, würden sich auch die Melodien dementsprechend ändern. Ein großer Vorteil hiervon wäre das damit ein eigentlich geplannter 3 Modus umgesetzt werden könnte, der Causal ... Mode, in diesem gäbe es dann die Möglichkeit einen Knoten 'herauszurechnen', das heißt er würde die Daten der anderen Knoten nicht mehr beeinflussen. Nachteile dieser Variante wären ein sehr abstraktes Spielprinzip, da Kausalität an Tönen / Melodien zu erkennen für einen Menschen sehr schwer, außerdem sind unsere Musikkenntnise nicht sehr gut, weshalb eine Umsetzung sehr viel schwieriger wäre.
 Die Alternative hierzu ist es die Knoten mit Farben zu füllen, kausale Beziehungen würden hierbei zu Farbmischungen führen. Das hätte zum Vorteil das die Logik hinter farbmischung schon für Kinder zugänglich sein sollte, außerdem ist diese Interaktion auch deutlich einfacher zu implementieren und kann viel Zeit sparen. Bei dieser Variante ist der dritte Modus jedoch nicht umzusetzten da das theoretische Prinzip dahinter nicht mit Farben umgesetzt werden kann.
 Wir haben uns hier für die zweite Variante entschieden, da die Vorteile in unserem Fall das fehlen des dritten Spielmodus überschatten? .
  
 
-Cytoscpae nutzen
+### Graphimplementierung ###
 
-Bei der Implementierung eines Graphens in Jvascript hatten wir zunächst die Idee
+Bei der Implementierung eines Graphens in Javascript hatten wir zunächst die Idee alles selbst zu implementieren. Dabei stoßen wir jedoch relativ schnell an unsere Grenzen, da keiner von uns vorher jemals Javascript genutzt hatte. Das heißt die Implementierung wäre sehr Zeitaufwändig gewesen. Ein Vorteil wäre aber bessere Anpassungsfähigkeit unseres Graphens an die speziellen Anforderung unseres Programms gewesen. 
+Die zweite Möglichkeit welche wir schlussendlich auch genutzt haben ist die OpenSource Libary Cytoscape. Diese bietet ein Frontend an, welches Graphen darstellen kann mit denen man einfach und intuitiv interagieren kann. Zusätzlich dazu nutzen wir auch die Erweiterung Edgehandles um mit Cytoscape Kanten einzeichnen zu können. Das hat zum Vorteil das wir auf ein komplett programmiertes System zurückgreifen können und auch sicher sein können das alles seine Richtigkeit hat.
 
-Multipage vs. Single Page
+### Multipage vs. Single Page ###
+
+Problem Multipage: Auf Mobilen Endgeräten (Android) funktioniert das Nutzen von Links in HTML-Seiten auf andere HTML-seiten im Ordnerverzeichnis in unseren Versuchen nicht, das heißt es bleibt keine andere Mögichkeit als alles in einer HTML-Seite zu vereinen. Leider verliert man dadurch natürlich ein wenig Überscihtlichkeit und erhält ein sehr langes Dokument. Jedoch wollten wir nicht auf Mobile Endgeräte verzichten, also entschieden wir uns für eine Single-Page-Application
 
 Implementierung des Levelsystems
 
