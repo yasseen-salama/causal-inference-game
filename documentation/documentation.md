@@ -101,15 +101,15 @@ Die Anbindung funktioniert über ein grafisches Frontend, welches durch Cytoscap
 
 Wir schreiben das Programm in HTML/CSS + Javascript.
 
-**Qualitätsziele** | **Umsetzung**
--------------------|---------------
-Funktionalität | 
-Bedienbarkeit | 
 
 ### 4.2 Aufbau ###
 
-Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und Aktualisierung, Graphengenerierung und Spiellogik unterteilen
+Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und Aktualisierung, Graphengenerierung und Spiellogik unterteilen. Diese Unterteilung ist auch notwendig um immer neue Level zu generieren ohne dabei die Seite neu laden oder auf Feauteres verzichten zu müssen. Es wird einer von zwei Modi ausgewählt und dadurch das erste Level gestartet. Dabei wird das Interface je nach Modus entsprechend angepasst. Die Spiellogik kümmert sich dann darum zu kontrollieren ob richtige oder falsche Angaben gemacht wurden und ob dadurch das Level entweder gewonnen oder verloren wurde. Dementsprechend werden dann neue Interface-Elemente generiert.
 
+
+### Entwicklung ###
+
+Bei der Entwicklung habne wir uns zunächst einmal überlegt wie wir den Graphen generieren und darstellen können. Wir haben uns dafür entschlossen Cytoscape zu verwenden was die Darstellungen des Graphen übernimmt (->Entscheidungen). Der erste erstellte Prototyp diente dazu um die Knotengenerierung zu testen, es wurden einfache Knoten mit zufäligen Farben dargestellt. Daraufhin wurde die Kantengenerierung getestet, das heißt Kanten zwichen den Knoten wurden eingezeichnet ohne jedoch irgendeinen Einfluss auf die Farben zu nehmen. Diese Testphase war vorallem nur für die Entwickler um generelle Funktionalität sicherzustellen
 ### 4.3 Tests ###
 
 Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
@@ -211,7 +211,6 @@ Problem Multipage: Auf Mobilen Endgeräten (Android) funktioniert das Nutzen von
 
 ## **11.Risiken** ##
 
-???
-
+gleichartige Farben
 
 ## **12.Glossar** ##
