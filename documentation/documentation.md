@@ -40,7 +40,7 @@ Da vorallem Schüler bzw. Kinder das Programm nutzten werden, darf das Interface
 Wer? | Bezug
 ------------- | --------------------------
 Administratoren DLR SchoolLab |  
-Schüler | -können Kausaltät kennen lernen <br> -einfache nicht aufgeblähte Erkärung <br> -intuitive Bedienung
+Schüler | können Kausaltät kennen lernen <br> einfache nicht aufgeblähte Erkärung <br> intuitive Bedienung
 
 
 ## **2.Randbedingungen** ##
@@ -101,9 +101,14 @@ Die Anbindung funktioniert über ein grafisches Frontend, welches durch Cytoscap
 
 Wir schreiben das Programm in HTML/CSS + Javascript.
 
+**Qualitätsziele** | **Umsetzung**
+-------------------|---------------
+Funktionalität | 
+Bedienbarkeit | 
+
 ### 4.2 Aufbau ###
 
-Das Programm startet auf einem Hauptmenü, in welchem die beiden Spielmodi ausgewählt werden können, wenn einer der Modi ausgewählt wird die Funktion clickedOnMenu() ausgeführt, welche das Startmenü versteckt und Interface Elemente, wie Lebensanzeige und Leveldetails, auf dem Bildschirm anzeigt.
+Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript
 
 ### 4.3 Tests ###
 
@@ -167,7 +172,13 @@ Hier wird nun knotrolliert ob das Spiel gewonnen oder verloren wird. Dazu benöt
 
 Im Causal Intervention Modus ist eine zusätzlich Funktion implementiert, diese wird aktiviert wenn auf einen Knoten gedrückt wird. Die aus dem Farbmenü ausgewählte Farbe oder falls keine ausgewählt ist rot, wird an als Farbe des Knotens gespeichert, dann werden alle mit diesem Knoten verbundenen Knoten aktualisiert, das heißt die Farben werden neu gemischt. Außerdem werden alle veränderten Knoten jetzt als Stern angezeigt um sie besser unterscheiden zu können.
 
+Wenn das Spiel verloren wird wird destroyGAme ausgeführt ansonsten, generieren wir ein neues Level mit mehr Knoten und Kanten (initializeNodes)
+
 Wird noch genauer in Laufzeitschicht beschrieben.
+
+### destroyGame ###
+
+Das letzte Modul was hier beschrieben wird ist dazu in der Lage das Spiel in den Ausgangszustand zurückzuführen, das heißt der Graph der im aktuellen Level bespielt wurde wird jetzt entfernt, die Levelvariable wird zurückgesetzt, und die Knoten und Kantenarrays werden geleert. Außerdem wird das Spielinterface versteckt und das Hauptmenü sichtbar gemacht. Dadurch können wir sicherstellen das, das Spiel immer vom gleichem Startpunkt aus generiert wird und so keine unerwarteten Fehler auftreten
 
 
 ## **6.Laufzeitsicht** ##
