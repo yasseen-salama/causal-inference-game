@@ -61,8 +61,8 @@ Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
 Team | Yasseen Salama und Jonas Bastisch, mit Betreung von Jakob, Philip, Caroline und Marianne
 Zeitplan | Beginn: xx erster Prototyp: xx Fertiges Prjekt: xx
-Vorgehensmodell | ...
-Entwicklungswerkzeuge | ...
+Vorgehensmodell | iterativ (Prototype dann Feedback)
+Entwicklungswerkzeuge | Webstorm, Visual Studio Code, Webbrowser (Chrome, Edge) 
 Versionsverwaltung | Git 
 
 ### 2.3 Konventionen ###
@@ -108,7 +108,7 @@ Bedienbarkeit |
 
 ### 4.2 Aufbau ###
 
-Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript
+Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und Aktualisierung, Graphengenerierung und Spiellogik unterteilen
 
 ### 4.3 Tests ###
 
@@ -119,8 +119,6 @@ Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
  4. zweiter Modus implementiert 
  5. Hosten eines Prototypens auf einer Website, welcher immer den aktuellen Entwicklungsstand hat. Menü + Interface 
  6. Levelsystem implementiert
-
-### 4.4 Anbindung ###
 
 
 ## **5.Bausteinsicht** ##
@@ -209,8 +207,6 @@ Die zweite Möglichkeit welche wir schlussendlich auch genutzt haben ist die Ope
 ### Multipage vs. Single Page ###
 
 Problem Multipage: Auf Mobilen Endgeräten (Android) funktioniert das Nutzen von Links in HTML-Seiten auf andere HTML-seiten im Ordnerverzeichnis in unseren Versuchen nicht, das heißt es bleibt keine andere Mögichkeit als alles in einer HTML-Seite zu vereinen. Leider verliert man dadurch natürlich ein wenig Überscihtlichkeit und erhält ein sehr langes Dokument. Jedoch wollten wir nicht auf Mobile Endgeräte verzichten, also entschieden wir uns für eine Single-Page-Application
-
-Implementierung des Levelsystems
 
 
 ## **11.Risiken** ##
