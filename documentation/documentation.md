@@ -64,33 +64,10 @@ Entwicklungswerkzeuge | Webstorm, Visual Studio Code, Webbrowser (Chrome, Edge)
 Versionsverwaltung | Git 
 
 ### 2.3 Konventionen ###
-
-
-
-## **3.Kontextabgrenzung** ##
-
-### 3.1 Fachlicher Kontext ###
-
-![Fachlicher Kontext](chart_2.png "Fachlicher Kontext")
-
-#### Spieler ####
-
-Das Programm wird von einer Pesron bedient. Zur Nutzung ist eine Maus oder eine Touchpad nötig. Der Spieler zieht Verbindungen zwischen den Knoten oder ändert die Farben der Knoten.
-
-#### Cytoscape ####
-
-[Cytoscape](https://js.cytoscape.org/)  ist ein Fremdsystem, welches dafür genutzt wird das den Graphen zu generieren. Dabei ist jeder Knoten und jede Kante des Graphen ein eigenes Element welches seperat angesprochen werden kann. Dadurch können wir uns die Zeit sparen eigenen Code zu schreiben, welcher den Graphen darstellt.
-
-#### RYB-Color-Mixer ####
-
-Wird genutzt um einfach die Farbmischung zu berechnen, anfags eigener Code dafür, haben uns dann aber dafür entschieden eine vorhandene Biblothek zu nutzen.
-
-
-### 3.2 Technischer Kontext ###
-
-Diagramm
-
-Die Anbindung funktioniert über ein grafisches Frontend, welches durch Cytoscape zur Verfügung gestellt ist, die Entwicklung dieses war nicht Teil des Projektes. Dieses Frontend kann in jedem handelsüblichen Webbrowser genutzt werden
+ 
+ * Dokumentation mithilfe des arc42-Templates
+ * Dokumentation / Kommentare auf Deutsch
+ * Funktionen / Variablen in Englisch
 
 
 ## **4.Lösungstrategie** ##
@@ -105,12 +82,12 @@ Wir schreiben das Programm in HTML/CSS + Javascript.
 Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und Aktualisierung, Graphengenerierung und Spiellogik unterteilen. Diese Unterteilung ist auch notwendig um immer neue Level zu generieren ohne dabei die Seite neu laden oder auf Feauteres verzichten zu müssen. Es wird einer von zwei Modi ausgewählt und dadurch das erste Level gestartet. Dabei wird das Interface je nach Modus entsprechend angepasst. Die Spiellogik kümmert sich dann darum zu kontrollieren ob richtige oder falsche Angaben gemacht wurden und ob dadurch das Level entweder gewonnen oder verloren wurde. Dementsprechend werden dann neue Interface-Elemente generiert.
 
 
-### Entwicklung ###
+### 4.3 Entwicklung ###
 
 Bei der Entwicklung habne wir uns zunächst einmal überlegt wie wir den Graphen generieren und darstellen können. Wir haben uns dafür entschlossen Cytoscape zu verwenden was die Darstellungen des Graphen übernimmt (->Entscheidungen). Der erste erstellte Prototyp diente dazu um die Knotengenerierung zu testen, es wurden einfache Knoten mit zufäligen Farben dargestellt. Daraufhin wurde die Kantengenerierung getestet, das heißt Kanten zwichen den Knoten wurden eingezeichnet ohne jedoch irgendeinen Einfluss auf die Farben zu nehmen. Diese Testphase war vorallem nur für die Entwickler um generelle Funktionalität sicherzustellen.
 Als nächstes wurde dann der erste Modus implementiert und zum eigenen testen zur Verfügung gestellt, dieser Prototyp hatte jedoch nur eine Level ohne jegliche Progression. Dadurch konnten iwr jedoch das grundlegende Spielprinzip festigen und erste Fehler ausbessern. Nach dieser Testphase beschlossen wir unseren aktuellen Stand immer auf einer Website zu hosten, auf die man jederzeit zugreifen kann. Dort haben wir dann den zweiten Modus und das Levelsystem implementiert, durch die einfache zugänglichkeit des Prototypens bekammen wir auch deutlich schenlleres Feedback, was unter anderem zu einer erweiterten Hilfe / Erklärung geführt hat.
 
-### 4.3 Testphasen ###
+### 4.4 Testphasen ###
 
 1. Modultests (Knotengenerierung, Kantengenerierung, Graphengenerierung)
 2. einzelne Modi (Zusamenführung der Module zu spielbaren Modus)
