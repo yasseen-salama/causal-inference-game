@@ -33,14 +33,12 @@ Es ist wichtig, das wenn man Kausale Inferenz beibringen möchte, man es auch ri
 
 Da vorallem Schüler bzw. Kinder das Programm nutzten werden, darf das Interface und die Bedienung nicht zu komplex / kompliziert sein. Da ansonsten zusammen mit dem sehr theoretischen Thema der kausalen Inferenz schnell Frust enstehen kann.
 
-* Effizienz
-
 ### 1.3 Stakeholder ###
 
 Wer? | Bezug
 ------------- | --------------------------
 Administratoren DLR SchoolLab |  
-Schüler | können Kausaltät kennen lernen <br> einfache nicht aufgeblähte Erkärung <br> intuitive Bedienung
+Schüler | * können Kausaltät kennen lernen <br>* einfache nicht aufgeblähte Erkärung <br>* intuitive Bedienung
 
 
 ## **2.Randbedingungen** ##
@@ -110,8 +108,13 @@ Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei gr
 ### Entwicklung ###
 
 Bei der Entwicklung habne wir uns zunächst einmal überlegt wie wir den Graphen generieren und darstellen können. Wir haben uns dafür entschlossen Cytoscape zu verwenden was die Darstellungen des Graphen übernimmt (->Entscheidungen). Der erste erstellte Prototyp diente dazu um die Knotengenerierung zu testen, es wurden einfache Knoten mit zufäligen Farben dargestellt. Daraufhin wurde die Kantengenerierung getestet, das heißt Kanten zwichen den Knoten wurden eingezeichnet ohne jedoch irgendeinen Einfluss auf die Farben zu nehmen. Diese Testphase war vorallem nur für die Entwickler um generelle Funktionalität sicherzustellen.
+Als nächstes wurde dann der erste Modus implementiert und zum eigenen testen zur Verfügung gestellt, dieser Prototyp hatte jedoch nur eine Level ohne jegliche Progression. Dadurch konnten iwr jedoch das grundlegende Spielprinzip festigen und erste Fehler ausbessern. Nach dieser Testphase beschlossen wir unseren aktuellen Stand immer auf einer Website zu hosten, auf die man jederzeit zugreifen kann. Dort haben wir dann den zweiten Modus und das Levelsystem implementiert, durch die einfache zugänglichkeit des Prototypens bekammen wir auch deutlich schenlleres Feedback, was unter anderem zu einer erweiterten Hilfe / Erklärung geführt hat.
 
-### 4.3 Tests ###
+### 4.3 Testphasen ###
+
+1. Modultests (Knotengenerierung, Kantengenerierung, Graphengenerierung)
+2. einzelne Modi (Zusamenführung der Module zu spielbaren Modus)
+3. Modi zusammenführen zu einem Programm (Levelsystem + Hilfe)
 
 Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
  1. zuerst haben wir einen Prototype gebaut der die Knoten darstellen kann mit zufällig generierten Farben 
