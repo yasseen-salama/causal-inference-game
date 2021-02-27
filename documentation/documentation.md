@@ -37,7 +37,7 @@ Da vorallem Schüler bzw. Kinder das Programm nutzten werden, darf das Interface
 
 Wer? | Bezug
 ------------- | --------------------------
-Administratoren DLR SchoolLab |  
+Administratoren DLR SchoolLab | brauchen gute Dokumentation, um eventuelle Verbesserungen / Änderungen durchführen zu können 
 Schüler | * können Kausaltät kennen lernen <br>* einfache nicht aufgeblähte Erkärung <br>* intuitive Bedienung
 
 
