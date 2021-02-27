@@ -205,3 +205,4 @@ Begriffe | Erklärung
 Graph | eine abstrakte Struktur, die eine Menge von Objekten zusammen mit den zwischen diesen Objekten bestehenden Verbindungen repräsentiert
 Kante | Verbindung zwischen zwei Knoten in einem Graphen
 Knoten | Datenpunkt / Objekt in einem Graphen
+DLR SchoolLab | 
