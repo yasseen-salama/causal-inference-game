@@ -212,6 +212,8 @@ Problem Multipage: Auf Mobilen Endgeräten (Android) funktioniert das Nutzen von
 
 ## **11.Risiken** ##
 
-gleichartige Farben
+### JavaScript ###
+
+Ein Risiko was bestand ist das wir beide kaum Erfahrung mit JavaScript hatten, weshalb wir eher auf bereits vorhandene Bibliotheken zurückgegriffen haben anstatt diese Feautere selber zu schreiben. Dadurch konnten wir eventuelle Fehler die durch fehlende Erfahrung entstehen konnten zum großen Teil vermeiden und somit auch viel Zeit sparen.
 
 ## **12.Glossar** ##
