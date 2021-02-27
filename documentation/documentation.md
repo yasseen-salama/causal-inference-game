@@ -191,7 +191,9 @@ Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
 
 * Kausalität: 
 * Kausale Inferenz
-* Directed acyclic graph:
+### Directed acyclic graph ### 
+
+Ist eine spezille Art eine Graphens bei dem alle Kanten gerichtet sind und dabei keine Kreise entstehen. Diese Graphenart ist nötig um Kausalität wie in der Realität darzustellen, da wenn ein Kreis existieren würde, keine kausalen Beziehungen existieren können.
 
 ## **9.Entscheidungen** ##
 
@@ -220,3 +222,9 @@ Problem Multipage: Auf Mobilen Endgeräten (Android) funktioniert das Nutzen von
 Ein Risiko was bestand ist das wir beide kaum Erfahrung mit JavaScript hatten, weshalb wir eher auf bereits vorhandene Bibliotheken zurückgegriffen haben anstatt diese Feautere selber zu schreiben. Dadurch konnten wir eventuelle Fehler die durch fehlende Erfahrung entstehen konnten zum großen Teil vermeiden und somit auch viel Zeit sparen.
 
 ## **12.Glossar** ##
+
+Begriffe | Erklärung
+---------|----------
+Graph | eine abstrakte Struktur, die eine Menge von Objekten zusammen mit den zwischen diesen Objekten bestehenden Verbindungen repräsentiert
+Kante | Verbindung zwischen zwei Knoten in einem Graphen
+Knoten | Datenpunkt / Objekt in einem Graphen
