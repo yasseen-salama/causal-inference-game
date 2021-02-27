@@ -76,7 +76,6 @@ Versionsverwaltung | Git
 
 Wir schreiben das Programm in HTML/CSS + Javascript.
 
-
 ### 4.2 Aufbau ###
 
 Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und Aktualisierung, Graphengenerierung und Spiellogik unterteilen. Diese Unterteilung ist auch notwendig um immer neue Level zu generieren ohne dabei die Seite neu laden oder auf Feauteres verzichten zu müssen. Es wird einer von zwei Modi ausgewählt und dadurch das erste Level gestartet. Dabei wird das Interface je nach Modus entsprechend angepasst. Die Spiellogik kümmert sich dann darum zu kontrollieren ob richtige oder falsche Angaben gemacht wurden und ob dadurch das Level entweder gewonnen oder verloren wurde. Dementsprechend werden dann neue Interface-Elemente generiert.
