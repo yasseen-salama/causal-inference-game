@@ -58,7 +58,7 @@ Fremdsoftware kostenlos | kein Budget dafür vorgesehen
 Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
 Team | Yasseen Salama und Jonas Bastisch, mit Betreung von Jakob, Philip, Caroline und Marianne
-Zeitplan | Beginn: xx erster Prototyp: xx Fertiges Prjekt: xx
+Zeitplan | Beginn: 06.11.2020 erster Prototyp: 08.01.2021  Fertiges Projekt: 05.02.2021
 Vorgehensmodell | iterativ (Prototype dann Feedback)
 Entwicklungswerkzeuge | Webstorm, Visual Studio Code, Webbrowser (Chrome, Edge) 
 Versionsverwaltung | Git 
