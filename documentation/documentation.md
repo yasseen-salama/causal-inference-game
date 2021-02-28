@@ -68,7 +68,7 @@ Versionsverwaltung | Git
  * Dokumentation mithilfe des arc42-Templates
  * Dokumentation / Kommentare auf Deutsch
  * Funktionen / Variablen in Englisch
- * kanten werden mit den Knoten am Anfang und Ende beschrieben, zb. Kante zwischen Knoten A und E wird zu "ae"
+ * Kanten werden mit den Knoten am Anfang und Ende beschrieben, zb. Kante zwischen Knoten A und E wird zu "ae"
 
 
 ## **4.Lösungstrategie** ##
@@ -125,7 +125,7 @@ destroyGame | führt das Programm in den Ursprungszustand zurück
 
 ### Interface ###
 
-Nachdem der Modus ausgewählt wurde wird hier das Hauptmenü versteckt und andere Spielspezifische Interface Elemente geladen. Dazu gehören die Anzeige der Leben (Herzen), die Anzahl der noch einzuzeichnenden Kanten, das gerade aktive Level, ein Knopf der zurück zum Hauptmenü führt und ein Knopf, welcher das Spiel aufgibt und alle fehlende Kanten sichtbar macht. Zusätzlich dazu erscheint, wenn man den zweiten Modus auswählt, ein Menü in dem man eine Farbe auswählen kann.
+Nachdem der Modus ausgewählt wurde wird hier das Hauptmenü versteckt und andere Spielspezifische Interface Elemente geladen. Dazu gehören die Anzeige der Leben (Herzen), die Anzahl der noch einzuzeichnenden Kanten, dass gerade aktive Level, ein Knopf der zurück zum Hauptmenü führt und ein Knopf, welcher das Spiel aufgibt und alle fehlende Kanten sichtbar macht. Zusätzlich dazu erscheint, wenn man den zweiten Modus auswählt, ein Menü in dem man eine Farbe auswählen kann.
 
 ### initializeNodes ###
 
@@ -140,7 +140,7 @@ getRandomColor() mischt das Array in dem die Farben gespeichert sind und nimmt d
 
 ![InitializeNodes](createEdges.png "Kantengenerierung")
 
-Das Modul nimmt die vorher erzeugten Knoten aus dem globalen Knotenarray und durchläuft diese einzeln. Es wird eine zufällige Zahl zwischen 0 und 3 ausgewählt diese Zahl gibt an wie viele Kanten von den jeweiligen Knoten ausgehen. Mit dieser Information werden die Edges generiert und mit einer ID ausgestattet, dabei kann es dazu kommen das mehrmals die gleiche Edge erzeugt wird, da das Ziel der Kante auch vollkommen zufällig ausgewählt wird, dies führt jedoch zu keinem weiteren Problem und kann also missachtet werden. Nun werden alle Farben der neu verbundenen Knoten mithilfe von RYBColorMixer.mix() gemischt und in mixedColor gespeichert, außerdem werden die Originalfarben davor auch noch abgespeichert, sodass wir später darauf zurückgreifen können. Alle diese Farbdaten werden den entsprechenden Knoten angehangen.
+Das Modul nimmt die vorher erzeugten Knoten aus dem globalen Knotenarray und durchläuft diese einzeln. Es wird eine zufällige Zahl zwischen 0 und 3 ausgewählt diese Zahl gibt an wie viele Kanten von den jeweiligen Knoten ausgehen. Mit dieser Information werden die Edges generiert und mit einer ID ausgestattet, dabei kann es dazu kommen, dass mehrmals die gleiche Edge erzeugt wird, da das Ziel der Kante auch vollkommen zufällig ausgewählt wird, dies führt jedoch zu keinem weiteren Problem und kann also missachtet werden. Nun werden alle Farben der neu verbundenen Knoten mithilfe von RYBColorMixer.mix() gemischt und in mixedColor gespeichert, außerdem werden die Originalfarben davor auch noch abgespeichert, sodass wir später darauf zurückgreifen können. Alle diese Farbdaten werden den entsprechenden Knoten angehangen.
 
 ### startCytoscape ###
 
@@ -162,7 +162,7 @@ Wird noch genauer in Laufzeitschicht beschrieben.
 
 ### destroyGame ###
 
-Das letzte Modul was hier beschrieben wird ist dazu in der Lage das Spiel in den Ausgangszustand zurückzuführen, das heißt der Graph der im aktuellen Level bespielt wurde wird jetzt entfernt, die Levelvariable wird zurückgesetzt, und die Knoten und Kantenarrays werden geleert. Außerdem wird das Spielinterface versteckt und das Hauptmenü sichtbar gemacht. Dadurch können wir sicherstellen das, das Spiel immer vom gleichem Startpunkt aus generiert wird und so keine unerwarteten Fehler auftreten
+Das letzte Modul was hier beschrieben wird ist dazu in der Lage das Spiel in den Ausgangszustand zurückzuführen, das heißt der Graph der im aktuellen Level bespielt wurde wird jetzt entfernt, die Levelvariable wird zurückgesetzt, und die Knoten und Kantenarrays werden geleert. Außerdem wird das Spielinterface versteckt und das Hauptmenü sichtbar gemacht. Dadurch können wir sicherstellen ,dass das Spiel immer vom gleichem Startpunkt aus generiert wird und so keine unerwarteten Fehler auftreten
 
 
 ## **6.Laufzeitsicht** ##
@@ -221,4 +221,4 @@ Begriffe | Erklärung
 Graph | eine abstrakte Struktur, die eine Menge von Objekten zusammen mit den zwischen diesen Objekten bestehenden Verbindungen repräsentiert
 Kante | Verbindung zwischen zwei Knoten in einem Graphen
 Knoten | Datenpunkt / Objekt in einem Graphen
-DLR SchoolLab | 
+DLR SchoolLab | Schülerlabor des DLR, welches 2021 in Jena eröffnet eird
