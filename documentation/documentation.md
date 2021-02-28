@@ -68,6 +68,7 @@ Versionsverwaltung | Git
  * Dokumentation mithilfe des arc42-Templates
  * Dokumentation / Kommentare auf Deutsch
  * Funktionen / Variablen in Englisch
+ * kanten werden mit den Knoten am Anfang und Ende beschrieben, zb. Kante zwischen Knoten A und E wird zu "ae"
 
 
 ## **4.Lösungstrategie** ##
@@ -164,6 +165,11 @@ Das letzte Modul was hier beschrieben wird ist dazu in der Lage das Spiel in den
 ## **6.Laufzeitsicht** ##
 
 Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
+
+diagramm
+
+In diesem Diagramm werden zwei Kanten eingezeichnet. Die erste zwischen Knoten A und D was als "ad" abgekürzt wird. Daraufhin wird kontrolliert ob diese Kante in dem zu Beginn generierten Kantenarray liegt, in diesem Fall ist das nicht so und false wird zurückgegeben, dadurch weiß der Graph nun das die Kante nicht eingezeichnet bleiben darf und entfernt diese, außerdem wird im Webbrowser eine Animation ausgelöst die als Fehler Feedback dient und ein Leben wirrd abgezogen. ES wird außerdem kontrolliert ob durch den Lebensverlust das Spiel verloren ist.
+Die zweite eingezeichnete Kante "bc" ist diesmal korrekt also wird true zurückgegeben und es wird kontrolliert, ob dadurch alle Kanten eingezeichnet sind das ist nicht der Fall also bleibt die Kante einfach nur sichtbar.
 
 ## **8.Konzepte** ##
 
