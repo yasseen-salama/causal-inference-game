@@ -86,19 +86,22 @@ Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei gr
 
 Bei der Entwicklung habne wir uns zunächst einmal überlegt wie wir den Graphen generieren und darstellen können. Wir haben uns dafür entschlossen Cytoscape zu verwenden was die Darstellungen des Graphen übernimmt (->Entscheidungen). Der erste erstellte Prototyp diente dazu um die Knotengenerierung zu testen, es wurden einfache Knoten mit zufäligen Farben dargestellt. Daraufhin wurde die Kantengenerierung getestet, das heißt Kanten zwichen den Knoten wurden eingezeichnet ohne jedoch irgendeinen Einfluss auf die Farben zu nehmen. Diese Testphase war vorallem nur für die Entwickler um generelle Funktionalität sicherzustellen.
 Als nächstes wurde dann der erste Modus implementiert und zum eigenen testen zur Verfügung gestellt, dieser Prototyp hatte jedoch nur eine Level ohne jegliche Progression. Dadurch konnten iwr jedoch das grundlegende Spielprinzip festigen und erste Fehler ausbessern. Nach dieser Testphase beschlossen wir unseren aktuellen Stand immer auf einer Website zu hosten, auf die man jederzeit zugreifen kann. Dort haben wir dann den zweiten Modus und das Levelsystem implementiert, durch die einfache zugänglichkeit des Prototypens bekammen wir auch deutlich schenlleres Feedback, was unter anderem zu einer erweiterten Hilfe / Erklärung geführt hat.
+Dies führte dann acuh zur Ausmerzung einiger Bugs / Fehler.
 
 ### 4.4 Testphasen ###
+
+Man kann unsere Testphasen grob in folgende Stufen unterteilen:
 
 1. Modultests (Knotengenerierung, Kantengenerierung, Graphengenerierung)
 2. einzelne Modi (Zusamenführung der Module zu spielbaren Modus)
 3. Modi zusammenführen zu einem Programm (Levelsystem + Hilfe)
 
-Um unser Programm zu testen haben wir verschiedene Stufen erreicht:
- 1. zuerst haben wir einen Prototype gebaut der die Knoten darstellen kann mit zufällig generierten Farben 
- 2. ein Prototyp der in der Lage ist Kanten einzeichnen zu können, ohne andere Funktionalität
- 3. erster Mouds implementiert mit einem Level und keiner Progression
- 4. zweiter Modus implementiert 
- 5. Hosten eines Prototypens auf einer Website, welcher immer den aktuellen Entwicklungsstand hat. Menü + Interface 
+Die einzelnen entstnadenen Prototypen sehen im Detail so aus:
+ 1. Prototype der Knoten darstellen kann mit zufällig generierten Farben 
+ 2. ein Prototyp der in der Lage ist Kanten zwischen den Knoten einzeichnen zu können, ohne andere Funktionalität
+ 3. Correlation Mouds implementiert mit einem Level, keine Gewinnbedingung/ Fortschritt
+ 4. Causal Intervention Modus implementiert 
+ 5. Menü und Interface hinzugefügt, Beide Modi in einem Programm spielbar
  6. Levelsystem implementiert
 
 
@@ -173,8 +176,10 @@ Die zweite eingezeichnete Kante "bc" ist diesmal korrekt also wird true zurückg
 
 ## **8.Konzepte** ##
 
-* Kausalität: 
-* Kausale Inferenz
+### Kausalität ###
+
+Kausaliät ist die Beziehung zwischen Ursache und Wirkung. A die Ursache für die Wirkung B, wenn B von A herbeigeführt wird. Wichtige dabei ist jedoch das eine Korrelation nicht eindeutig auf eine Kausalze Beziehung deutet.
+
 ### Directed acyclic graph ### 
 
 Ist eine spezille Art eine Graphens bei dem alle Kanten gerichtet sind und dabei keine Kreise entstehen. Diese Graphenart ist nötig um Kausalität wie in der Realität darzustellen, da wenn ein Kreis existieren würde, keine kausalen Beziehungen existieren können.
@@ -204,6 +209,10 @@ Problem Multipage: Auf Mobilen Endgeräten (Android) funktioniert das Nutzen von
 ### JavaScript ###
 
 Ein Risiko was bestand ist das wir beide kaum Erfahrung mit JavaScript hatten, weshalb wir eher auf bereits vorhandene Bibliotheken zurückgegriffen haben anstatt diese Feautere selber zu schreiben. Dadurch konnten wir eventuelle Fehler die durch fehlende Erfahrung entstehen konnten zum großen Teil vermeiden und somit auch viel Zeit sparen.
+
+### Anbindung Frontend ###
+
+
 
 ## **12.Glossar** ##
 
