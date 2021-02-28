@@ -71,24 +71,23 @@ Versionsverwaltung | Git
  * Kanten werden mit den Knoten am Anfang und Ende beschrieben, zb. Kante zwischen Knoten A und E wird zu "ae"
 
 
-## **4.Lösungstrategie** ##
+## **3.Lösungstrategie** ##
 
-### 4.1 Einstieg ###
+### 3.1 Einstieg ###
 
 Wir schreiben das Programm in HTML/CSS + Javascript.
 
-### 4.2 Aufbau ###
+### 3.2 Aufbau ###
 
 Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und -aktualisierung, Graphengenerierung und Spiellogik unterteilen. Diese Unterteilung ist auch notwendig um immer neue Level zu generieren ohne dabei die Seite neu laden oder auf Feauteres verzichten zu müssen. Es wird einer von zwei Modi ausgewählt und dadurch das erste Level gestartet. Dabei wird das Interface dem Modus entsprechend angepasst. Die Spiellogik kümmert sich dann darum zu kontrollieren ob richtige oder falsche Angaben gemacht wurden und ob dadurch das Level entweder gewonnen oder verloren wurde. Dementsprechend werden dann neue Interface-Elemente generiert.
 
-
-### 4.3 Entwicklung ###
+### 3.3 Entwicklung ###
 
 Bei der Entwicklung haben wir uns zunächst einmal überlegt wie wir den Graphen generieren und darstellen können. Wir haben uns dafür entschlossen Cytoscape zu verwenden was die Darstellungen des Graphen übernimmt (->Entscheidungen). Der erste erstellte Prototyp diente dazu die Knotengenerierung zu testen, es wurden einfache Knoten mit zufäligen Farben dargestellt. Daraufhin wurde die Kantengenerierung getestet, das heißt Kanten zwichen den Knoten wurden eingezeichnet ohne jedoch irgendeinen Einfluss auf die Farben zu nehmen. Diese Testphase war vorallem nur für die Entwickler um generelle Funktionalität sicherzustellen.
 Als nächstes wurde dann der erste Modus implementiert und zum testen zur Verfügung gestellt, dieser Prototyp hatte jedoch nur eine Level ohne jegliche Progression. Dadurch konnten wir jedoch das grundlegende Spielprinzip festigen und erste Fehler ausbessern. Nach dieser Testphase beschlossen wir unseren aktuellen Stand immer auf einer Website zu hosten, auf die man jederzeit zugreifen kann. Dort haben wir dann den zweiten Modus und das Levelsystem implementiert, durch die einfache zugänglichkeit des Prototypens bekammen wir auch deutlich schenlleres Feedback, was unter anderem zu einer erweiterten Hilfe / Erklärung geführt hat.
 Dies führte dann auch zur Ausmerzung einiger Bugs / Fehler.
 
-### 4.4 Testphasen ###
+### 3.4 Testphasen ###
 
 Man kann unsere Testphasen grob in folgende Stufen unterteilen:
 
@@ -105,11 +104,11 @@ Die einzelnen entstnadenen Prototypen sehen im Detail so aus:
  6. Levelsystem implementiert
 
 
-## **5.Bausteinsicht** ##
+## **4.Bausteinsicht** ##
 
-### Spielüberblick ###
+### 4.1 Spielüberblick ###
 
-Das Programm kann grob in 6 Module unterteilt werden
+Das Programm kann grob in 6 Module unterteilt werden:
 
 ![GameOverview](Diagramms/GameOverview.png "Spielüberblick")
 
@@ -123,11 +122,11 @@ winCondition | kontrolliert Gewinnbedingung oder ob das Spiel verloren ist
 destroyGame | führt das Programm in den Ursprungszustand zurück
 
 
-### Interface ###
+### 4.2 Interface ###
 
 Nachdem der Modus ausgewählt wurde wird hier das Hauptmenü versteckt und andere Spielspezifische Interface Elemente geladen. Dazu gehören die Anzeige der Leben (Herzen), die Anzahl der noch einzuzeichnenden Kanten, dass gerade aktive Level, ein Knopf der zurück zum Hauptmenü führt und ein Knopf, welcher das Spiel aufgibt und alle fehlende Kanten sichtbar macht. Zusätzlich dazu erscheint, wenn man den zweiten Modus auswählt, ein Menü in dem man eine Farbe auswählen kann.
 
-### initializeNodes ###
+### 4.3 initializeNodes ###
 
 ![InitializeNodes](Diagramms/createNodes.png "Knotengenerierung")
 
@@ -136,19 +135,19 @@ Diese Daten werden zusamengefasst und dem Knoten angehangen. Dieser Knoten wird 
 
 getRandomColor() mischt das Array in dem die Farben gespeichert sind und nimmt dann immer das erste Element aus dem Array. Falls das gemischte Array leer ist wird ein neues erzeugt.
 
-### initializeEdges ###
+### 4.4 initializeEdges ###
 
 ![InitializeNodes](Diagramms/createEdges.png "Kantengenerierung")
 
 Das Modul nimmt die vorher erzeugten Knoten aus dem globalen Knotenarray und durchläuft diese einzeln. Es wird eine zufällige Zahl zwischen 0 und 3 ausgewählt diese Zahl gibt an wie viele Kanten von den jeweiligen Knoten ausgehen. Mit dieser Information werden die Edges generiert und mit einer ID ausgestattet, dabei kann es dazu kommen, dass mehrmals die gleiche Edge erzeugt wird, da das Ziel der Kante auch vollkommen zufällig ausgewählt wird, dies führt jedoch zu keinem weiteren Problem und kann also missachtet werden. Nun werden alle Farben der neu verbundenen Knoten mithilfe von RYBColorMixer.mix() gemischt und in mixedColor gespeichert, außerdem werden die Originalfarben davor auch noch abgespeichert, sodass wir später darauf zurückgreifen können. Alle diese Farbdaten werden den entsprechenden Knoten angehangen.
 
-### startCytoscape ###
+### 4.5 startCytoscape ###
 
 ![InitializeGraph](Diagramms/createCytoscape.png "Graphengenerierung")
 
 Nun werden die generierten Knoten und Kanten verwendet um einen Graphen zu erzeugen. Außerdem wird dafür ein Stylesheet benötigt dieses ist fest einprogrammiert und kann im Programmcode geändert werden. In dem Sytlesheet geben wir an wie Die Knoten und Edges auszusehen haben. In unseren Fall geben wir an das mixedColor als Farbe der Knoten angezeigt werden soll, außerdem wird die ID des Knoten auch angezeigt und die Form der Knoten legen wir als Ellipse fest. Die Edges sind mit einer grauen Farbe belegt und die Form des Pfeils der Kanten legen wir als Dreieck fest. Das letzte was wir in dem Sytlesheet festlegen ist die Farbe der selber zu zeichnenden Kanten, welche wir auf Rot legen. Das Layout der Knoten wird auf einen Kreis eingestellt, sodass sich die Kanten nicht überlappen. Nun können wir durch die Funktion cytoscape() einen Graphen generieren mit dem der Spieler interagieren kann. Jetzt müssen nur noch die generierten Kanten versteckt werden, dies tun wir indem wir die Sichtbarkeit aller Kanten auf 0 setzen.
 
-### winConditions ###
+### 4.6 winConditions ###
 
 ![winCondition](Diagramms/winConditions.png "Spiellogik")
 
@@ -160,12 +159,12 @@ Wenn das Spiel verloren wird wird destroyGAme ausgeführt ansonsten, generieren 
 
 Wird noch genauer in Laufzeitschicht beschrieben.
 
-### destroyGame ###
+### 4.7 destroyGame ###
 
 Das letzte Modul was hier beschrieben wird ist dazu in der Lage das Spiel in den Ausgangszustand zurückzuführen, das heißt der Graph der im aktuellen Level bespielt wurde wird jetzt entfernt, die Levelvariable wird zurückgesetzt, und die Knoten und Kantenarrays werden geleert. Außerdem wird das Spielinterface versteckt und das Hauptmenü sichtbar gemacht. Dadurch können wir sicherstellen ,dass das Spiel immer vom gleichem Startpunkt aus generiert wird und so keine unerwarteten Fehler auftreten
 
 
-## **6.Laufzeitsicht** ##
+## **5.Laufzeitsicht** ##
 
 Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
 
@@ -174,19 +173,19 @@ Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
 In diesem Diagramm werden zwei Kanten eingezeichnet. Die erste zwischen Knoten A und D was als "ad" abgekürzt wird. Daraufhin wird kontrolliert ob diese Kante in dem zu Beginn generierten Kantenarray liegt, in diesem Fall ist das nicht so und false wird zurückgegeben, dadurch weiß der Graph nun das die Kante nicht eingezeichnet bleiben darf und entfernt diese, außerdem wird im Webbrowser eine Animation ausgelöst die als Fehler Feedback dient und ein Leben wirrd abgezogen. ES wird außerdem kontrolliert ob durch den Lebensverlust das Spiel verloren ist.
 Die zweite eingezeichnete Kante "bc" ist diesmal korrekt also wird true zurückgegeben und es wird kontrolliert, ob dadurch alle Kanten eingezeichnet sind das ist nicht der Fall also bleibt die Kante einfach nur sichtbar.
 
-## **8.Konzepte** ##
+## **6.Konzepte** ##
 
-### Kausalität ###
+### 6.1 Kausalität ###
 
 Kausaliät ist die Beziehung zwischen Ursache und Wirkung. A die Ursache für die Wirkung B, wenn B von A herbeigeführt wird. Wichtige dabei ist jedoch das eine Korrelation nicht eindeutig auf eine Kausalze Beziehung deutet.
 
-### Directed acyclic graph ### 
+### 6.2 Directed acyclic graph ### 
 
 Ist eine spezille Art eine Graphens bei dem alle Kanten gerichtet sind und dabei keine Kreise entstehen. Diese Graphenart ist nötig um Kausalität wie in der Realität darzustellen, da wenn ein Kreis existieren würde, keine kausalen Beziehungen existieren können.
 
-## **9.Entscheidungen** ##
+## **7.Entscheidungen** ##
 
-### Spielprinzip ###
+### 7.1 Spielprinzip ###
 
 Die erste große Entscheidung die wir treffen mussten, bezog sich auf das grundlegene Spielprinzip, also wie wollen wir das abstrakte Prinzip der Kausalität spielerisch vermitteln? 
 Die erste Möglichkeit ist es Knoten mit Tönen / Melodien zu füllen, das heißt wenn kausale Zusammenhänge zwischen den Knoten bestehn würden, würden sich auch die Melodien dementsprechend ändern. Ein großer Vorteil hiervon wäre das damit ein eigentlich geplannter 3 Modus umgesetzt werden könnte, der Causal ... Mode, in diesem gäbe es dann die Möglichkeit einen Knoten 'herauszurechnen', das heißt er würde die Daten der anderen Knoten nicht mehr beeinflussen. Nachteile dieser Variante wären ein sehr abstraktes Spielprinzip, da Kausalität an Tönen / Melodien zu erkennen für einen Menschen sehr schwer, außerdem sind unsere Musikkenntnise nicht sehr gut, weshalb eine Umsetzung sehr viel schwieriger wäre.
@@ -194,17 +193,17 @@ Die Alternative hierzu ist es die Knoten mit Farben zu füllen, kausale Beziehun
 Wir haben uns hier für die zweite Variante entschieden, da die Vorteile in unserem Fall das fehlen des dritten Spielmodus überschatten? .
  
 
-### Graphimplementierung ###
+### 7.2 Graphimplementierung ###
 
 Bei der Implementierung eines Graphens in Javascript hatten wir zunächst die Idee alles selbst zu implementieren. Dabei stoßen wir jedoch relativ schnell an unsere Grenzen, da keiner von uns vorher jemals Javascript genutzt hatte. Das heißt die Implementierung wäre sehr Zeitaufwändig gewesen. Ein Vorteil wäre aber bessere Anpassungsfähigkeit unseres Graphens an die speziellen Anforderung unseres Programms gewesen. 
 Die zweite Möglichkeit welche wir schlussendlich auch genutzt haben ist die OpenSource Libary Cytoscape. Diese bietet ein Frontend an, welches Graphen darstellen kann mit denen man einfach und intuitiv interagieren kann. Zusätzlich dazu nutzen wir auch die Erweiterung Edgehandles um mit Cytoscape Kanten einzeichnen zu können. Das hat zum Vorteil das wir auf ein komplett programmiertes System zurückgreifen können und auch sicher sein können das alles seine Richtigkeit hat.
 
-### Multipage vs. Single Page ###
+### 7.3 Multipage vs. Single Page ###
 
 Problem Multipage: Auf Mobilen Endgeräten (Android) funktioniert das Nutzen von Links in HTML-Seiten auf andere HTML-seiten im Ordnerverzeichnis in unseren Versuchen nicht, das heißt es bleibt keine andere Mögichkeit als alles in einer HTML-Seite zu vereinen. Leider verliert man dadurch natürlich ein wenig Überscihtlichkeit und erhält ein sehr langes Dokument. Jedoch wollten wir nicht auf Mobile Endgeräte verzichten, also entschieden wir uns für eine Single-Page-Application
 
 
-## **11.Risiken** ##
+## **8.Risiken** ##
 
 ### JavaScript ###
 
@@ -214,7 +213,7 @@ Ein Risiko was bestand ist das wir beide kaum Erfahrung mit JavaScript hatten, w
 
 
 
-## **12.Glossar** ##
+## **9.Glossar** ##
 
 Begriffe | Erklärung
 ---------|----------
