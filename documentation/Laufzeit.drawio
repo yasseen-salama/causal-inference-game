@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-28T12:24:12.919Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36 Edg/88.0.705.81" etag="e-UgjEfHKzn0o1BYQMVK" version="14.4.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-28T12:24:23.411Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36 Edg/88.0.705.81" etag="WwqXVYgU3DWzq3-9ccMY" version="14.4.3" type="github">
   <diagram id="e32eP27kXgKuwYGIk1JO" name="Page-1">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -159,10 +159,10 @@
         <mxCell id="x_ZEV6mPzWl-8u_seZXj-32" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="590" y="440" width="20" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="x_ZEV6mPzWl-8u_seZXj-45" value="nein" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+        <mxCell id="x_ZEV6mPzWl-8u_seZXj-45" value="false" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
           <mxGeometry x="430" y="280" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="x_ZEV6mPzWl-8u_seZXj-55" value="nein" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+        <mxCell id="x_ZEV6mPzWl-8u_seZXj-55" value="false" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
           <mxGeometry x="430" y="480" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="x_ZEV6mPzWl-8u_seZXj-58" value="Webbrowser/ Frontend" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
