@@ -11,8 +11,8 @@ Diese Dokumentation erfolgt nach der arc42-Vorlage.
 
 #### Was ist das 'Causal Inference Game'? ####
 
-Bei diesem Programm handelt es sich um eine Anwendung, welche im Browser läuft. Dabei wird versucht durch die Nutzung von Graphen / Kanten / Knoten das abstrakte Prinzip der kausalen Inferenz spielerisch beizubringen. Das Spiel umfasst zwei Spielmodi und eine Seite zur Hilfestellung. DIe Spielmodi enthalten 3 zufällig generierte Level mit jeweils steigendem Schwierigkeitsgrad. In jedem Level gibt es die Möglichkeit Kanten zwischen den dargestellten Knoten zu ziehen. Wenn eine falsche Kante eingezeichnet wird verliert der Spieler ein Leben, was durch ein rotes aufleuchten des Bildschirms und den Verlust eines Herzicons dargestellt wird. Wenn eine richtige Kante eingezeichnet wird bleibt diese bestehen und der "Edges left counter" reduziert sich. Außerdem besteht die Möglichkeit ins Hauptmenü zurückzukehren und das Level aufzugeben ,durch drücken des entsprechenden Knopfes. Wenn das Spiel aufgegeben wurde, werden alle nicht eingezeichneten Kanten die fehlen sichtbar gemacht, sodass man die Lösung des Levels erkennen kann.
-Wenn alle Leben verbraucht sind erscheint ein Game Over Overlay und man hat die Möglichkeit ins Hauptmenü zurückzukehren, um das Level neu zustarten. Falls man es schafft alle Kanten richtig einzuzeichnen erscheint ein neuer Knopf der zum nächsten Level führt, welches mehr Knoten und Kanten generiert.  
+Bei diesem Programm handelt es sich um eine Anwendung, welche im Browser läuft. Dabei wird versucht durch die Nutzung von Graphen / Kanten / Knoten das abstrakte Prinzip der kausalen Inferenz spielerisch beizubringen. Das Spiel umfasst zwei Spielmodi und eine Seite zur Hilfestellung. Die Spielmodi enthalten 3 zufällig generierte Level mit jeweils steigendem Schwierigkeitsgrad. In jedem Level gibt es die Möglichkeit Kanten zwischen den dargestellten Knoten zu ziehen. Wenn eine falsche Kante eingezeichnet wird verliert der Spieler ein Leben, was durch ein rotes aufleuchten des Bildschirms und den Verlust eines Herzicons dargestellt wird. Wenn eine richtige Kante eingezeichnet wird bleibt diese bestehen und der "Edges left counter" reduziert sich. Außerdem besteht die Möglichkeit ins Hauptmenü zurückzukehren und das Level aufzugeben ,durch drücken des entsprechenden Knopfes. Wenn das Spiel aufgegeben wurde, werden alle nicht eingezeichneten Kanten die fehlen sichtbar gemacht, sodass man die Lösung des Levels erkennen kann.
+Wenn alle Leben verbraucht sind erscheint ein Game Over Overlay und man hat die Möglichkeit ins Hauptmenü zurückzukehren, um das Level neu zustarten. Falls man es schafft alle Kanten richtig einzuzeichnen erscheint ein neuer Knopf der zum nächsten Level führt, welches mehr Knoten und Kanten generiert und somit in Schwierigkeit steigt.  
 
 #### Features ####
 
@@ -27,7 +27,7 @@ Wenn alle Leben verbraucht sind erscheint ein Game Over Overlay und man hat die 
 
 * Funktionalität / Korrektheit
 
-Es ist wichtig, das wenn man Kausale Inferenz beibringen möchte, man es auch richtig beibrngt. Es dürfen keine theoretischen Fehler auftreten.
+Es ist wichtig, dass wenn man Kausale Inferenz beibringen möchte, man es auch richtig beibringt. Es dürfen keine theoretischen Fehler auftreten, die zu Missverständinsen führen können.
 
 * Bedienbarkeit
 
@@ -50,7 +50,7 @@ Eine kurze Zusammenfassung der Gegebenheiten mit denen wir gearbeitet haben
 Randbedingung | Erläuterungen, Hintergrund
 ------------- | --------------------------
 Betrieb auf Windows Desktop Betriebssystemen | Schülerlabor des DLR ist mit dieser Hardware ausgestattet
-Touchscreen Unterstützung wünschenswert | großer Bildschirm steht zur Vefügung ist perfekt dafür geeigent
+Touchscreen Unterstützung wünschenswert | großer Bildschirm steht zur Vefügung, welcher perfekt dafür geeigent ist
 Fremdsoftware kostenlos | kein Budget dafür vorgesehen
 
 ### 2.2 Organisatorisch ###
@@ -79,14 +79,14 @@ Wir schreiben das Programm in HTML/CSS + Javascript.
 
 ### 4.2 Aufbau ###
 
-Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und Aktualisierung, Graphengenerierung und Spiellogik unterteilen. Diese Unterteilung ist auch notwendig um immer neue Level zu generieren ohne dabei die Seite neu laden oder auf Feauteres verzichten zu müssen. Es wird einer von zwei Modi ausgewählt und dadurch das erste Level gestartet. Dabei wird das Interface je nach Modus entsprechend angepasst. Die Spiellogik kümmert sich dann darum zu kontrollieren ob richtige oder falsche Angaben gemacht wurden und ob dadurch das Level entweder gewonnen oder verloren wurde. Dementsprechend werden dann neue Interface-Elemente generiert.
+Das Programm ist eine HTML-Seite mit zusätzlichem JavaScript. Man kann dabei grob in Interfacegenerierung und -aktualisierung, Graphengenerierung und Spiellogik unterteilen. Diese Unterteilung ist auch notwendig um immer neue Level zu generieren ohne dabei die Seite neu laden oder auf Feauteres verzichten zu müssen. Es wird einer von zwei Modi ausgewählt und dadurch das erste Level gestartet. Dabei wird das Interface dem Modus entsprechend angepasst. Die Spiellogik kümmert sich dann darum zu kontrollieren ob richtige oder falsche Angaben gemacht wurden und ob dadurch das Level entweder gewonnen oder verloren wurde. Dementsprechend werden dann neue Interface-Elemente generiert.
 
 
 ### 4.3 Entwicklung ###
 
-Bei der Entwicklung habne wir uns zunächst einmal überlegt wie wir den Graphen generieren und darstellen können. Wir haben uns dafür entschlossen Cytoscape zu verwenden was die Darstellungen des Graphen übernimmt (->Entscheidungen). Der erste erstellte Prototyp diente dazu um die Knotengenerierung zu testen, es wurden einfache Knoten mit zufäligen Farben dargestellt. Daraufhin wurde die Kantengenerierung getestet, das heißt Kanten zwichen den Knoten wurden eingezeichnet ohne jedoch irgendeinen Einfluss auf die Farben zu nehmen. Diese Testphase war vorallem nur für die Entwickler um generelle Funktionalität sicherzustellen.
-Als nächstes wurde dann der erste Modus implementiert und zum eigenen testen zur Verfügung gestellt, dieser Prototyp hatte jedoch nur eine Level ohne jegliche Progression. Dadurch konnten iwr jedoch das grundlegende Spielprinzip festigen und erste Fehler ausbessern. Nach dieser Testphase beschlossen wir unseren aktuellen Stand immer auf einer Website zu hosten, auf die man jederzeit zugreifen kann. Dort haben wir dann den zweiten Modus und das Levelsystem implementiert, durch die einfache zugänglichkeit des Prototypens bekammen wir auch deutlich schenlleres Feedback, was unter anderem zu einer erweiterten Hilfe / Erklärung geführt hat.
-Dies führte dann acuh zur Ausmerzung einiger Bugs / Fehler.
+Bei der Entwicklung haben wir uns zunächst einmal überlegt wie wir den Graphen generieren und darstellen können. Wir haben uns dafür entschlossen Cytoscape zu verwenden was die Darstellungen des Graphen übernimmt (->Entscheidungen). Der erste erstellte Prototyp diente dazu die Knotengenerierung zu testen, es wurden einfache Knoten mit zufäligen Farben dargestellt. Daraufhin wurde die Kantengenerierung getestet, das heißt Kanten zwichen den Knoten wurden eingezeichnet ohne jedoch irgendeinen Einfluss auf die Farben zu nehmen. Diese Testphase war vorallem nur für die Entwickler um generelle Funktionalität sicherzustellen.
+Als nächstes wurde dann der erste Modus implementiert und zum testen zur Verfügung gestellt, dieser Prototyp hatte jedoch nur eine Level ohne jegliche Progression. Dadurch konnten wir jedoch das grundlegende Spielprinzip festigen und erste Fehler ausbessern. Nach dieser Testphase beschlossen wir unseren aktuellen Stand immer auf einer Website zu hosten, auf die man jederzeit zugreifen kann. Dort haben wir dann den zweiten Modus und das Levelsystem implementiert, durch die einfache zugänglichkeit des Prototypens bekammen wir auch deutlich schenlleres Feedback, was unter anderem zu einer erweiterten Hilfe / Erklärung geführt hat.
+Dies führte dann auch zur Ausmerzung einiger Bugs / Fehler.
 
 ### 4.4 Testphasen ###
 
@@ -132,7 +132,7 @@ Nachdem der Modus ausgewählt wurde wird hier das Hauptmenü versteckt und ander
 ![InitializeNodes](createNodes.png "Knotengenerierung")
 
 Dem Modul wird ein Integer übergeben, welcher angibt wie viele Knoten generiert werden soll, daraufhin wird eine zufällige Farbe ausgewählt und eine ID zugewiesen.
-Diese Daten werden zusamengefasst und dem Knoten angehangen. Dieser Knoten wird dann in das globale Array gepushed. Dieses wir dann für die nächsten Schritte verwendet.
+Diese Daten werden zusamengefasst und dem Knoten angehangen. Dieser Knoten wird dann in das globale Knotenarray gepushed. Dieses wir dann für die nächsten Schritte verwendet.
 
 getRandomColor() mischt das Array in dem die Farben gespeichert sind und nimmt dann immer das erste Element aus dem Array. Falls das gemischte Array leer ist wird ein neues erzeugt.
 
@@ -140,7 +140,7 @@ getRandomColor() mischt das Array in dem die Farben gespeichert sind und nimmt d
 
 ![InitializeNodes](createEdges.png "Kantengenerierung")
 
-Das Modul nimmt die vorher erzeugten Knoten aus dem globalen Knotenarray und durchläuft diese einzeln. Es wird eine zufällige Zahl zwischen 0 und 3 (inclusive) ausgewählt diese Zahl gibt an wie viele Kanten von den jeweiligen Knoten ausgehen. Mit dieser Information werden die Edges generiert und mit einer ID ausgestattet, dabei kann es dazu kommen das mehrmals die gleiche Edge erzeugt wird, da das Ziel der Kante auch vollkommen zufällig ausgewählt wird, dies führt jedoch zu keinem weiteren Problem und kann also missachtet werden. Nun werden alle Farben der neu verbundenen Knoten mithilfe von RYBColorMixer.mix() gemischt und in mixedColor gespeichert, außerdem werden die Originalfarben dacor auch noch abgespeichert, sodass wir später darauf zurückgreifen können. Alle diese Farbdaten werden den entsprechenden Knoten angehangen.
+Das Modul nimmt die vorher erzeugten Knoten aus dem globalen Knotenarray und durchläuft diese einzeln. Es wird eine zufällige Zahl zwischen 0 und 3 ausgewählt diese Zahl gibt an wie viele Kanten von den jeweiligen Knoten ausgehen. Mit dieser Information werden die Edges generiert und mit einer ID ausgestattet, dabei kann es dazu kommen das mehrmals die gleiche Edge erzeugt wird, da das Ziel der Kante auch vollkommen zufällig ausgewählt wird, dies führt jedoch zu keinem weiteren Problem und kann also missachtet werden. Nun werden alle Farben der neu verbundenen Knoten mithilfe von RYBColorMixer.mix() gemischt und in mixedColor gespeichert, außerdem werden die Originalfarben davor auch noch abgespeichert, sodass wir später darauf zurückgreifen können. Alle diese Farbdaten werden den entsprechenden Knoten angehangen.
 
 ### startCytoscape ###
 
