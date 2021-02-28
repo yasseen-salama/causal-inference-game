@@ -111,7 +111,7 @@ Die einzelnen entstnadenen Prototypen sehen im Detail so aus:
 
 Das Programm kann grob in 6 Module unterteilt werden
 
-![GameOverview](GameOverview.png "Spielüberblick")
+![GameOverview](Diagramms/GameOverview.png "Spielüberblick")
 
 Modul | Kurze Erklärung
 ------- | ----------------
@@ -129,7 +129,7 @@ Nachdem der Modus ausgewählt wurde wird hier das Hauptmenü versteckt und ander
 
 ### initializeNodes ###
 
-![InitializeNodes](createNodes.png "Knotengenerierung")
+![InitializeNodes](Diagramms/createNodes.png "Knotengenerierung")
 
 Dem Modul wird ein Integer übergeben, welcher angibt wie viele Knoten generiert werden soll, daraufhin wird eine zufällige Farbe ausgewählt und eine ID zugewiesen.
 Diese Daten werden zusamengefasst und dem Knoten angehangen. Dieser Knoten wird dann in das globale Knotenarray gepushed. Dieses wir dann für die nächsten Schritte verwendet.
@@ -138,19 +138,19 @@ getRandomColor() mischt das Array in dem die Farben gespeichert sind und nimmt d
 
 ### initializeEdges ###
 
-![InitializeNodes](createEdges.png "Kantengenerierung")
+![InitializeNodes](Diagramms/createEdges.png "Kantengenerierung")
 
 Das Modul nimmt die vorher erzeugten Knoten aus dem globalen Knotenarray und durchläuft diese einzeln. Es wird eine zufällige Zahl zwischen 0 und 3 ausgewählt diese Zahl gibt an wie viele Kanten von den jeweiligen Knoten ausgehen. Mit dieser Information werden die Edges generiert und mit einer ID ausgestattet, dabei kann es dazu kommen, dass mehrmals die gleiche Edge erzeugt wird, da das Ziel der Kante auch vollkommen zufällig ausgewählt wird, dies führt jedoch zu keinem weiteren Problem und kann also missachtet werden. Nun werden alle Farben der neu verbundenen Knoten mithilfe von RYBColorMixer.mix() gemischt und in mixedColor gespeichert, außerdem werden die Originalfarben davor auch noch abgespeichert, sodass wir später darauf zurückgreifen können. Alle diese Farbdaten werden den entsprechenden Knoten angehangen.
 
 ### startCytoscape ###
 
-![InitializeGraph](createCytoscape.png "Graphengenerierung")
+![InitializeGraph](Diagramms/createCytoscape.png "Graphengenerierung")
 
 Nun werden die generierten Knoten und Kanten verwendet um einen Graphen zu erzeugen. Außerdem wird dafür ein Stylesheet benötigt dieses ist fest einprogrammiert und kann im Programmcode geändert werden. In dem Sytlesheet geben wir an wie Die Knoten und Edges auszusehen haben. In unseren Fall geben wir an das mixedColor als Farbe der Knoten angezeigt werden soll, außerdem wird die ID des Knoten auch angezeigt und die Form der Knoten legen wir als Ellipse fest. Die Edges sind mit einer grauen Farbe belegt und die Form des Pfeils der Kanten legen wir als Dreieck fest. Das letzte was wir in dem Sytlesheet festlegen ist die Farbe der selber zu zeichnenden Kanten, welche wir auf Rot legen. Das Layout der Knoten wird auf einen Kreis eingestellt, sodass sich die Kanten nicht überlappen. Nun können wir durch die Funktion cytoscape() einen Graphen generieren mit dem der Spieler interagieren kann. Jetzt müssen nur noch die generierten Kanten versteckt werden, dies tun wir indem wir die Sichtbarkeit aller Kanten auf 0 setzen.
 
 ### winConditions ###
 
-![winCondition](winConditions.png "Spiellogik")
+![winCondition](Diagramms/winConditions.png "Spiellogik")
 
 Hier wird nun knotrolliert ob das Spiel gewonnen oder verloren wird. Dazu benötigen wir einen Listener, welcher darauf reagiert wenn eine neue Kante eingezeichnet wird (ehcomplete). Wenn dies passiert kontrollieren wir ob diese neu eingezeichnete Kante im Kantenarray liegt. Falls das der Fall ist machen wir diese Kante sichtbar und reduzieren die Anzahl der Kanten die noch einzuzeichnen sind. Wenn dadurch die Anzahl auf 0 fällt ist das Level gewonnen, das heißt wir erhöhen das Level um 1, zerstören den jetztigen Graphen und generieren neue Knoten und Edges. Falls die eingezeichnete Kante nicht im Array liegt, lösen wir eine Animation aus die den Bildschirm rot aufblinken lässt und ziehen dem Spieler ein Leben ab. Wenn die Leben auf 0 fallen wird ein Overlay sichtbar, welches verhindert das neue Kanten eingezeichnet werden können.
 
@@ -169,7 +169,7 @@ Das letzte Modul was hier beschrieben wird ist dazu in der Lage das Spiel in den
 
 Hier wird gezeigt wie ermittelt wird ob eine eingezeichnete Kante richtig ist:
 
-![laufzeit](Laufzeit.png "Laufzeitschicht")
+![laufzeit](Diagramms/Laufzeit.png "Laufzeitschicht")
 
 In diesem Diagramm werden zwei Kanten eingezeichnet. Die erste zwischen Knoten A und D was als "ad" abgekürzt wird. Daraufhin wird kontrolliert ob diese Kante in dem zu Beginn generierten Kantenarray liegt, in diesem Fall ist das nicht so und false wird zurückgegeben, dadurch weiß der Graph nun das die Kante nicht eingezeichnet bleiben darf und entfernt diese, außerdem wird im Webbrowser eine Animation ausgelöst die als Fehler Feedback dient und ein Leben wirrd abgezogen. ES wird außerdem kontrolliert ob durch den Lebensverlust das Spiel verloren ist.
 Die zweite eingezeichnete Kante "bc" ist diesmal korrekt also wird true zurückgegeben und es wird kontrolliert, ob dadurch alle Kanten eingezeichnet sind das ist nicht der Fall also bleibt die Kante einfach nur sichtbar.
