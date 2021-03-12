@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UserManual</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#causal-inference-game-user-manual">Causal Inference Game User Manual</a>
+<ul>
+<li><a href="#grundlegendes-spielprinzip">Grundlegendes Spielprinzip</a></li>
+<li><a href="#hauptmenü">Hauptmenü</a></li>
+<li><a href="#correlation-mode">Correlation Mode</a></li>
+<li><a href="#causal-inference-mode">Causal Inference Mode</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="causal-inference-game-user-manual">Causal Inference Game User Manual</h1>
+<p>Dieses Dokument dient dazu die Regeln und Grundprinzip des <a href="https://github.com/yasseen-salama/causal-inference-game">Causal Inference Games</a> festzuhalten und zu erklären.</p>
+<h2 id="grundlegendes-spielprinzip">Grundlegendes Spielprinzip</h2>
+<p>Das Ziel des Spiels ist es Kanten zwischen den unterschiedlichen Knoten zu ziehen. Um herauszufinden, welche Kanten eingezeichnet werden müssen, muss man Beziehungen zwischen den Knoten erkennen.</p>
+<p>Jeder Knoten hat zwei Farben, die auf dem Bildschirm dargestellte Farbe und eine Originalfarbe. Die Originalfarbe ist im Hintergrund gespeichert und ist die Farbe, die zu Beginn generiert wurde und unabhängig von den anderen Knoten ist. Die dargestellte Farbe ist die Farbe, die auf dem Bildschirm zu sehen ist. Diese kann die selbe wie die Originalfarbe sein, aber im Normalfall ist die dargestellte Farbe eine Mischung aus der Originalfarbe des Knotens und den dargestellten Farben verbundener Knoten.</p>
+<h2 id="hauptmenü">Hauptmenü</h2>
+<p>Wenn das Spiel gestartet wird landet man im Hauptmenü. Hier sieht man drei verschiedene Knöpfe :</p>
+<ul>
+<li>Correlation Mode</li>
+<li>Causal Inference Mode</li>
+<li>Help</li>
+</ul>
+<p>Jeder diese Knöpfe führt zu einer neuen Seite.</p>
+<h2 id="correlation-mode">Correlation Mode</h2>
+<p>Der Correlation Modus ist im Prinzip eine einfache Umsetzung der Regeln die oben erklärt wurden. Also müssen eine bestimmte Anzahl von Kanten eingezeichnet werden. Dies kann man tun in dem man mit Drag und Drop von einem Knoten auf einen anderen zieht.<br>
+Dazu gibt es noch zusätzliche Interface Elemente:</p>
+
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Funktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Herzen</td>
+<td>Die Herzen werden im oberen linken Bildschirmrand dargestellt. Bei falsch eingezeichneten Kanten wird hier ein Herz abgezogen, falls alle Herzen verloren sind, ist das Spiel verloren.</td>
+</tr>
+<tr>
+<td>Main Menu</td>
+<td>Dieser Knopf im unteren linken Bildschirmrand bricht das aktuelle Level ab und führt zum Hauptmenü zurück</td>
+</tr>
+<tr>
+<td>Give Up</td>
+<td>Dieser Knopf liegt direkt neben dem Main Menu Knopf und gibt das Level auf. Das heißt alle Kanten, die nicht eingezeichnet wurden, werden sichtbar und man kann nur noch ins Hauptmenü zurückkehren</td>
+</tr>
+<tr>
+<td>Level</td>
+<td>Die Levelanzeige zeigt an, in welchem Level man sich befindet. Man startet in Level 1 und endet in Level 3</td>
+</tr>
+<tr>
+<td>Edges left</td>
+<td>Diese Anzeige ist direkt unter der Levelanzeige und gibt an wie viele Kanten noch eingezeichnet werden müssen um das Level zu gewinnen</td>
+</tr>
+</tbody>
+</table><p>Wenn alle Kanten eingezeichnet wurden, erscheint ein weiterer Knopf, der wenn gedrückt, zum nächsten Level führt.</p>
+<h2 id="causal-inference-mode">Causal Inference Mode</h2>
+<p>Der zweite Modus ist im Grundprinzip identisch zum Correlation Modus. Das heißt auch hier müssen Kanten zwischen den Knoten eingezeichnet werden. Der Unterschied hierbei ist jedoch, dass man jetzt die Knotenfarben ändern kann, indem man den entsprechenden Knoten andrückt. Dadurch ändert sich die Farbe des Knotens und aller verbundenen Knoten entsprechend. Die Farbe die der Knoten annehmen soll kann man in einem Menü am unteren rechten Bildschirmrand auswählen. Durch erneutes Drücken des Knotens kehrt er zu seiner Ursprungsfarbe zurück.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
